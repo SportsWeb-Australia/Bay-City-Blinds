@@ -35,10 +35,13 @@ const schemas = [localBusiness(), serviceSchema(), faqSchema()];
           <LeadForm client:load />
         </div>
       </div>
-      <aside class="hero-photo-card reveal">
-        <img src="/jackson-van.webp" width="880" height="1100" fetchpriority="high" alt="Jackson from Bay City Blinds giving a thumbs up in front of his branded mobile showroom van in Geelong" />
-        <div class="badge-review"><span class="stars">★★★★★</span><span><b>5.0</b><br>42 reviews*</span></div>
-        <div class="pill-come"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Free in-home visit</div>
+      <aside class="hero-orb-wrap reveal">
+        <div class="orb-ring" aria-hidden="true"></div>
+        <div class="orb-ring orb-ring-2" aria-hidden="true"></div>
+        <img class="hero-orb" src="/jackson-orb.webp" width="1000" height="1000" fetchpriority="high" alt="Jackson from Bay City Blinds with his branded mobile showroom van in Geelong" />
+        <div class="orb-chip orb-chip-1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 13h13V6H3zM16 8h3l2 3v2h-5z"/><circle cx="7" cy="17" r="1.6"/><circle cx="17" cy="17" r="1.6"/></svg>Mobile showroom</div>
+        <div class="orb-chip orb-chip-2"><span class="stars">★★★★★</span> 5.0 · 42 reviews*</div>
+        <div class="orb-chip orb-chip-3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>Geelong · Surf Coast · Bellarine</div>
         <div class="name-tag">Jackson <span>· your local blinds guy</span></div>
       </aside>
     </div>

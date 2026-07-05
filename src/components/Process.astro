@@ -1,25 +1,29 @@
 ---
+const steps = [
+  { t: 'Enquire', d: 'Fill in the 30-second form or call Jackson direct.', ic: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/>' },
+  { t: 'Book a time', d: 'Days, evenings or weekends — whatever suits your house.', ic: '<rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>' },
+  { t: 'Measure & samples', d: 'Jackson arrives with the mobile showroom and measures every window properly.', ic: '<path d="M3 8l13-5 5 13-13 5z"/><path d="M8 6l1 3M11 5l1 3M14 12l3-1M13 15l3-1"/>' },
+  { t: 'Fixed quote', d: 'A clear written price on the spot. No surprises, no pressure.', ic: '<path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M9 15l2 2 4-4"/>' },
+  { t: 'Made to measure', d: 'Your blinds are custom-made by trusted Australian suppliers.', ic: '<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 00.3 1.8l.1.1a2 2 0 11-2.9 2.8l-.1-.1a1.7 1.7 0 00-1.8-.3 1.7 1.7 0 00-1 1.5V21a2 2 0 01-4 0v-.1a1.7 1.7 0 00-1-1.6 1.7 1.7 0 00-1.8.3l-.1.1a2 2 0 11-2.8-2.9l.1-.1a1.7 1.7 0 00.3-1.8 1.7 1.7 0 00-1.5-1H3a2 2 0 010-4h.1a1.7 1.7 0 001.6-1 1.7 1.7 0 00-.3-1.8l-.1-.1a2 2 0 112.9-2.8l.1.1a1.7 1.7 0 001.8.3H9a1.7 1.7 0 001-1.5V3a2 2 0 014 0v.1a1.7 1.7 0 001 1.5 1.7 1.7 0 001.8-.3l.1-.1a2 2 0 112.8 2.9l-.1.1a1.7 1.7 0 00-.3 1.8V9a1.7 1.7 0 001.5 1h.2a2 2 0 010 4h-.1a1.7 1.7 0 00-1.5 1z"/>' },
+  { t: 'Install & enjoy', d: 'Professional fitting, clean-up included — then a quick care run-through.', ic: '<path d="M20 6L9 17l-5-5"/>' },
+];
 ---
 <section class="block" id="process">
   <div class="wrap">
     <div class="sec-head reveal">
-      <p class="eyebrow">Easy from start to finish</p>
-      <h2>Your free measure &amp; quote in 4 simple steps</h2>
-      <p>No showroom trips, no confusing catalogues. Just a friendly local who makes choosing blinds easy.</p>
+      <p class="eyebrow">From enquiry to installation</p>
+      <h2>How your free measure &amp; quote works</h2>
+      <p>The whole journey, handled by one local — most enquiries are measured within a couple of days.</p>
     </div>
-    <div class="steps">
-      <div class="step reveal"><div class="num">1</div>
-        <div class="step-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></div>
-        <h3>Book online or call</h3><p>Fill in the form or ring Jackson. Pick a time that suits — days, after work, or weekends.</p></div>
-      <div class="step reveal"><div class="num">2</div>
-        <div class="step-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 13h13V6H3zM16 8h3l2 3v2h-5z"/><circle cx="7" cy="17" r="1.6"/><circle cx="17" cy="17" r="1.6"/></svg></div>
-        <h3>Jackson comes to you</h3><p>He brings samples so you can see and feel the options against your own walls and light.</p></div>
-      <div class="step reveal"><div class="num">3</div>
-        <div class="step-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8l13-5 5 13-13 5z"/><path d="M8 6l1 3M11 5l1 3M14 12l3-1M13 15l3-1"/></svg></div>
-        <h3>Proper measure</h3><p>Every window measured accurately on the spot — the bit most people get wrong on their own.</p></div>
-      <div class="step reveal"><div class="num">4</div>
-        <div class="step-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M9 15l2 2 4-4"/></svg></div>
-        <h3>Clear, fixed quote</h3><p>A tidy written price with no surprises. Happy to go ahead? We book your install.</p></div>
-    </div>
+    <ol class="journey">
+      {steps.map((s, i) => (
+        <li class="jstep reveal">
+          <span class="j-num">{i + 1}</span>
+          <span class="j-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" set:html={s.ic} /></span>
+          <h3>{s.t}</h3>
+          <p>{s.d}</p>
+        </li>
+      ))}
+    </ol>
   </div>
 </section>

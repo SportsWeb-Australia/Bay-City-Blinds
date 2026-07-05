@@ -1,5 +1,6 @@
 ---
 import { products } from '../data/content';
+import { photo, photoMap } from '../data/photos';
 const icons: Record<string, string> = {
   'roller-blinds': '<rect x="4" y="3" width="16" height="18" rx="1"/><path d="M4 8h16M4 13h16M4 18h16"/>',
   'roman-blinds': '<rect x="4" y="3" width="16" height="18" rx="1"/><path d="M4 7c3 2 13 2 16 0M4 12c3 2 13 2 16 0M4 17c3 2 13 2 16 0"/>',
@@ -20,7 +21,7 @@ const icons: Record<string, string> = {
       {products.map((p) => (
         <a class="pcard reveal" href={`/blinds/${p.slug}`}>
           <span class="ph-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" set:html={icons[p.slug]} /></span>
-          <img class="ph-img" src={`/images/${p.slug}.svg`} width="640" height="400" loading="lazy" alt={`${p.name} in Geelong — sample image, replace with a real photo`} />
+          <img class="ph-img" src={photo(p.slug as keyof typeof photoMap)} width="640" height="400" loading="lazy" alt={`${p.name} by Bay City Blinds, Geelong`} />
           <div class="body"><h3>{p.name}</h3><p>{p.blurb}</p><span class="lk">Get a price →</span></div>
         </a>
       ))}

@@ -6,12 +6,12 @@ import { gallery } from '../data/content';
     <div class="sec-head reveal">
       <p class="eyebrow">Recent work</p>
       <h2>A look at the finished results</h2>
-      <p>Real jobs, real homes across Geelong &amp; the Bellarine. Swap these for Jackson's own before/after photos.</p>
+      <p>Real jobs, real homes across Geelong &amp; the Bellarine.</p>
     </div>
     <div class="gallery">
       {gallery.map((g, i) => (
         <a href="/free-measure-quote" aria-label={`${g.prod} in ${g.sub}`}>
-          <img src={`/images/gallery-${i + 1}.svg`} width="600" height="450" loading="lazy" alt={`${g.prod} installed in ${g.sub} by Bay City Blinds — sample photo`} />
+          <img src={photo(`gallery-${i + 1}` as keyof typeof photoMap)} width="600" height="450" loading="lazy" alt={`${g.prod} installed in ${g.sub} by Bay City Blinds`} />
         </a>
       ))}
     </div>
