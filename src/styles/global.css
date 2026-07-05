@@ -434,3 +434,37 @@ section.block{padding:4.6rem 0}
 section.block{padding:5rem 0}
 .sec-head{margin-bottom:2.8rem}
 @media(max-width:640px){section.block{padding:3.4rem 0}.statband{padding-top:1.8rem}}
+
+/* ===== v8: hero swap — copy+photo left, form right ===== */
+.heroX-grid2{display:grid;grid-template-columns:1.02fr .98fr;grid-template-areas:"copy form" "photo form";
+  gap:2rem 3.2rem;align-items:start;padding:3.4rem 22px 4.2rem;max-width:var(--maxw);margin:0 auto}
+.hx-copy{grid-area:copy}
+.hx-photo{grid-area:photo}
+.hx-form{grid-area:form;max-width:560px;justify-self:end;width:100%}
+.hx-form .lead-card{box-shadow:0 30px 64px -30px rgba(11,43,51,.5)}
+.hx-copy h1{font-size:clamp(2rem,3.7vw,2.9rem)}
+.hx-copy .sub{margin:.9rem 0 1.1rem;max-width:32rem}
+/* wide photo card framing */
+.hero-wide-card{position:relative;border-radius:22px;overflow:hidden;aspect-ratio:16/10;
+  box-shadow:0 30px 60px -30px rgba(11,43,51,.55), 0 0 0 1px rgba(20,169,198,.15)}
+.hero-wide-card img{width:100%;height:100%;object-fit:cover;object-position:50% 18%;display:block}
+.hero-wide-card::after{content:"";position:absolute;inset:auto 0 0 0;height:30%;
+  background:linear-gradient(180deg,transparent,rgba(11,43,51,.38));pointer-events:none}
+.hero-wide-card .badge-review{position:absolute;top:14px;left:14px;z-index:2}
+.hero-wide-card .wide-pill{position:absolute;top:14px;right:14px;z-index:2;display:flex;align-items:center;gap:.4rem;
+  background:#fff;border-radius:999px;padding:.5rem .9rem;font-weight:700;font-size:.82rem;box-shadow:0 12px 28px -12px rgba(11,43,51,.45)}
+.hero-wide-card .wide-pill svg{width:15px;height:15px;color:var(--teal-deep)}
+.hero-wide-card .name-tag{position:absolute;bottom:12px;left:14px;z-index:2}
+/* form extras */
+.field .opt{font-weight:500;color:var(--muted);font-size:.78rem}
+.field textarea{width:100%;border:1.5px solid var(--line);border-radius:12px;padding:.7rem .9rem;font:inherit;resize:vertical;background:#fff}
+.field textarea:focus{outline:none;border-color:var(--turq)}
+.seg{display:grid;grid-template-columns:1fr 1fr;gap:.6rem}
+.seg label{display:flex;align-items:center;justify-content:center;gap:.4rem;border:1.5px solid var(--line);
+  border-radius:12px;padding:.65rem .5rem;font-weight:700;font-size:.9rem;cursor:pointer;background:#fff;transition:all .15s}
+.seg label.on{border-color:var(--turq);background:var(--wash);color:var(--teal-deep)}
+.seg input{position:absolute;opacity:0;pointer-events:none}
+@media(max-width:960px){
+  .heroX-grid2{grid-template-columns:1fr;grid-template-areas:"copy" "form" "photo";gap:1.6rem;padding-top:2.4rem}
+  .hx-form{justify-self:stretch;max-width:none}
+}
