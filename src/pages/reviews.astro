@@ -1,0 +1,14 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Reviews from '../components/Reviews.astro';
+import FinalCta from '../components/FinalCta.astro';
+import { localBusiness, breadcrumb } from '../data/schema';
+const title = 'Reviews | Bay City Blinds — Blinds Geelong';
+const description = 'See why Geelong & Bellarine homeowners rate Bay City Blinds 5 stars. Real reviews of our mobile measure & quote, quality blinds and tidy installs.';
+const schemas = [localBusiness(), breadcrumb([{ name:'Home', url:'/' }, { name:'Reviews', url:'/reviews' }])];
+---
+<Layout title={title} description={description} path="/reviews" schemas={schemas}>
+  <div style="height:1px"></div>
+  <Reviews />
+  <FinalCta />
+</Layout>

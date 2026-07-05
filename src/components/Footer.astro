@@ -1,0 +1,29 @@
+---
+import { site } from '../data/site';
+import { products, locations } from '../data/content';
+---
+<footer>
+  <div class="wrap">
+    <div class="fgrid">
+      <div>
+        <div class="brand" style="font-family:'Bricolage Grotesque';font-weight:800;font-size:1.25rem">Bay City Blinds<br><small style="font-family:Inter;font-weight:600;font-size:.62rem;letter-spacing:.2em">GEELONG · MOBILE SHOWROOM</small></div>
+        <p style="font-size:.9rem;max-width:22rem">Local, family-owned blinds, shutters and curtains — measured and installed in your home since {site.founded}.</p>
+        <p style="margin-top:.9rem;font-size:.9rem"><a href={site.phoneHref}>📞 {site.phone}</a><a href={`mailto:${site.email}`}>✉️ {site.email}</a></p>
+      </div>
+      <div><h4>Products</h4>{products.map((p) => <a href={`/blinds/${p.slug}`}>{p.name}</a>)}</div>
+      <div><h4>Service Areas</h4>{locations.slice(0, 6).map((l) => <a href={`/${l.slug}`}>{l.name}</a>)}</div>
+      <div><h4>Company</h4>
+        <a href="/#process">How it works</a><a href="/reviews">Reviews</a><a href="/#faq">FAQ</a>
+        <a href="/free-measure-quote">Free measure &amp; quote</a><a href="/about">About Jackson</a>
+      </div>
+    </div>
+    <div class="fbar">
+      <span>© {new Date().getFullYear()} {site.name} · ABN {site.abn} · Geelong, VIC</span>
+      <span>Free in-home measure &amp; quote across Geelong &amp; the Bellarine</span>
+    </div>
+  </div>
+</footer>
+<div class="mobile-bar">
+  <a class="btn btn-ghost" href={site.phoneHref}>📞 Call</a>
+  <a class="btn btn-primary" href="/free-measure-quote">Free quote →</a>
+</div>

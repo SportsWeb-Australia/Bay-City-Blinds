@@ -1,0 +1,29 @@
+---
+import { products } from '../data/content';
+const icons: Record<string, string> = {
+  'roller-blinds': '<rect x="4" y="3" width="16" height="18" rx="1"/><path d="M4 8h16M4 13h16M4 18h16"/>',
+  'roman-blinds': '<rect x="4" y="3" width="16" height="18" rx="1"/><path d="M4 7c3 2 13 2 16 0M4 12c3 2 13 2 16 0M4 17c3 2 13 2 16 0"/>',
+  'venetian-blinds': '<rect x="4" y="3" width="16" height="18" rx="1"/><path d="M4 6h16M4 9h16M4 12h16M4 15h16M4 18h16"/>',
+  'plantation-shutters': '<rect x="3" y="3" width="8" height="18" rx="1"/><rect x="13" y="3" width="8" height="18" rx="1"/><path d="M5 7h4M5 11h4M5 15h4M15 7h4M15 11h4M15 15h4"/>',
+  'curtains': '<path d="M4 3v18M20 3v18M6 3c0 4-2 4-2 8s2 4 2 8M10 3c0 4-2 4-2 8s2 4 2 8M14 3c0 4-2 4-2 8s2 4 2 8M18 3c0 4-2 4-2 8s2 4 2 8"/>',
+  'outdoor-screens': '<rect x="4" y="3" width="16" height="14" rx="1"/><path d="M4 7h16M4 11h16M4 15h16M8 17v4M16 17v4"/>',
+};
+---
+<section class="block tint" id="products">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow">What we fit</p>
+      <h2>Blinds, shutters &amp; curtains for every room</h2>
+      <p>Quality window furnishings from trusted suppliers, measured and installed by a local who cares how it looks.</p>
+    </div>
+    <div class="grid-3">
+      {products.map((p) => (
+        <a class="pcard reveal" href={`/blinds/${p.slug}`}>
+          <span class="ph-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" set:html={icons[p.slug]} /></span>
+          <img class="ph-img" src={`/images/${p.slug}.svg`} width="640" height="400" loading="lazy" alt={`${p.name} in Geelong — sample image, replace with a real photo`} />
+          <div class="body"><h3>{p.name}</h3><p>{p.blurb}</p><span class="lk">Get a price →</span></div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

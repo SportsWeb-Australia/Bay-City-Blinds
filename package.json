@@ -1,0 +1,23 @@
+{
+  "name": "bay-city-blinds",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Bay City Blinds — lead-generation site (Astro + React islands). Built by Business1.",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "astro": "^4.15.0",
+    "@astrojs/react": "^3.6.0",
+    "@astrojs/sitemap": "^3.2.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0"
+  }
+}

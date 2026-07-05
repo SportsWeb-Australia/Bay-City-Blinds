@@ -1,0 +1,79 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Products from '../components/Products.astro';
+import WhyUs from '../components/WhyUs.astro';
+import Reviews from '../components/Reviews.astro';
+import ServiceAreas from '../components/ServiceAreas.astro';
+import FinalCta from '../components/FinalCta.astro';
+import Gallery from '../components/Gallery.astro';
+import LeadForm from '../components/LeadForm.tsx';
+import Faq from '../components/Faq.tsx';
+import { locations } from '../data/content';
+import { localBusiness, serviceSchema, faqSchema, breadcrumb } from '../data/schema';
+
+// One statically-rendered page per service area — full HTML, unique meta + schema.
+export function getStaticPaths() {
+  return locations.map((loc) => ({ params: { location: loc.slug }, props: { loc } }));
+}
+const { loc } = Astro.props;
+
+const title = `Blinds ${loc.name} | Free Measure & Quote | Bay City Blinds`;
+const description = `Free in-home blinds, shutters & curtains measure & quote in ${loc.name}. Local, family-owned since 2020. Roller blinds, plantation shutters, Venetians & more — Jackson comes to you.`;
+const schemas = [
+  localBusiness(loc.name),
+  serviceSchema(),
+  faqSchema(),
+  breadcrumb([
+    { name: 'Home', url: '/' },
+    { name: 'Service areas', url: '/#areas' },
+    { name: loc.name, url: `/${loc.slug}` },
+  ]),
+];
+---
+<Layout title={title} description={description} path={`/${loc.slug}`} schemas={schemas}>
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-copy reveal">
+        <p class="eyebrow">{loc.region} · mobile blinds showroom</p>
+        <h1>Blinds in <span class="hl">{loc.name}</span> — free in-home measure &amp; quote.</h1>
+        <p class="sub">{loc.intro}</p>
+        <div class="trust-chips">
+          <span class="chip"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.3 6.9.6-5.2 4.6 1.6 6.8L12 17.3 5.8 20.9l1.6-6.8L2.2 8.9l6.9-.6z"/></svg>5-star rated locally</span>
+          <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>Serving {loc.name} &amp; nearby</span>
+          <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Family-owned since 2020</span>
+        </div>
+        <p style="color:var(--muted);font-size:.9rem;margin-top:1rem">Also servicing nearby: {loc.nearby}.</p>
+      </div>
+      <div>
+        <div class="hero-photo reveal" style="margin-bottom:1.4rem">
+          <div class="blob" aria-hidden="true"></div>
+          <img src="/jackson.webp" width="760" height="1140" alt={`Jackson from Bay City Blinds, serving ${loc.name}`} />
+          <div class="name-tag">Jackson <span>· your local blinds guy</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="wrap" id="quote" style="padding-bottom:3rem;margin-top:-1rem">
+      <div style="max-width:560px;margin-left:auto">
+        <LeadForm client:load defaultSuburb={loc.name} />
+      </div>
+    </div>
+  </section>
+
+  <Products />
+  <WhyUs />
+  <Reviews />
+  <Gallery />
+
+  <section class="block tint">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <p class="eyebrow">Good to know</p>
+        <h2>Blinds in {loc.name} — your questions answered</h2>
+      </div>
+      <Faq client:visible />
+    </div>
+  </section>
+
+  <ServiceAreas />
+  <FinalCta />
+</Layout>

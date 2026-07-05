@@ -1,0 +1,38 @@
+---
+import Layout from '../layouts/Layout.astro';
+import TrustStrip from '../components/TrustStrip.astro';
+import Process from '../components/Process.astro';
+import Reviews from '../components/Reviews.astro';
+import LeadForm from '../components/LeadForm.tsx';
+import Faq from '../components/Faq.tsx';
+import { localBusiness, serviceSchema, faqSchema } from '../data/schema';
+
+const title = 'Free Measure & Quote — Blinds Geelong | Bay City Blinds';
+const description = 'Book your free, no-obligation in-home measure & quote for blinds, shutters & curtains across Geelong & the Bellarine. Jackson comes to you — usually within 1 business day.';
+const schemas = [localBusiness(), serviceSchema(), faqSchema()];
+---
+<Layout title={title} description={description} path="/free-measure-quote" schemas={schemas}>
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-copy reveal">
+        <p class="eyebrow">Free · no obligation · we come to you</p>
+        <h1>Book your free <span class="hl">measure &amp; quote</span></h1>
+        <p class="sub">Fill in the form and Jackson will call to lock in a time that suits — days, evenings or weekends. He brings the samples, measures properly, and gives you a clear fixed price.</p>
+        <div class="trust-chips">
+          <span class="chip"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.3 6.9.6-5.2 4.6 1.6 6.8L12 17.3 5.8 20.9l1.6-6.8L2.2 8.9l6.9-.6z"/></svg>5-star rated locally</span>
+          <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 8v4l3 2"/><circle cx="12" cy="12" r="9"/></svg>Reply within 1 business day</span>
+        </div>
+      </div>
+      <div class="reveal"><LeadForm client:load /></div>
+    </div>
+  </section>
+  <TrustStrip />
+  <Process />
+  <Reviews />
+  <section class="block tint" id="faq">
+    <div class="wrap">
+      <div class="sec-head reveal"><p class="eyebrow">Good to know</p><h2>Frequently asked questions</h2></div>
+      <Faq client:visible />
+    </div>
+  </section>
+</Layout>

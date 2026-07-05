@@ -1,0 +1,33 @@
+---
+import Layout from '../layouts/Layout.astro';
+import WhyUs from '../components/WhyUs.astro';
+import Showroom from '../components/Showroom.astro';
+import FinalCta from '../components/FinalCta.astro';
+import { site } from '../data/site';
+import { localBusiness, breadcrumb } from '../data/schema';
+const title = 'About Bay City Blinds | Local Blinds, Geelong';
+const description = 'Bay City Blinds is a local, family-owned mobile blinds business in Geelong, run by Jackson since 2020. Meet the friendly local who brings the showroom to you.';
+const schemas = [localBusiness(), breadcrumb([{ name:'Home', url:'/' }, { name:'About', url:'/about' }])];
+---
+<Layout title={title} description={description} path="/about" schemas={schemas}>
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-copy reveal">
+        <p class="eyebrow">Meet your local</p>
+        <h1>Hi, I'm <span class="hl">Jackson</span> — your Geelong blinds guy.</h1>
+        <p class="sub">I started Bay City Blinds in {site.founded} with a simple idea: make buying blinds easy by bringing the showroom to you. No pushy sales, no showroom trips — just honest advice, quality products and a tidy install, right across Geelong and beyond.</p>
+        <a class="btn btn-primary btn-lg" href="/free-measure-quote">Book a free quote with me →</a>
+      </div>
+      <div>
+        <div class="hero-photo reveal">
+          <div class="blob" aria-hidden="true"></div>
+          <img src="/jackson.webp" width="760" height="1140" alt="Jackson, owner of Bay City Blinds in Geelong" />
+          <div class="name-tag">Jackson <span>· owner, Bay City Blinds</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <WhyUs />
+  <Showroom />
+  <FinalCta />
+</Layout>

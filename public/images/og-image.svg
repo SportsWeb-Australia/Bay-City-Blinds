@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+<defs><linearGradient id="b" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0B6C7E"/><stop offset="1" stop-color="#0B2B33"/></linearGradient></defs>
+<rect width="1200" height="630" fill="url(#b)"/>
+<circle cx="90" cy="90" r="46" fill="#0B2B33" stroke="#25C9DD" stroke-width="3"/>
+<g transform="translate(70,68)" fill="none" stroke="#25C9DD" stroke-width="2.4" stroke-linejoin="round"><path d="M4 44V16l8-6v34M20 44V6l8 6v32M36 44V22l8 4v18"/></g>
+<text x="160" y="100" font-family="'Bricolage Grotesque',Inter,Arial,sans-serif" font-size="40" font-weight="800" fill="#fff">Bay City Blinds</text>
+<text x="80" y="300" font-family="'Bricolage Grotesque',Inter,Arial,sans-serif" font-size="72" font-weight="800" fill="#fff">Free in-home measure</text>
+<text x="80" y="380" font-family="'Bricolage Grotesque',Inter,Arial,sans-serif" font-size="72" font-weight="800" fill="#25C9DD">&amp; quote in Geelong</text>
+<text x="80" y="470" font-family="Inter,Arial,sans-serif" font-size="30" fill="#c6e6ec">Blinds · Shutters · Curtains — the mobile showroom that comes to you</text>
+<g transform="translate(80,520)"><rect width="290" height="58" rx="29" fill="#14A9C6"/><text x="145" y="38" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="22" font-weight="700" fill="#fff">Get my free quote →</text></g>
+</svg>

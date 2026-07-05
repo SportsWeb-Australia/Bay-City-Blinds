@@ -1,0 +1,23 @@
+---
+const brands = [
+  { name: 'Premium', tag: 'Fabrics' },
+  { name: 'AusMade', tag: 'Shutters' },
+  { name: 'ClearView', tag: 'Screens' },
+  { name: 'SoftLine', tag: 'Curtains' },
+  { name: 'DuraTrack', tag: 'Hardware' },
+];
+---
+<section class="block" style="padding:2.6rem 0">
+  <div class="wrap">
+    <p class="eyebrow reveal" style="text-align:center;margin-bottom:1.1rem">Trusted supplier range · quality that lasts</p>
+    <div class="brands reveal">
+      {brands.map((b) => (
+        <span class="brand-chip">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.9 6.3 6.9.6-5.2 4.6 1.6 6.8L12 17.3 5.8 20.9l1.6-6.8L2.2 8.9l6.9-.6z"/></svg>
+          <span>{b.name}<small>{b.tag}</small></span>
+        </span>
+      ))}
+    </div>
+    <p style="text-align:center;margin-top:.9rem;color:var(--muted);font-size:.78rem">Placeholder supplier names — swap for Jackson's real brand partners.</p>
+  </div>
+</section>

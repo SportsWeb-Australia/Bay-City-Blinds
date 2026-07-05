@@ -1,0 +1,31 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Products from '../../components/Products.astro';
+import WhyUs from '../../components/WhyUs.astro';
+import ServiceAreas from '../../components/ServiceAreas.astro';
+import FinalCta from '../../components/FinalCta.astro';
+import { localBusiness, serviceSchema, breadcrumb } from '../../data/schema';
+
+const title = 'Blinds & Shutters Geelong | Roller, Roman, Venetian, Shutters | Bay City Blinds';
+const description = 'Explore our range of made-to-measure blinds, plantation shutters, curtains and outdoor screens across Geelong & the Bellarine. Free in-home measure & quote.';
+const schemas = [
+  localBusiness(),
+  serviceSchema(),
+  breadcrumb([{ name: 'Home', url: '/' }, { name: 'Blinds & Shutters', url: '/blinds' }]),
+];
+---
+<Layout title={title} description={description} path="/blinds" schemas={schemas}>
+  <section class="block" style="padding-bottom:1rem">
+    <div class="wrap">
+      <div class="sec-head reveal" style="margin-bottom:1rem">
+        <p class="eyebrow">Our range</p>
+        <h2>Blinds, shutters &amp; curtains for every room</h2>
+        <p>All made to measure, all installed in your home by a local. Tap any product for a free quote.</p>
+      </div>
+    </div>
+  </section>
+  <Products />
+  <WhyUs />
+  <ServiceAreas />
+  <FinalCta />
+</Layout>

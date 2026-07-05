@@ -1,0 +1,22 @@
+---
+import { reviews } from '../data/content';
+---
+<section class="block" id="reviews">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Real local reviews</p>
+      <h2>Geelong homeowners love working with Jackson</h2>
+      <p><span class="stars">★★★★★</span> Rated 5.0 from 40+ reviews across Google &amp; Facebook*</p>
+    </div>
+    <div class="tgrid">
+      {reviews.map((r) => (
+        <div class="tcard reveal">
+          <div class="stars">{'★'.repeat(r.stars)}</div>
+          <blockquote>"{r.quote}"</blockquote>
+          <div class="who"><div class="av">{r.initials}</div><div><b>{r.name}</b><span>{r.suburb}</span></div></div>
+        </div>
+      ))}
+    </div>
+    <p style="text-align:center;margin-top:1.4rem;color:var(--muted);font-size:.82rem">*Placeholder reviews for layout — swap in Jackson's real Google reviews before launch.</p>
+  </div>
+</section>

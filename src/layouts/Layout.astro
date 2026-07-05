@@ -1,0 +1,33 @@
+---
+import '../styles/global.css';
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+export interface Props {
+  title: string;
+  description: string;
+  path?: string;
+  schemas?: object[];
+}
+const { title, description, path, schemas } = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <BaseHead title={title} description={description} path={path} schemas={schemas} />
+</head>
+<body>
+  <Header />
+  <slot />
+  <Footer />
+  <script>
+    // Tiny progressive enhancements (no framework needed for these)
+    document.querySelectorAll('.area-chips a, .pcard').forEach(() => {});
+    const io = new IntersectionObserver((es) => {
+      es.forEach((en) => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+  </script>
+</body>
+</html>

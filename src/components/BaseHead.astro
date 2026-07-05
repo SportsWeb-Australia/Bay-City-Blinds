@@ -1,0 +1,49 @@
+---
+import { site } from '../data/site';
+export interface Props {
+  title: string;
+  description: string;
+  path?: string;          // e.g. "/blinds-armstrong-creek"
+  ogImage?: string;
+  robots?: string;
+  schemas?: object[];     // JSON-LD objects rendered into the page HEAD
+}
+const {
+  title,
+  description,
+  path = '',
+  ogImage = site.ogImage,
+  robots = 'index,follow,max-image-preview:large',
+  schemas = [],
+} = Astro.props;
+const canonical = new URL(path, site.url).href;
+const ogUrl = new URL(ogImage, site.url).href;
+---
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+<meta name="robots" content={robots} />
+<meta name="geo.region" content="AU-VIC" />
+<meta name="geo.placename" content="Geelong" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={ogUrl} />
+<meta property="og:locale" content="en_AU" />
+<meta property="og:site_name" content={site.name} />
+<meta name="twitter:card" content="summary_large_image" />
+
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+<!-- Structured data: rendered at build time, so crawlers & AI get it with zero JS -->
+{schemas.map((s) => (
+  <script type="application/ld+json" set:html={JSON.stringify(s)} />
+))}
