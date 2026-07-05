@@ -1,11 +1,12 @@
 ---
+import { photo, photoMap } from '../data/photos';
 const steps = [
-  { t: 'Enquire', d: 'Fill in the 30-second form or call Jackson direct.', ic: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/>' },
-  { t: 'Book a time', d: 'Days, evenings or weekends — whatever suits your house.', ic: '<rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>' },
-  { t: 'Measure & samples', d: 'Jackson arrives with the mobile showroom and measures every window properly.', ic: '<path d="M3 8l13-5 5 13-13 5z"/><path d="M8 6l1 3M11 5l1 3M14 12l3-1M13 15l3-1"/>' },
-  { t: 'Fixed quote', d: 'A clear written price on the spot. No surprises, no pressure.', ic: '<path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M9 15l2 2 4-4"/>' },
-  { t: 'Made to measure', d: 'Your blinds are custom-made by trusted Australian suppliers.', ic: '<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 00.3 1.8l.1.1a2 2 0 11-2.9 2.8l-.1-.1a1.7 1.7 0 00-1.8-.3 1.7 1.7 0 00-1 1.5V21a2 2 0 01-4 0v-.1a1.7 1.7 0 00-1-1.6 1.7 1.7 0 00-1.8.3l-.1.1a2 2 0 11-2.8-2.9l.1-.1a1.7 1.7 0 00.3-1.8 1.7 1.7 0 00-1.5-1H3a2 2 0 010-4h.1a1.7 1.7 0 001.6-1 1.7 1.7 0 00-.3-1.8l-.1-.1a2 2 0 112.9-2.8l.1.1a1.7 1.7 0 001.8.3H9a1.7 1.7 0 001-1.5V3a2 2 0 014 0v.1a1.7 1.7 0 001 1.5 1.7 1.7 0 001.8-.3l.1-.1a2 2 0 112.8 2.9l-.1.1a1.7 1.7 0 00-.3 1.8V9a1.7 1.7 0 001.5 1h.2a2 2 0 010 4h-.1a1.7 1.7 0 00-1.5 1z"/>' },
-  { t: 'Install & enjoy', d: 'Professional fitting, clean-up included — then a quick care run-through.', ic: '<path d="M20 6L9 17l-5-5"/>' },
+  { t: 'Enquire', d: 'Fill in the 30-second form, or call or text Jackson direct.', img: photo('journey-1') },
+  { t: 'Book a time', d: 'Days, evenings or weekends — whatever suits your house.', img: photo('journey-2') },
+  { t: 'Measure & samples', d: 'The mobile showroom arrives and every window is measured properly.', img: '/jackson-van-wide.webp' },
+  { t: 'Your quote, your call', d: 'A clear written price — then take all the time you need to decide. No chasing, no pressure.', img: photo('journey-4') },
+  { t: 'Made to measure', d: 'Your blinds are custom-made by trusted Australian suppliers.', img: photo('journey-5') },
+  { t: 'Install & enjoy', d: 'Professional fitting, clean-up included — then a quick care run-through.', img: photo('journey-6') },
 ];
 ---
 <section class="block" id="process">
@@ -13,17 +14,19 @@ const steps = [
     <div class="sec-head reveal">
       <p class="eyebrow">From enquiry to installation</p>
       <h2>How your free measure &amp; quote works</h2>
-      <p>The whole journey, handled by one local — most enquiries are measured within a couple of days.</p>
+      <p>The whole journey, handled by one local — and you decide if and when to go ahead, in your own time.</p>
     </div>
     <ol class="journey">
       {steps.map((s, i) => (
-        <li class="jstep reveal">
-          <span class="j-num">{i + 1}</span>
-          <span class="j-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" set:html={s.ic} /></span>
-          <h3>{s.t}</h3>
-          <p>{s.d}</p>
+        <li class="jstep jstep-photo reveal">
+          <div class="j-img"><img src={s.img} width="640" height="400" loading="lazy" alt={`Step ${i + 1}: ${s.t} — Bay City Blinds, Geelong`} /><span class="j-num">{i + 1}</span></div>
+          <div class="j-body"><h3>{s.t}</h3><p>{s.d}</p></div>
         </li>
       ))}
     </ol>
+    <div class="promise reveal">
+      <span class="promise-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></span>
+      <div><b>The no-pressure promise.</b> Your quote is valid, in writing, and yours to sit with. Go ahead this week, next month, or not at all — Jackson's approach is friendly advice, never a hard sell.</div>
+    </div>
   </div>
 </section>

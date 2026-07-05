@@ -400,3 +400,37 @@ footer .brand small{color:var(--turq)}
 section.block{padding:4.6rem 0}
 .sec-head{margin-bottom:2.4rem}
 .sec-head h2{text-wrap:balance}
+
+/* ===== v7: air + photo journey + sms ===== */
+/* hero: calmer, more space */
+.heroX-grid{gap:3.2rem;padding-top:3.6rem;padding-bottom:4.4rem}
+.orb-ring-2{display:none}                       /* one ring is enough */
+.orb-chip-2{top:14%;left:-2%}
+.orb-chip-3{bottom:15%;right:-2%}
+/* stat band: give it clear air instead of overlapping */
+.statband{margin:0;padding:2.6rem 0 0.6rem;background:linear-gradient(180deg,#eefafc, #ffffff)}
+.statgrid{gap:16px}
+.stat{padding:1.25rem 1.3rem;gap:.25rem}
+.stat b{font-size:1.55rem}
+/* journey photo cards */
+.jstep-photo{padding:0;overflow:hidden}
+.j-img{position:relative;aspect-ratio:16/10;overflow:hidden}
+.j-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s}
+.jstep-photo:hover .j-img img{transform:scale(1.04)}
+.j-img .j-num{top:12px;right:12px;box-shadow:0 6px 16px -6px rgba(0,0,0,.4)}
+.j-body{padding:1.15rem 1.25rem 1.3rem}
+.jstep-photo h3{font-size:1.08rem}
+.jstep::after{display:none}                      /* cleaner without connectors on photo cards */
+/* no-pressure promise */
+.promise{display:flex;gap:1rem;align-items:center;margin-top:1.6rem;background:#fff;border:1.5px solid var(--line);
+  border-left:5px solid var(--turq);border-radius:16px;padding:1.15rem 1.3rem;box-shadow:var(--shadow-sm);font-size:.98rem}
+.promise-ic{flex:0 0 auto;width:46px;height:46px;border-radius:13px;background:var(--wash);display:grid;place-items:center}
+.promise-ic svg{width:24px;height:24px;color:var(--teal-deep)}
+/* sub-page orb (location/product) — smaller & calm */
+.hero-orb-sub{min-height:0}
+.hero-orb-sub .hero-orb{width:min(88%,440px)}
+.hero-orb-sub .orb-ring{width:min(104%,520px);animation:none}
+/* section air */
+section.block{padding:5rem 0}
+.sec-head{margin-bottom:2.8rem}
+@media(max-width:640px){section.block{padding:3.4rem 0}.statband{padding-top:1.8rem}}

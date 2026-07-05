@@ -8,7 +8,7 @@ import { products, locations } from '../data/content';
       <div>
         <div class="brand" style="font-family:'Bricolage Grotesque';font-weight:800;font-size:1.25rem">Bay City Blinds<br><small style="font-family:Inter;font-weight:600;font-size:.62rem;letter-spacing:.2em">GEELONG · MOBILE SHOWROOM</small></div>
         <p style="font-size:.9rem;max-width:22rem">Local, family-owned blinds, shutters and curtains — measured and installed in your home since {site.founded}.</p>
-        <p style="margin-top:.9rem;font-size:.9rem"><a href={site.phoneHref}>📞 {site.phone}</a><a href={`mailto:${site.email}`}>✉️ {site.email}</a></p>
+        <p style="margin-top:.9rem;font-size:.9rem"><a href={site.phoneHref}>📞 Call {site.phone}</a><a href={site.smsHref}>💬 Text {site.phone}</a><a href={`mailto:${site.email}`}>✉️ {site.email}</a></p>
       </div>
       <div><h4>Products</h4>{products.map((p) => <a href={`/blinds/${p.slug}`}>{p.name}</a>)}</div>
       <div><h4>Service Areas</h4>{locations.slice(0, 6).map((l) => <a href={`/${l.slug}`}>{l.name}</a>)}</div>
@@ -25,5 +25,6 @@ import { products, locations } from '../data/content';
 </footer>
 <div class="mobile-bar">
   <a class="btn btn-ghost" href={site.phoneHref}>📞 Call</a>
+  <a class="btn btn-ghost" href={site.smsHref}>💬 Text</a>
   <a class="btn btn-primary" href="/free-measure-quote">Free quote →</a>
 </div>

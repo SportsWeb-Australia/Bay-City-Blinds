@@ -9,6 +9,7 @@ export const site = {
   // ⚠️ PLACEHOLDERS — replace with Jackson's real details before launch
   phone: '04XX XXX XXX',
   phoneHref: 'tel:0400000000',
+  smsHref: 'sms:0400000000',
   email: 'hello@baycityblinds.com.au',
   abn: '00 000 000 000',
   founded: '2020',
