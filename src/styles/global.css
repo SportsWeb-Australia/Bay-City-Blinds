@@ -468,3 +468,17 @@ section.block{padding:5rem 0}
   .heroX-grid2{grid-template-columns:1fr;grid-template-areas:"copy" "form" "photo";gap:1.6rem;padding-top:2.4rem}
   .hx-form{justify-self:stretch;max-width:none}
 }
+
+/* ===== v9: Meet Jackson (not a franchise) ===== */
+.meetj{display:grid;grid-template-columns:.9fr 1.1fr;gap:3rem;align-items:center}
+.meetj-img{position:relative;border-radius:50%;overflow:hidden;aspect-ratio:1;max-width:400px;
+  box-shadow:0 34px 66px -30px rgba(11,43,51,.5),0 0 0 9px #fff,0 0 0 10px rgba(20,169,198,.22)}
+.meetj-img img{width:100%;height:100%;object-fit:cover}
+.meetj h2{font-size:clamp(1.7rem,3vw,2.3rem);font-weight:800;margin:.4rem 0 .8rem}
+.meetj>div>p{color:var(--muted);line-height:1.7;max-width:36rem}
+.meetj-list{list-style:none;padding:0;margin:1.2rem 0 0;display:grid;gap:.9rem}
+.meetj-list li{display:flex;gap:.85rem;align-items:flex-start;font-size:.96rem;line-height:1.55;color:var(--muted)}
+.meetj-list b{color:var(--ink)}
+.li-ic2{flex:0 0 auto;width:38px;height:38px;border-radius:12px;background:var(--wash);display:grid;place-items:center;margin-top:.1rem}
+.li-ic2 svg{width:19px;height:19px;color:var(--teal-deep)}
+@media(max-width:960px){.meetj{grid-template-columns:1fr}.meetj-img{max-width:300px;margin:0 auto}}
