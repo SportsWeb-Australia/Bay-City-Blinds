@@ -275,3 +275,57 @@ footer .brand small{color:var(--turq)}
 .step .step-ic{width:46px;height:46px;border-radius:13px;background:var(--wash);display:grid;place-items:center;margin-bottom:.7rem}
 .step .step-ic svg{width:24px;height:24px;color:var(--teal-deep)}
 .step .num{position:absolute;top:14px;right:16px;width:30px;height:30px;font-size:.95rem;background:var(--turq);color:#fff;border-radius:9px;margin:0}
+
+/* ===== v3: hero van scene (homepage) + cleaner transparent cutout ===== */
+.hero-scene{position:relative;max-width:560px;margin:0 auto}
+.hero-scene img{max-height:none;width:100%;max-width:560px;height:auto;margin:0 auto;
+  -webkit-mask-image:none;mask-image:none;filter:drop-shadow(0 24px 34px rgba(11,43,51,.22))}
+.hero-scene .badge-review{left:2%;top:30%}
+.hero-scene .name-tag{bottom:9%}
+@media(max-width:960px){.hero-scene{max-width:440px}}
+/* transparent cutout on other heroes: sits cleanly on the blob, no card box */
+.hero-photo img{background:transparent}
+
+/* ===== v4: split hero, measure & quote form above the fold + pro stage ===== */
+.heroX{background:linear-gradient(180deg,#ffffff 0%, #eefafc 100%)}
+.heroX-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:2.2rem;align-items:center;padding:2.6rem 22px 3.2rem}
+.heroX h1{font-size:clamp(2rem,3.9vw,3.05rem)}
+.heroX .sub{margin:.9rem 0 1.1rem;max-width:34rem}
+.heroX .trust-chips{margin-top:0}
+.hero-formwrap{margin-top:1.5rem;max-width:540px}
+.hero-formwrap .lead-card{box-shadow:0 26px 60px -30px rgba(11,43,51,.5)}
+
+.hero-stage{position:relative;border-radius:26px;overflow:hidden;min-height:560px;align-self:stretch;
+  background:radial-gradient(120% 92% at 50% 4%, #eafcff 0%, #c3edf4 48%, #7fd6e2 100%);
+  box-shadow:0 34px 70px -34px rgba(11,43,51,.55), inset 0 0 0 1px rgba(255,255,255,.4)}
+/* NOTE: to add Jackson's real van, set a background-image on .hero-stage
+   (or add an <img> layer with z-index:1) — it sits behind .stage-jackson (z-index:2). */
+.stage-slats{position:absolute;inset:0;background:repeating-linear-gradient(0deg, rgba(255,255,255,0) 0 26px, rgba(255,255,255,.22) 26px 28px);opacity:.5;pointer-events:none}
+.stage-floor{position:absolute;left:0;right:0;bottom:0;height:34%;background:linear-gradient(180deg, rgba(11,108,126,0) 0%, rgba(11,108,126,.18) 100%)}
+.stage-shadow{position:absolute;left:50%;bottom:4%;transform:translateX(-50%);width:56%;height:44px;background:radial-gradient(closest-side, rgba(6,30,36,.42), transparent 72%);filter:blur(6px);z-index:1}
+.stage-jackson{position:absolute;left:50%;bottom:0;transform:translateX(-50%);height:98%;width:auto;filter:drop-shadow(0 22px 26px rgba(11,43,51,.28));z-index:2}
+.hero-stage .badge-review{position:absolute;left:5%;top:22%;z-index:3}
+.hero-stage .pill-come{position:absolute;right:5%;top:9%;z-index:3}
+.hero-stage .name-tag{position:absolute;bottom:6%;left:50%;transform:translateX(-50%);z-index:3}
+@media(max-width:960px){
+  .heroX-grid{grid-template-columns:1fr;gap:1.5rem}
+  .hero-stage{min-height:400px;order:-1}
+  .hero-formwrap{max-width:none}
+  .hero-stage .badge-review,.hero-stage .pill-come{display:none}
+}
+
+/* ===== v5: real van photography ===== */
+.hero-photo-card{position:relative;border-radius:24px;overflow:hidden;align-self:stretch;min-height:520px;
+  box-shadow:0 34px 70px -32px rgba(11,43,51,.55), inset 0 0 0 1px rgba(255,255,255,.35)}
+.hero-photo-card img{width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0}
+.hero-photo-card .badge-review{position:absolute;left:5%;top:6%;z-index:3}
+.hero-photo-card .pill-come{position:absolute;right:5%;top:6%;z-index:3}
+.hero-photo-card .name-tag{position:absolute;bottom:5%;left:50%;transform:translateX(-50%);z-index:3}
+.hero-photo-card::after{content:"";position:absolute;inset:auto 0 0 0;height:26%;
+  background:linear-gradient(180deg,transparent,rgba(11,43,51,.34));pointer-events:none}
+@media(max-width:960px){.hero-photo-card{min-height:420px}}
+
+.showroom .van-photo{border-radius:18px;overflow:hidden;box-shadow:0 24px 50px -24px rgba(0,0,0,.5);
+  border:1px solid rgba(255,255,255,.14)}
+.showroom .van-photo img{width:100%;height:100%;object-fit:cover;display:block}
+@media(max-width:960px){.showroom .van-photo{display:block;margin-top:1.4rem}}

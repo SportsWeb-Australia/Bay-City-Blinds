@@ -19,33 +19,28 @@ const description = 'Bay City Blinds brings the showroom to you. Free in-home me
 const schemas = [localBusiness(), serviceSchema(), faqSchema()];
 ---
 <Layout title={title} description={description} path="/" schemas={schemas}>
-  <section class="hero">
-    <div class="wrap">
+  <section class="hero heroX">
+    <div class="wrap heroX-grid">
       <div class="hero-copy reveal">
         <p class="eyebrow">Blinds · Shutters · Curtains — Geelong &amp; the Bellarine</p>
-        <h1>Free in-home <span class="hl">measure &amp; quote</span>, right across Geelong.</h1>
-        <p class="sub">Skip the showroom. Jackson brings the samples to your living room, measures every window properly, and gives you a clear fixed price — no pressure, no guessing.</p>
+        <h1>Free in-home <span class="hl">measure &amp; quote</span> — right across Geelong.</h1>
+        <p class="sub">Jackson brings the samples to your living room, measures every window properly, and gives you a clear fixed price. No showroom, no pressure.</p>
         <div class="trust-chips">
           <span class="chip"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.3 6.9.6-5.2 4.6 1.6 6.8L12 17.3 5.8 20.9l1.6-6.8L2.2 8.9l6.9-.6z"/></svg>5-star rated locally</span>
           <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Family-owned since 2020</span>
           <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>We come to you</span>
           <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 8v4l3 2"/><circle cx="12" cy="12" r="9"/></svg>Fast, honest quotes</span>
         </div>
-      </div>
-      <div>
-        <div class="hero-photo reveal" style="margin-bottom:1.4rem">
-          <div class="blob" aria-hidden="true"></div>
-          <img src="/jackson.webp" width="760" height="1140" alt="Jackson, local owner of Bay City Blinds, smiling and giving a thumbs up in a branded shirt" />
-          <div class="badge-review"><span class="stars">★★★★★</span><span><b>5.0</b><br>Google reviews*</span></div>
-          <div class="pill-come"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 13h13V6H3zM16 8h3l2 3v2h-5z"/><circle cx="7" cy="17" r="1.6"/><circle cx="17" cy="17" r="1.6"/></svg>We bring the showroom to you</div>
-          <div class="name-tag">Jackson <span>· your local blinds guy</span></div>
+        <div id="quote" class="hero-formwrap reveal">
+          <LeadForm client:load />
         </div>
       </div>
-    </div>
-    <div class="wrap" id="quote" style="padding-bottom:3rem;margin-top:-1rem">
-      <div style="max-width:560px;margin-left:auto">
-        <LeadForm client:load />
-      </div>
+      <aside class="hero-photo-card reveal">
+        <img src="/jackson-van.webp" width="880" height="1100" fetchpriority="high" alt="Jackson from Bay City Blinds giving a thumbs up in front of his branded mobile showroom van in Geelong" />
+        <div class="badge-review"><span class="stars">★★★★★</span><span><b>5.0</b><br>42 reviews*</span></div>
+        <div class="pill-come"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Free in-home visit</div>
+        <div class="name-tag">Jackson <span>· your local blinds guy</span></div>
+      </aside>
     </div>
   </section>
 
