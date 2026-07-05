@@ -3,7 +3,7 @@ import { useState } from 'react';
 // Interactive lead form (React island). Hydrated on load with client:load.
 // On submit, POST to a Zoho Forms endpoint or Zoho CRM webhook to fire the
 // B1 automation blueprint (create Lead -> notify Jackson -> confirm SMS/email).
-export default function LeadForm({ defaultSuburb = '' }: { defaultSuburb?: string }) {
+export default function LeadForm({ defaultSuburb = '', variant = 'full' }: { defaultSuburb?: string; variant?: 'full' | 'quick' }) {
   const [done, setDone] = useState(false);
   const [suburb, setSuburb] = useState(defaultSuburb);
   const [contact, setContact] = useState('call');
@@ -12,6 +12,29 @@ export default function LeadForm({ defaultSuburb = '' }: { defaultSuburb?: strin
     e.preventDefault();
     // TODO(Business1): fetch('https://forms.zohopublic.com.au/…', { method:'POST', body:new FormData(e.target as HTMLFormElement) })
     setDone(true);
+  }
+
+
+  if (variant === 'quick') {
+    return !done ? (
+      <form className="od-quick" onSubmit={submit} noValidate aria-label="Quick free quote form">
+        <div className="fd"><label htmlFor="qname">Your name</label><input id="qname" name="name" type="text" placeholder="First name" required autoComplete="given-name" /></div>
+        <div className="fd"><label htmlFor="qphone">Mobile</label><input id="qphone" name="phone" type="tel" placeholder="04XX XXX XXX" required autoComplete="tel" /></div>
+        <div className="fd"><label htmlFor="qsuburb">Suburb</label><input id="qsuburb" name="suburb" type="text" value={suburb} onChange={(e) => setSuburb(e.target.value)} required /></div>
+        <div className="fd"><label htmlFor="qservice">I'm after</label>
+          <select id="qservice" name="service">
+            <option>Roller blinds</option><option>Roman blinds</option><option>Venetian blinds</option>
+            <option>Plantation shutters</option><option>Curtains</option><option>Outdoor / zip screens</option>
+            <option>A few different things</option><option>Not sure yet</option>
+          </select>
+        </div>
+        <button className="btn btn-primary" type="submit">Free quote →</button>
+      </form>
+    ) : (
+      <div className="od-quick-ok" role="status">
+        <span className="tick-sm">✓</span> Nice one — request received! Jackson will be in touch within 1 business day.
+      </div>
+    );
   }
 
   const two: React.CSSProperties = { display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '.7rem' };

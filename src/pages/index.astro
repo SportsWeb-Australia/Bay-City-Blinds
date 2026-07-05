@@ -20,27 +20,23 @@ const description = 'Bay City Blinds brings the showroom to you. Free in-home me
 const schemas = [localBusiness(), serviceSchema(), faqSchema()];
 ---
 <Layout title={title} description={description} path="/" schemas={schemas}>
-  <section class="hero heroX">
-    <div class="wrap heroX-grid2">
-      <div class="hx-copy reveal">
+  <section class="hero heroC">
+    <img class="heroC-img" src="/jackson-hero-bleed.webp" width="1122" height="880" fetchpriority="high" alt="Jackson from Bay City Blinds giving a thumbs up in front of his branded mobile showroom van in Geelong" />
+    <div class="heroC-grad" aria-hidden="true"></div>
+    <div class="wrap heroC-grid">
+      <div class="heroC-copy reveal">
         <p class="eyebrow">Blinds · Shutters · Curtains — Geelong &amp; the Bellarine</p>
-        <h1>Free in-home <span class="hl">measure &amp; quote</span> — right across Geelong.</h1>
-        <p class="sub">Jackson brings the samples to your living room, measures every window properly, and gives you a clear fixed price. No showroom, no pressure.</p>
+        <h1>The showroom that <span class="hl">comes to you</span> — measured, quoted, no pressure.</h1>
+        <p class="sub">Skip the shop. See real samples against your own walls and light, with a clear fixed price before you decide anything.</p>
+        <p class="trust-line"><b>Jackson &amp; his installers are the faces of the business</b> — police-checked locals with years of 5-star reviews, not a franchise that arrived last year.</p>
         <div class="trust-chips">
-          <span class="chip"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.3 6.9.6-5.2 4.6 1.6 6.8L12 17.3 5.8 20.9l1.6-6.8L2.2 8.9l6.9-.6z"/></svg>5-star rated locally</span>
-          <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Family-owned since 2020</span>
-          <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>We come to you</span>
+          <span class="chip"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.3 6.9.6-5.2 4.6 1.6 6.8L12 17.3 5.8 20.9l1.6-6.8L2.2 8.9l6.9-.6z"/></svg>5.0 · years of reviews</span>
+          <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>Police &amp; security checked</span>
+          <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>Local — not a franchise</span>
+          <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 8v4l3 2"/><circle cx="12" cy="12" r="9"/></svg>Evenings &amp; weekends</span>
         </div>
       </div>
-      <div class="hx-photo reveal">
-        <div class="hero-wide-card">
-          <img src="/jackson-van-showroom.webp" width="1000" height="750" fetchpriority="high" alt="Jackson from Bay City Blinds with his branded mobile showroom van in Geelong" />
-          <div class="badge-review"><span class="stars">★★★★★</span><span><b>5.0</b><br>42 reviews*</span></div>
-          <div class="wide-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>Geelong · Surf Coast · Bellarine</div>
-          <div class="name-tag">Jackson <span>· your local blinds guy</span></div>
-        </div>
-      </div>
-      <aside id="quote" class="hx-form reveal">
+      <aside id="quote" class="heroC-form reveal">
         <LeadForm client:load />
       </aside>
     </div>
