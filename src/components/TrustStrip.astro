@@ -1,10 +1,11 @@
 ---
+// n = target number to count to, pre/suf = static parts around it, l = label
 const stats = [
-  { n: '200+*', l: 'Geelong homes fitted', ic: '<path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/>' },
-  { n: '5.0*', l: 'Average Google rating', ic: '<path d="M12 2l2.9 6.3 6.9.6-5.2 4.6 1.6 6.8L12 17.3 5.8 20.9l1.6-6.8L2.2 8.9l6.9-.6z"/>' },
-  { n: '10+', l: 'Suburbs serviced', ic: '<path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>' },
-  { n: '2020', l: 'Family-owned since', ic: '<path d="M20 6L9 17l-5-5"/>' },
-  { n: '100%', l: 'Insured & guaranteed', ic: '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>' },
+  { n: 200, pre: '', suf: '+*', l: 'Geelong homes fitted', ic: '<path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/>' },
+  { n: 5.0, pre: '', suf: '*', decimals: 1, l: 'Average Google rating', ic: '<path d="M12 2l2.9 6.3 6.9.6-5.2 4.6 1.6 6.8L12 17.3 5.8 20.9l1.6-6.8L2.2 8.9l6.9-.6z"/>' },
+  { n: 30, pre: '', suf: '+', l: 'Suburbs serviced in Greater Geelong & West Melbourne', ic: '<path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>' },
+  { n: 10, pre: '', suf: '+ yrs', l: 'Family-owned', ic: '<path d="M20 6L9 17l-5-5"/>' },
+  { n: 100, pre: '', suf: '%', l: 'Insured & guaranteed', ic: '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>' },
 ];
 ---
 <div class="statband">
@@ -12,8 +13,40 @@ const stats = [
     {stats.map((s) => (
       <div class="stat reveal">
         <span class="stat-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" set:html={s.ic} /></span>
-        <b>{s.n}</b><span class="stat-l">{s.l}</span>
+        <b class="stat-num" data-target={s.n} data-pre={s.pre} data-suf={s.suf} data-decimals={s.decimals ?? 0}>{s.pre}0{s.suf}</b>
+        <span class="stat-l">{s.l}</span>
       </div>
     ))}
   </div>
 </div>
+
+<script>
+  const nums = document.querySelectorAll<HTMLElement>('.stat-num');
+  const run = (el: HTMLElement) => {
+    const target = parseFloat(el.dataset.target || '0');
+    const pre = el.dataset.pre || '';
+    const suf = el.dataset.suf || '';
+    const dec = parseInt(el.dataset.decimals || '0');
+    const dur = 1400;
+    const start = performance.now();
+    const tick = (now: number) => {
+      const p = Math.min((now - start) / dur, 1);
+      const eased = 1 - Math.pow(1 - p, 3); // easeOutCubic
+      const val = (target * eased).toFixed(dec);
+      el.textContent = pre + val + suf;
+      if (p < 1) requestAnimationFrame(tick);
+      else el.textContent = pre + target.toFixed(dec) + suf;
+    };
+    requestAnimationFrame(tick);
+  };
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) { run(e.target as HTMLElement); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.5 });
+    nums.forEach((n) => io.observe(n));
+  } else {
+    nums.forEach(run);
+  }
+</script>
