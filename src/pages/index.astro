@@ -20,23 +20,23 @@ const description = 'Bay City Blinds brings the showroom to you. Free in-home me
 const schemas = [localBusiness(), serviceSchema(), faqSchema()];
 ---
 <Layout title={title} description={description} path="/" schemas={schemas}>
-  <section class="heroC">
-    <img class="heroC-img" src="/jackson-hero-bleed.webp" width="1122" height="880" fetchpriority="high" alt="Jackson from Bay City Blinds giving a thumbs up in front of his branded mobile showroom van in Geelong" />
-    <div class="heroC-grad" aria-hidden="true"></div>
-    <div class="wrap heroC-grid">
-      <div class="heroC-copy reveal">
-        <p class="eyebrow">Blinds · Shutters · Curtains — Geelong &amp; the Bellarine</p>
-        <h1>The showroom that <span class="hl">comes to you</span> — measured, quoted, no pressure.</h1>
-        <p class="sub">Skip the shop. See real samples against your own walls and light, with a clear fixed price before you decide anything.</p>
-        <p class="trust-line"><b>Jackson &amp; his installers are the faces of the business</b> — police-checked locals with years of 5-star reviews, not a franchise that arrived last year.</p>
+  <section class="heroF">
+    <img class="heroF-img" src="/jackson-hero.webp" width="2200" height="1466" fetchpriority="high" alt="Jackson from Bay City Blinds giving a thumbs up in front of his branded mobile showroom van in Geelong" />
+    <div class="heroF-tint" aria-hidden="true"></div>
+    <div class="wrap heroF-grid">
+      <div class="heroF-copy reveal">
+        <p class="eyebrow">Geelong's mobile blinds showroom · since 2020</p>
+        <h1>The showroom that <span class="hl">comes to you</span>.</h1>
+        <p class="sub">Blinds, curtains, shutters &amp; outdoor blinds — measured in your Geelong home, made to measure, installed by a local you'll actually meet.</p>
         <div class="trust-chips">
-          <span class="chip"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.3 6.9.6-5.2 4.6 1.6 6.8L12 17.3 5.8 20.9l1.6-6.8L2.2 8.9l6.9-.6z"/></svg>5.0 · years of reviews</span>
-          <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>Police &amp; security checked</span>
-          <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>Local — not a franchise</span>
-          <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 8v4l3 2"/><circle cx="12" cy="12" r="9"/></svg>Evenings &amp; weekends</span>
+          <span class="chip"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 2l2.9 6.3 6.9.6-5.2 4.6 1.6 6.8L12 17.3 5.8 20.9l1.6-6.8L2.2 8.9l6.9-.6z"/></svg>5.0 · 54 Google reviews</span>
+          <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>Local, family-owned in Geelong</span>
+          <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>10+ years experience</span>
+          <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 2"/></svg>Evenings &amp; weekends</span>
         </div>
+        <p class="hero-owner">Owner-operated by Jackson, with a trusted local install team.</p>
       </div>
-      <aside id="quote" class="heroC-form reveal">
+      <aside id="quote" class="heroF-form reveal">
         <LeadForm client:load />
       </aside>
     </div>
