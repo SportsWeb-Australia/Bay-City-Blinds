@@ -1,13 +1,33 @@
 import { useEffect, useRef } from 'react';
 
-// Jackson's live Zoho form ("Get Your Free Quote"), embedded exactly per Zoho's own
-// snippet (iframe + postMessage resize listener). Ported from vanilla JS into a
-// React effect so it mounts once per page load. Do not edit the ID/src below without
-// getting a fresh snippet from Zoho — they're tied together.
-const DIV_ID = 'zf_div_fg65Ex1X3z9xYdHrVc-P9evlT4I63sV87ckOmvjQgRQ';
-const FORM_SRC = 'https://forms.zohopublic.com.au/sportsweb1/form/GetYourFreeQuote/formperma/fg65Ex1X3z9xYdHrVc-P9evlT4I63sV87ckOmvjQgRQ?zf_rszfm=1&zf_enablecamera=true';
+export type ZohoFormConfig = {
+  divId: string;
+  formSrc: string;
+  height: string;
+  ariaLabel: string;
+  allowCamera?: boolean;
+};
 
-export default function ZohoEmbedForm() {
+// Jackson's live Zoho forms, embedded exactly per Zoho's own snippet (iframe +
+// postMessage resize listener). Ported from vanilla JS into a React effect so it
+// mounts once per page load. Don't hand-edit a form's divId/formSrc without a fresh
+// snippet from Zoho — they're tied together.
+export const ZOHO_FULL_FORM: ZohoFormConfig = {
+  divId: 'zf_div_fg65Ex1X3z9xYdHrVc-P9evlT4I63sV87ckOmvjQgRQ',
+  formSrc: 'https://forms.zohopublic.com.au/sportsweb1/form/GetYourFreeQuote/formperma/fg65Ex1X3z9xYdHrVc-P9evlT4I63sV87ckOmvjQgRQ?zf_rszfm=1&zf_enablecamera=true',
+  height: '1628px',
+  ariaLabel: 'Book your free measure & quote',
+  allowCamera: true,
+};
+
+export const ZOHO_QUICK_FORM: ZohoFormConfig = {
+  divId: 'zf_div__weevNWsUZ8hh9XIhyYHihn8nyjR7gPsgXOu1mo1xZY',
+  formSrc: 'https://forms.zohopublic.com.au/sportsweb1/form/Bookyourfreemeasurequote/formperma/_weevNWsUZ8hh9XIhyYHihn8nyjR7gPsgXOu1mo1xZY?zf_rszfm=1',
+  height: '834px',
+  ariaLabel: 'Book your free measure & quote',
+};
+
+export default function ZohoEmbedForm({ config }: { config: ZohoFormConfig }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const injected = useRef(false);
 
@@ -15,7 +35,7 @@ export default function ZohoEmbedForm() {
     if (injected.current || !containerRef.current) return;
     injected.current = true;
 
-    let ifrmSrc = FORM_SRC;
+    let ifrmSrc = config.formSrc;
     try {
       const w = window as any;
       if (typeof w.ZFAdvLead !== 'undefined' && typeof w.zfutm_zfAdvLead !== 'undefined') {
@@ -50,11 +70,11 @@ export default function ZohoEmbedForm() {
     const iframe = document.createElement('iframe');
     iframe.src = ifrmSrc;
     iframe.style.border = 'none';
-    iframe.style.height = '1628px';
+    iframe.style.height = config.height;
     iframe.style.width = '100%';
     iframe.style.transition = 'all 0.5s ease';
-    iframe.setAttribute('aria-label', 'Book your free measure & quote');
-    iframe.setAttribute('allow', 'camera;');
+    iframe.setAttribute('aria-label', config.ariaLabel);
+    if (config.allowCamera) iframe.setAttribute('allow', 'camera;');
     containerRef.current.appendChild(iframe);
 
     function onMessage(event: MessageEvent) {
@@ -77,7 +97,7 @@ export default function ZohoEmbedForm() {
 
     window.addEventListener('message', onMessage);
     return () => window.removeEventListener('message', onMessage);
-  }, []);
+  }, [config]);
 
-  return <div id={DIV_ID} ref={containerRef} />;
+  return <div id={config.divId} ref={containerRef} />;
 }
