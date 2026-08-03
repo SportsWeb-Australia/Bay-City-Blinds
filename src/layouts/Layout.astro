@@ -42,5 +42,14 @@ const { title, description, path, schemas, robots } = Astro.props;
       if (cta) window.gtag('event', 'cta_click', { cta_label: cta.getAttribute('data-cta') });
     });
   </script>
+  {import.meta.env.PUBLIC_SITEPULSE === '1' && (
+    <script
+      src="https://sportsweb-one-v1.vercel.app/sitepulse-widget.js"
+      data-club-id="2e4cf6d6-c19a-4ebc-8049-532f6b09e103"
+      data-source="onboarding"
+      data-website-status="draft"
+      data-help-url="https://sitepulse-help.vercel.app"
+    ></script>
+  )}
 </body>
 </html>
