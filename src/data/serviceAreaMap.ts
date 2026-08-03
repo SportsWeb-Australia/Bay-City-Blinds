@@ -49,9 +49,17 @@ export const baseMarker = { lat: -38.1499, lng: 144.3617, label: 'Bay City Blind
 
 export const hubMarkers: { position: LatLng; title: string; blurb: string }[] = [
   { position: { lat: -38.1499, lng: 144.3617 }, title: 'Geelong', blurb: 'Custom blinds, shutters and window furnishings across Geelong and all suburbs.' },
+  // Surf Coast, coast-hugging south to north
+  { position: { lat: -38.352, lng: 144.298 }, title: 'Jan Juc', blurb: 'Custom blinds, shutters and window furnishings across Jan Juc and the Surf Coast.' },
   { position: { lat: -38.339, lng: 144.322 }, title: 'Torquay and Surf Coast', blurb: 'Custom blinds, shutters and window furnishings available across the Surf Coast.' },
+  // Bellarine Peninsula coastline, Barwon Heads through to Portarlington
+  { position: { lat: -38.267, lng: 144.49 }, title: 'Barwon Heads', blurb: 'Custom blinds, shutters and window furnishings for Barwon Heads and surrounds.' },
   { position: { lat: -38.268, lng: 144.52 }, title: 'Ocean Grove and the Bellarine', blurb: 'Custom blinds, shutters and window furnishings across the Bellarine Peninsula.' },
+  { position: { lat: -38.245, lng: 144.565 }, title: 'St Leonards', blurb: 'Custom blinds, shutters and window furnishings for St Leonards and the eastern Bellarine.' },
+  { position: { lat: -38.183, lng: 144.552 }, title: 'Drysdale', blurb: 'Custom blinds, shutters and window furnishings for Drysdale and surrounds.' },
+  { position: { lat: -38.114, lng: 144.649 }, title: 'Portarlington', blurb: 'Custom blinds, shutters and window furnishings for Portarlington and the Bellarine coast.' },
   { position: { lat: -38.028, lng: 144.428 }, title: 'Lara', blurb: 'Custom blinds, shutters and window furnishings for Lara and surrounds.' },
+  // Melbourne's west, coast-hugging down Port Phillip Bay
   { position: { lat: -37.90, lng: 144.663 }, title: 'Werribee', blurb: 'Custom blinds, shutters and window furnishings for Werribee and Melbourne’s west.' },
   { position: { lat: -37.912, lng: 144.752 }, title: 'Point Cook', blurb: 'Custom blinds, shutters and window furnishings for Point Cook and surrounds.' },
   { position: { lat: -37.867, lng: 144.895 }, title: 'Williamstown', blurb: 'Custom blinds, shutters and window furnishings for Williamstown and surrounds.' },
