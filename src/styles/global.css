@@ -574,8 +574,7 @@ section.block{padding:5rem 0}
 .heroF-copy .chip svg{color:#bff0f6}
 .heroF .hero-owner{margin-top:1rem;color:#eaf6f8;font-size:.9rem;opacity:.9}
 .heroF-form{justify-self:end;width:100%;max-width:var(--formw);transform:translateX(var(--formx))}
-.heroF-form .lead-card{background:#fff;border-radius:26px;box-shadow:0 40px 90px -42px rgba(6,40,48,.5);max-height:600px;overflow-y:auto;overscroll-behavior:contain}
-@media(max-width:960px){.heroF-form .lead-card{max-height:none;overflow-y:visible}}
+.heroF-form .lead-card{background:#fff;border-radius:26px;box-shadow:0 40px 90px -42px rgba(6,40,48,.5)}
 .heroF + .statband{background:linear-gradient(180deg,#0e6274 0%, #eefafc 30%)}
 @media(max-width:960px){
   .heroF-grid{grid-template-columns:1fr;gap:1.4rem;padding:2.6rem 20px 3rem;min-height:0}
