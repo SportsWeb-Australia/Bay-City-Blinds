@@ -10,6 +10,7 @@ import LeadForm from '../components/LeadForm.tsx';
 import Faq from '../components/Faq.tsx';
 import { locations } from '../data/content';
 import { localBusiness, serviceSchema, faqSchema, breadcrumb } from '../data/schema';
+import { site } from '../data/site';
 
 // One statically-rendered page per service area — full HTML, unique meta + schema.
 export function getStaticPaths() {
@@ -37,7 +38,7 @@ const schemas = [
       <h1>Blinds in <span class="hl">{loc.name}</span>, free in-home measure &amp; quote.</h1>
       <p class="sub">{loc.intro}</p>
       <div class="trust-chips locD-chips">
-        <span class="chip"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.3 6.9.6-5.2 4.6 1.6 6.8L12 17.3 5.8 20.9l1.6-6.8L2.2 8.9l6.9-.6z"/></svg>5.0 · years of reviews</span>
+        <span class="chip"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.3 6.9.6-5.2 4.6 1.6 6.8L12 17.3 5.8 20.9l1.6-6.8L2.2 8.9l6.9-.6z"/></svg>{site.ratingValue} · {site.reviewCount} Google reviews</span>
         <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>14+ years industry experience</span>
         <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>Serving {loc.name} &amp; nearby</span>
         <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 8v4l3 2"/><circle cx="12" cy="12" r="9"/></svg>Evenings &amp; weekends</span>
