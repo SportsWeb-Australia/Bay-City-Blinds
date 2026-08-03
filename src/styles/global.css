@@ -83,6 +83,8 @@ header{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.92);backdro
 
 /* hero form card */
 .lead-card{background:#fff;border-radius:var(--r);box-shadow:var(--shadow);border:1px solid var(--line);padding:1.5rem 1.5rem 1.6rem;position:relative;z-index:3}
+.lead-card-slim{padding:1rem .6rem .8rem}
+.lead-card-slim .flag{left:14px}
 .lead-card .flag{position:absolute;top:-14px;left:22px;background:var(--star);color:#3a2a00;font-weight:800;font-size:.72rem;letter-spacing:.06em;padding:.28rem .7rem;border-radius:999px;text-transform:uppercase}
 .lead-card h3{font-size:1.32rem;font-weight:800}
 .lead-card p.small{color:var(--muted);font-size:.9rem;margin-top:.15rem}
@@ -552,7 +554,7 @@ section.block{padding:5rem 0}
 
 /* ===== v-final: heroF (approved) — airy full-bleed photo, white copy, form floats right ===== */
 .heroF{position:relative;overflow:hidden;isolation:isolate;min-height:600px;background:#0a5566;
-  --posx:42%; --posy:14%; --tintL:.76; --lightStart:60%; --gap:5rem; --formw:441px; --copyw:29rem; --copyx:0px; --formx:80px}
+  --posx:42%; --posy:14%; --tintL:.76; --lightStart:60%; --gap:3rem; --formw:660px; --copyw:26rem; --copyx:0px; --formx:0px}
 .heroF-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:var(--posx) var(--posy);z-index:-2}
 .heroF-tint{position:absolute;inset:0;z-index:-1;background:linear-gradient(96deg, rgba(9,74,88,var(--tintL)) 0%, rgba(11,90,110,calc(var(--tintL) * .55)) 32%, rgba(240,251,253,0) var(--lightStart), rgba(240,251,253,.5) 82%, rgba(240,251,253,.88) 100%)}
 .heroF-grid{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(410px,var(--formw));gap:var(--gap);align-items:center;max-width:1340px;margin:0 auto;padding:4rem 40px 4.4rem 40px;min-height:600px}

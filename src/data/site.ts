@@ -21,6 +21,8 @@ export const site = {
   postalCode: '3220',
   serviceRadiusMetres: 60000,
   ogImage: '/images/og-image.png',
+  facebook: 'https://www.facebook.com/baycityblinds',
+  instagram: 'https://www.instagram.com/baycityblinds/',
   hours: [
     { days: ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'], opens: '08:00', closes: '18:00' },
   ],

@@ -7,19 +7,16 @@ import ZohoEmbedForm, { ZOHO_FULL_FORM, ZOHO_QUICK_FORM } from './ZohoEmbedForm'
 export default function LeadForm({ variant = 'full' }: { defaultSuburb?: string; variant?: 'full' | 'quick' }) {
   if (variant === 'quick') {
     return (
-      <div className="lead-card">
+      <div className="lead-card lead-card-slim">
         <span className="flag">Free, no obligation</span>
-        <h3>Book your free measure &amp; quote</h3>
         <ZohoEmbedForm config={ZOHO_QUICK_FORM} />
       </div>
     );
   }
 
   return (
-    <div className="lead-card">
+    <div className="lead-card lead-card-slim">
       <span className="flag">Free, no obligation</span>
-      <h3>Book your free measure &amp; quote</h3>
-      <p className="small">Tell us where you are and Jackson will be in touch to lock in a time. Usually within 1 business day.</p>
       <ZohoEmbedForm config={ZOHO_FULL_FORM} />
       <div className="assure">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="4" y="11" width="16" height="10" rx="2" /><path d="M8 11V7a4 4 0 018 0v4" /></svg>
