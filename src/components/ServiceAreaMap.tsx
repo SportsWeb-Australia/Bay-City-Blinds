@@ -135,15 +135,22 @@ export default function ServiceAreaMap() {
   }
 
   return (
-    <div
-      ref={containerRef}
-      // Fixed pixel height, not a percentage: the astro-island wrapper around this component
-      // renders as display:contents, which breaks height:100% inheritance from .map-live and
-      // can leave Google Maps measuring a 0-height box at construction time.
-      style={{ width: '100%', height: 380 }}
-      aria-label="Bay City Blinds service area covering Geelong, the Bellarine Peninsula, Surf Coast and Melbourne's western suburbs"
-    >
-      {status === 'loading' && <div className="map-loading">Loading map…</div>}
+    <div style={{ position: 'relative', width: '100%', height: 380 }}>
+      <div
+        ref={containerRef}
+        // Fixed pixel height, not a percentage: the astro-island wrapper around this component
+        // renders as display:contents, which breaks height:100% inheritance from .map-live and
+        // can leave Google Maps measuring a 0-height box at construction time.
+        style={{ width: '100%', height: '100%' }}
+        aria-label="Bay City Blinds service area covering Geelong, the Bellarine Peninsula, Surf Coast and Melbourne's western suburbs"
+      />
+      {/* Sibling overlay, not a child of containerRef — Google Maps writes directly into that
+          div's DOM once loaded, and React trying to remove a child it thinks it still owns
+          (this loading text) after Maps has already replaced the container's real children
+          throws "removeChild: not a child of this node" and leaves the map blank. */}
+      {status === 'loading' && (
+        <div className="map-loading" style={{ position: 'absolute', inset: 0 }}>Loading map…</div>
+      )}
     </div>
   );
 }
