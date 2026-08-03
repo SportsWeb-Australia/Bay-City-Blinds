@@ -54,7 +54,7 @@ export function serviceSchema() {
   return {
     '@context': 'https://schema.org',
     '@type': 'Service',
-    serviceType: 'Blinds, shutters and curtains — supply and install',
+    serviceType: 'Blinds, shutters and curtains, supply and install',
     provider: { '@id': BID },
     areaServed: {
       '@type': 'GeoCircle',

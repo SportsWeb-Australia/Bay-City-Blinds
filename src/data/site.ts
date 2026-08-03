@@ -10,11 +10,10 @@ export const site = {
   phoneHref: 'tel:+61430161383',
   smsHref: 'sms:+61430161383',
   email: 'baycityblinds@gmail.com',
-  // ⚠️ PLACEHOLDER — real ABN not yet provided by Jackson
-  abn: '00 000 000 000',
+  abn: '32 865 543 322',
   founded: '2020',
   ratingValue: '5.0',
-  reviewCount: '54',
+  reviewCount: '72',
   priceRange: '$$',
   geo: { lat: -38.1499, lng: 144.3617 },
   addressLocality: 'Geelong',

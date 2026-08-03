@@ -15,6 +15,7 @@ import Brands from '../components/Brands.astro';
 import LeadForm from '../components/LeadForm.tsx';
 import Faq from '../components/Faq.tsx';
 import { localBusiness, serviceSchema, faqSchema } from '../data/schema';
+import { site } from '../data/site';
 
 const title = 'Blinds Geelong | Free In-Home Measure & Quote | Bay City Blinds';
 const description = 'Bay City Blinds brings the showroom to you. Free in-home measure & quote for roller blinds, shutters, Venetians & curtains across Geelong, Surf Coast, Bellarine & western Melbourne. Local & family-owned since 2020.';
@@ -28,11 +29,11 @@ const schemas = [localBusiness(), serviceSchema(), faqSchema()];
       <div class="heroF-copy reveal">
         <p class="eyebrow">Geelong's mobile blinds showroom · since 2020</p>
         <h1>The showroom that <span class="hl">comes to you</span>.</h1>
-        <p class="sub">Blinds, curtains, shutters &amp; outdoor blinds — measured in your Geelong home, made to measure, installed by a local you'll actually meet.</p>
+        <p class="sub">Blinds, curtains, shutters &amp; outdoor blinds, measured in your Geelong home, made to measure, installed by a local you'll actually meet.</p>
         <div class="trust-chips">
-          <span class="chip"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 2l2.9 6.3 6.9.6-5.2 4.6 1.6 6.8L12 17.3 5.8 20.9l1.6-6.8L2.2 8.9l6.9-.6z"/></svg>5.0 · 54 Google reviews</span>
+          <span class="chip"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 2l2.9 6.3 6.9.6-5.2 4.6 1.6 6.8L12 17.3 5.8 20.9l1.6-6.8L2.2 8.9l6.9-.6z"/></svg>{site.ratingValue} · {site.reviewCount} Google reviews</span>
           <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>Local, family-owned in Geelong</span>
-          <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>10+ years experience</span>
+          <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>14+ years experience</span>
           <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 2"/></svg>Evenings &amp; weekends</span>
         </div>
         <p class="hero-owner">Owner-operated by Jackson, with a trusted local install team.</p>

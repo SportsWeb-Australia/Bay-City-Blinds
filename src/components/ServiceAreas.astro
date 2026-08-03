@@ -7,15 +7,15 @@ import { locations } from '../data/content';
       <div class="reveal">
         <p class="eyebrow">Where we work</p>
         <h2 style="font-size:clamp(1.7rem,3vw,2.3rem);font-weight:800;margin:.4rem 0 .6rem">Proudly serving Geelong &amp; beyond</h2>
-        <p style="color:var(--muted)">From the heart of Geelong to the Surf Coast, the Bellarine and out to Melbourne's west — if you're nearby, Jackson will come to you. Tap your area for a local free measure &amp; quote.</p>
+        <p style="color:var(--muted)">From the heart of Geelong to the Surf Coast, the Bellarine and out to Melbourne's west, if you're nearby, Jackson will come to you. Tap your area for a local free measure &amp; quote.</p>
         <div class="area-chips">
           {locations.map((l) => <a href={`/${l.slug}`}>{l.name}</a>)}
         </div>
         <a class="btn btn-primary btn-lg" href="/free-measure-quote" style="margin-top:1.5rem">Check my area &amp; book →</a>
       </div>
       <div class="map-live reveal">
-        <iframe title="Bay City Blinds service area — Geelong, Victoria" src="https://www.google.com/maps?q=Geelong+VIC&z=9&output=embed" width="600" height="440" style="border:0" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
-        <div class="map-pin-card">📍 Based in Geelong — servicing a 60&nbsp;km radius</div>
+        <iframe title="Bay City Blinds service area, Geelong, Victoria" src="https://www.google.com/maps?q=Geelong+VIC&z=9&output=embed" width="600" height="440" style="border:0" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+        <div class="map-pin-card">📍 Based in Geelong, servicing a 60&nbsp;km radius</div>
       </div>
       </div>
     </div>

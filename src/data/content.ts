@@ -6,7 +6,7 @@ export type Product = { slug: string; name: string; blurb: string; long: string;
 export const products: Product[] = [
   { slug: 'roller-blinds', name: 'Roller Blinds', gradient: 'g1', category: 'indoor',
     blurb: 'Blockout, light-filter & sunscreen. The easy, clean-lined favourite.',
-    long: 'Made-to-measure roller blinds in blockout, light-filter and sunscreen fabrics. The most popular, best-value choice for bedrooms, living areas and offices — clean lines, simple operation, and a huge range of colours.' },
+    long: 'Made-to-measure roller blinds in blockout, light-filter and sunscreen fabrics. The most popular, best-value choice for bedrooms, living areas and offices, with clean lines, simple operation and a huge range of colours.' },
   { slug: 'roman-blinds', name: 'Roman Blinds', gradient: 'g2', category: 'indoor',
     blurb: 'Soft, elegant folds that warm up living rooms and bedrooms.',
     long: 'Roman blinds add softness and warmth with their signature folds. A beautiful fit for living rooms, bedrooms and formal spaces where you want a more tailored, decorative look.' },
@@ -15,19 +15,19 @@ export const products: Product[] = [
     long: 'Timber and aluminium Venetian blinds give you precise light and privacy control with a premium finish. Timber suits living and dining rooms; aluminium is perfect for kitchens, bathrooms and wet areas.' },
   { slug: 'plantation-shutters', name: 'Plantation Shutters', gradient: 'g4', category: 'indoor',
     blurb: 'The premium, adds-value option. Timeless and built to last.',
-    long: 'Plantation shutters are the premium window furnishing — timeless, durable and known to add value to your home. Available in timber and PVC, they handle light, privacy and insulation beautifully.' },
+    long: 'Plantation shutters are the premium window furnishing, timeless, durable and known to add value to your home. Available in timber and PVC, they handle light, privacy and insulation beautifully.' },
   { slug: 'curtains', name: 'Curtains', gradient: 'g5', category: 'indoor',
-    blurb: 'Sheers, blockout & layered looks — made to measure for any window.',
-    long: 'Made-to-measure curtains and sheers — from soft, light-diffusing sheers to full blockout, or a layered look combining both. Perfect for bedrooms, lounges and creating a cosy, finished feel.' },
+    blurb: 'Sheers, blockout and layered looks, made to measure for any window.',
+    long: 'Made-to-measure curtains and sheers, from soft, light-diffusing sheers to full blockout, or a layered look combining both. Perfect for bedrooms, lounges and creating a cosy, finished feel.' },
   { slug: 'outdoor-screens', name: 'Outdoor & Zip Screens', gradient: 'g6', category: 'outdoor',
-    blurb: 'Extend the alfresco season — shade, privacy & weather protection.',
+    blurb: 'Extend the alfresco season with shade, privacy and weather protection.',
     long: 'Outdoor and zip-track screens extend your alfresco season with shade, privacy and weather protection. Turn a patio or deck into a usable, comfortable room most of the year.' },
 ];
 
 export type Location = { slug: string; name: string; region: string; intro: string; nearby: string };
 export const locations: Location[] = [
   { slug: 'blinds-geelong', name: 'Geelong', region: 'Geelong & suburbs',
-    intro: 'Bay City Blinds is proudly Geelong owned and run since 2020. Jackson brings the mobile showroom to homes right across Geelong and its suburbs — from Highton and Belmont to Newtown and beyond.',
+    intro: 'Bay City Blinds is proudly Geelong owned and run since 2020. Jackson brings the mobile showroom to homes right across Geelong and its suburbs, from Highton and Belmont to Newtown and beyond.',
     nearby: 'Highton, Belmont, Newtown, Grovedale, Waurn Ponds' },
   { slug: 'blinds-armstrong-creek', name: 'Armstrong Creek', region: 'Armstrong Creek',
     intro: 'New home in Armstrong Creek? Bay City Blinds is a favourite with the growing estates here. Jackson comes to you with samples so you can fit out the whole house without dragging the family to a showroom.',
@@ -36,7 +36,7 @@ export const locations: Location[] = [
     intro: 'From Torquay to Jan Juc, the Surf Coast light and coastal glare make the right blinds essential. Jackson visits Surf Coast homes with the full sample range and honest, fixed quotes.',
     nearby: 'Torquay, Jan Juc, Anglesea, Bells Beach' },
   { slug: 'blinds-bellarine', name: 'Bellarine Peninsula', region: 'Bellarine Peninsula',
-    intro: 'Across the Bellarine — Ocean Grove, Barwon Heads, Drysdale and beyond — Bay City Blinds brings the showroom to your door. Quality blinds and shutters measured and installed by a genuine local.',
+    intro: 'Across the Bellarine, including Ocean Grove, Barwon Heads, Drysdale and beyond, Bay City Blinds brings the showroom to your door. Quality blinds and shutters measured and installed by a genuine local.',
     nearby: 'Ocean Grove, Barwon Heads, Drysdale, Portarlington, Leopold' },
   { slug: 'blinds-lara', name: 'Lara', region: 'Lara',
     intro: 'Lara homeowners love not having to travel for a measure and quote. Jackson comes to you, day, evening or weekend, with samples and clear pricing on the spot.',
@@ -65,12 +65,12 @@ export const reviews = [
 ];
 
 export const faqs = [
-  { q: 'How much does a free measure and quote cost?', a: 'It\u2019s completely free with no obligation. Jackson visits your home across Geelong and surrounds, measures your windows, shows you samples and provides a clear written quote \u2014 you\u2019re never locked in.' },
+  { q: 'Is there any pressure or obligation to go ahead?', a: 'None at all. Jackson visits your home across Geelong and surrounds, measures your windows, shows you samples and provides a clear written quote, with no pressure and no obligation. You decide if and when to go ahead, in your own time.' },
   { q: 'What areas do you service?', a: 'We cover Geelong and all its suburbs, Armstrong Creek, the Surf Coast, the Bellarine Peninsula, Lara, plus Werribee, Tarneit, Point Cook, Williamstown and Footscray in Melbourne\u2019s west. Not sure if you\u2019re in range? Just ask.' },
-  { q: 'What types of blinds do you offer?', a: 'Roller blinds (blockout, light-filter, sunscreen), Roman blinds, timber and aluminium Venetians, plantation shutters, made-to-measure curtains and sheers, plus outdoor and zip-track screens \u2014 all from trusted suppliers.' },
-  { q: 'How long does it take to get my blinds?', a: 'Because everything is made to measure, lead times vary by product \u2014 Jackson will give you a realistic timeframe with your quote. Most jobs are measured within a day or two of enquiring.' },
+  { q: 'What types of blinds do you offer?', a: 'Roller blinds (blockout, light-filter, sunscreen), Roman blinds, timber and aluminium Venetians, plantation shutters, made-to-measure curtains and sheers, plus outdoor and zip-track screens, all from trusted suppliers.' },
+  { q: 'How long does it take to get my blinds?', a: 'Because everything is made to measure, lead times vary by product, Jackson will give you a realistic timeframe with your quote. Most jobs are measured within a day or two of enquiring.' },
   { q: 'Are you insured and do the blinds come with a warranty?', a: 'Yes. Bay City Blinds is fully insured, and our made-to-measure products are covered by manufacturer warranties. You\u2019ll get the details in writing with your quote.' },
-  { q: 'Do I have to visit a showroom?', a: 'Nope \u2014 that\u2019s our whole point of difference. We\u2019re a mobile showroom, so Jackson brings the samples and expertise to your home at a time that suits you, including evenings and weekends.' },
+  { q: 'Do I have to visit a showroom?', a: 'Nope, that\u2019s our whole point of difference. We\u2019re a mobile showroom, so Jackson brings the samples and expertise to your home at a time that suits you, including evenings and weekends.' },
 ];
 
 export const gallery = [

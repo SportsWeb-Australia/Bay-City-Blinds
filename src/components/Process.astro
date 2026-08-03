@@ -1,12 +1,12 @@
 ---
 import { photo, photoMap } from '../data/photos';
 const steps = [
-  { t: 'Enquire', d: 'Fill in the 30-second form, or call or text Jackson direct.', img: photo('journey-1') },
-  { t: 'Book a time', d: 'Days, evenings or weekends — whatever suits your house.', img: photo('journey-2') },
+  { t: 'Enquire', d: 'Fill in the 30 second form, or call or text Jackson direct.', img: '/process-1-enquire.webp' },
+  { t: 'Book a time', d: 'Days, evenings or weekends, whatever suits your house.', img: '/process-2-booking.webp' },
   { t: 'Measure & samples', d: 'The mobile showroom arrives and every window is measured properly.', img: '/jackson-van-wide.webp' },
-  { t: 'Your quote, your call', d: 'A clear written price — then take all the time you need to decide. No chasing, no pressure.', img: photo('journey-4') },
-  { t: 'Made to measure', d: 'Your blinds are custom-made by trusted Australian suppliers.', img: photo('journey-5') },
-  { t: 'Install & enjoy', d: 'Professional fitting, clean-up included — then a quick care run-through.', img: photo('journey-6') },
+  { t: 'Your quote, your call', d: 'A clear written price, then take all the time you need to decide. No chasing, no pressure.', img: photo('journey-4') },
+  { t: 'Made to measure', d: 'Your blinds are custom-made by trusted Australian suppliers.', img: '/process-5-measure.webp' },
+  { t: 'Install & enjoy', d: 'Professional fitting and clean-up included, then a quick care run-through.', img: '/process-6-family.webp' },
 ];
 ---
 <section class="block" id="process">
@@ -14,19 +14,19 @@ const steps = [
     <div class="sec-head reveal">
       <p class="eyebrow">From enquiry to installation</p>
       <h2>How your free measure &amp; quote works</h2>
-      <p>The whole journey, overseen by Jackson and you decide if and when to go ahead, in your own time.</p>
+      <p>The whole journey is overseen by Jackson, and you decide if and when to go ahead, in your own time.</p>
     </div>
     <ol class="journey">
       {steps.map((s, i) => (
         <li class="jstep jstep-photo reveal">
-          <div class="j-img"><img src={s.img} width="640" height="400" loading="lazy" alt={`Step ${i + 1}: ${s.t} — Bay City Blinds, Geelong`} /><span class="j-num">{i + 1}</span></div>
+          <div class="j-img"><img src={s.img} width="640" height="400" loading="lazy" alt={`Step ${i + 1}: ${s.t}, Bay City Blinds, Geelong`} /><span class="j-num">{i + 1}</span></div>
           <div class="j-body"><h3>{s.t}</h3><p>{s.d}</p></div>
         </li>
       ))}
     </ol>
     <div class="promise reveal">
       <span class="promise-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></span>
-      <div><b>The no-pressure promise.</b> Your quote is valid, in writing, and yours to sit with. Go ahead this week, next month, or not at all — Jackson's approach is friendly advice, never a hard sell.</div>
+      <div><b>The no-pressure promise.</b> Your quote is valid, in writing, and yours to sit with. Go ahead this week, next month, or not at all, Jackson's approach is friendly advice, never a hard sell.</div>
     </div>
   </div>
 </section>

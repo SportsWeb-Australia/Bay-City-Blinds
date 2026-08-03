@@ -33,7 +33,7 @@ export default function LeadForm({ defaultSuburb = '', variant = 'full' }: { def
   const errorBlock = (
     <div className="form-ok show" role="alert">
       <h3>Something went wrong submitting online</h3>
-      <p className="small">No worries — call or text Jackson directly and he'll sort it out.</p>
+      <p className="small">No worries, call or text Jackson directly and he'll sort it out.</p>
       <div className="trust-chips" style={{ marginTop: '.8rem' }}>
         <a className="chip" href={site.phoneHref}>📞 Call {site.phone}</a>
         <a className="chip" href={site.smsHref}>💬 Text {site.phone}</a>
@@ -45,7 +45,7 @@ export default function LeadForm({ defaultSuburb = '', variant = 'full' }: { def
     if (status === 'success') {
       return (
         <div className="od-quick-ok" role="status">
-          <span className="tick-sm">✓</span> Nice one — request received! Jackson will be in touch within 1 business day.
+          <span className="tick-sm">✓</span> Nice one, request received! Jackson will be in touch within 1 business day.
         </div>
       );
     }
@@ -73,11 +73,11 @@ export default function LeadForm({ defaultSuburb = '', variant = 'full' }: { def
 
   return (
     <div className="lead-card">
-      <span className="flag">Free — no obligation</span>
+      <span className="flag">Free, no obligation</span>
       {status === 'success' ? (
         <div className="form-ok show">
           <div className="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4"><path d="M20 6L9 17l-5-5" /></svg></div>
-          <h3>Nice one — request received!</h3>
+          <h3>Nice one, request received!</h3>
           <p className="small">{contact === 'text' ? 'Jackson will text you shortly to sort a time that suits.' : 'Jackson will give you a call shortly to sort a time that suits.'} Talk soon.</p>
         </div>
       ) : status === 'error' ? errorBlock : (
@@ -99,13 +99,13 @@ export default function LeadForm({ defaultSuburb = '', variant = 'full' }: { def
               <select id="service" name="service">
                 <option>Roller blinds</option><option>Roman blinds</option><option>Venetian blinds</option>
                 <option>Plantation shutters</option><option>Curtains</option><option>Outdoor / zip screens</option>
-                <option>A few different things</option><option>Not sure yet — need advice</option>
+                <option>A few different things</option><option>Not sure yet, need advice</option>
               </select>
             </div>
             <div className="field"><label htmlFor="besttime">Best time for a visit</label>
               <select id="besttime" name="besttime">
-                <option>Whatever suits Jackson</option><option>Weekday — daytime</option>
-                <option>Weekday — evening</option><option>Weekend</option>
+                <option>Whatever suits Jackson</option><option>Weekday, daytime</option>
+                <option>Weekday, evening</option><option>Weekend</option>
               </select>
             </div>
           </div>
