@@ -100,19 +100,27 @@ export default function ServiceAreaMap() {
           });
         });
 
-        // Force a resize pass before fitting bounds: the container's height comes through
-        // an Astro island wrapper (display:contents), and if Google measures the box before
-        // that layout has settled it can construct the map into a 0-height canvas that never
-        // repaints. Cheap insurance — resize + recenter, then fit bounds as normal.
-        g.maps.event.trigger(map, 'resize');
-        map.setCenter(baseMarker);
-
-        map.fitBounds(bounds);
-        // fitBounds can over-zoom on narrow (mobile) viewports; nudge back out a touch.
-        g.maps.event.addListenerOnce(map, 'bounds_changed', () => {
-          const isMobile = window.innerWidth < 640;
-          if (isMobile) map.setZoom(Math.max(map.getZoom() - 1, 7));
-        });
+        // With client:load, this effect can run before the browser has finished laying out
+        // the .areas grid column this map sits in, so Google measures the container mid-layout
+        // and constructs a map only ~124px wide. A same-tick resize trigger doesn't help — the
+        // layout still hasn't settled yet. Defer to the next animation frame (after the browser's
+        // layout pass) before resizing/fitting bounds.
+        const settle = () => {
+          if (cancelled) return;
+          g.maps.event.trigger(map, 'resize');
+          map.setCenter(baseMarker);
+          map.fitBounds(bounds);
+          // fitBounds can over-zoom on narrow (mobile) viewports; nudge back out a touch.
+          g.maps.event.addListenerOnce(map, 'bounds_changed', () => {
+            const isMobile = window.innerWidth < 640;
+            if (isMobile) map.setZoom(Math.max(map.getZoom() - 1, 7));
+          });
+        };
+        requestAnimationFrame(settle);
+        // Belt-and-braces: re-settle once every resource (fonts, images) has finished loading
+        // and layout is 100% final, in case a single rAF still landed mid-layout.
+        if (document.readyState === 'complete') requestAnimationFrame(settle);
+        else window.addEventListener('load', () => requestAnimationFrame(settle), { once: true });
 
         setStatus('ready');
       })
