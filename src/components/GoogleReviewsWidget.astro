@@ -1,0 +1,21 @@
+---
+import { site } from '../data/site';
+---
+<!--
+  Live Google reviews (Elfsight widget). This renders client-side only, so it carries no
+  SEO/AI-crawler weight on its own — the static, schema-marked testimonials in Reviews.astro
+  (plus the aggregateRating JSON-LD in schema.ts) are what search engines and AI answer engines
+  actually read. This widget is a supplementary trust signal for human visitors, placed after
+  the crawlable content, not a replacement for it.
+-->
+<section class="block" id="google-reviews">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Straight from Google</p>
+      <h2>Live reviews from {site.name} customers</h2>
+      <p>Rated {site.ratingValue} from {site.reviewCount} Google reviews — updated in real time.</p>
+    </div>
+    <div class="elfsight-app-281be835-d95f-4882-a147-7c2c03265646" data-elfsight-app-lazy></div>
+  </div>
+</section>
+<script src="https://elfsightcdn.com/platform.js" async></script>

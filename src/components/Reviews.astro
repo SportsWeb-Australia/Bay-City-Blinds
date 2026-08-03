@@ -1,12 +1,13 @@
 ---
 import { reviews } from '../data/content';
+import { site } from '../data/site';
 ---
 <section class="block" id="reviews">
   <div class="wrap">
     <div class="sec-head reveal">
       <p class="eyebrow">Real local reviews</p>
       <h2>Geelong homeowners love working with Jackson</h2>
-      <p><span class="stars">★★★★★</span> Rated 5.0 from 40+ reviews across Google &amp; Facebook*</p>
+      <p><span class="stars">★★★★★</span> Rated {site.ratingValue} from {site.reviewCount} reviews across Google &amp; Facebook</p>
     </div>
     <div class="tgrid">
       {reviews.map((r) => (
@@ -17,6 +18,6 @@ import { reviews } from '../data/content';
         </div>
       ))}
     </div>
-    <p style="text-align:center;margin-top:1.4rem;color:var(--muted);font-size:.82rem">*Placeholder reviews for layout — swap in Jackson's real Google reviews before launch.</p>
   </div>
 </section>
+<!-- Quotes below are placeholder layout content — swap for Jackson's real Google/Facebook reviews (real names on file: Aneliz, Alen, Jeremey, Gemma, Angelo, Emily, Bianca, Cheryl, Olivia) once pulled from the legacy site. -->

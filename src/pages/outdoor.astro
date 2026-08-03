@@ -1,0 +1,31 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Products from '../components/Products.astro';
+import WhyUs from '../components/WhyUs.astro';
+import ServiceAreas from '../components/ServiceAreas.astro';
+import FinalCta from '../components/FinalCta.astro';
+import { localBusiness, serviceSchema, breadcrumb } from '../data/schema';
+
+const title = 'Outdoor Blinds & Zip Screens Geelong | Bay City Blinds';
+const description = 'Outdoor and zip-track screens to extend your alfresco season with shade, privacy and weather protection. Free in-home measure & quote across Geelong & the Bellarine.';
+const schemas = [
+  localBusiness(),
+  serviceSchema(),
+  breadcrumb([{ name: 'Home', url: '/' }, { name: 'Outdoor', url: '/outdoor' }]),
+];
+---
+<Layout title={title} description={description} path="/outdoor" schemas={schemas}>
+  <section class="block" style="padding-bottom:1rem">
+    <div class="wrap">
+      <div class="sec-head reveal" style="margin-bottom:1rem">
+        <p class="eyebrow">Outdoor window furnishings</p>
+        <h2>Extend your alfresco season</h2>
+        <p>Shade, privacy and weather protection, made to measure and installed by a local. Tap through for a free quote.</p>
+      </div>
+    </div>
+  </section>
+  <Products category="outdoor" hideHeading />
+  <WhyUs />
+  <ServiceAreas />
+  <FinalCta />
+</Layout>

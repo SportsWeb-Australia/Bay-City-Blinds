@@ -1,0 +1,15 @@
+# Bay City Blinds — Cloudflare Pages redirects (301s)
+# PARTIAL MAP — pending full legacy-URL audit once Carson pulls the old site's
+# content via Claude in Chrome. See docs/05-redirect-map.md.
+
+/about-us/            /about                 301
+/products/             /blinds                301
+/gallery/              /#gallery              301
+/faq                   /#faq                  301
+/contact/              /free-measure-quote    301
+/area-we-serve/        /#areas                301
+/tag/blog/              /                     301
+
+# TODO: 2 legacy blog posts — targets unknown until legacy content is pulled
+# /blog/<old-slug-1>   /<new-target>          301
+# /blog/<old-slug-2>   /<new-target>          301

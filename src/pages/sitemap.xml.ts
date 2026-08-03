@@ -2,7 +2,7 @@ import type { APIRoute } from 'astro';
 import { site } from '../data/site';
 import { products, locations } from '../data/content';
 
-const staticPaths = ['/', '/blinds', '/free-measure-quote', '/about', '/reviews'];
+const staticPaths = ['/', '/blinds', '/indoor', '/outdoor', '/free-measure-quote', '/about', '/reviews'];
 
 export const GET: APIRoute = () => {
   const urls = [

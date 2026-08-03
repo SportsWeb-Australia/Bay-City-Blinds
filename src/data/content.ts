@@ -2,24 +2,24 @@
 // Each location has UNIQUE copy — that's what makes suburb pages rank
 // instead of reading as thin duplicates.
 
-export type Product = { slug: string; name: string; blurb: string; long: string; gradient: string };
+export type Product = { slug: string; name: string; blurb: string; long: string; gradient: string; category: 'indoor' | 'outdoor' };
 export const products: Product[] = [
-  { slug: 'roller-blinds', name: 'Roller Blinds', gradient: 'g1',
+  { slug: 'roller-blinds', name: 'Roller Blinds', gradient: 'g1', category: 'indoor',
     blurb: 'Blockout, light-filter & sunscreen. The easy, clean-lined favourite.',
     long: 'Made-to-measure roller blinds in blockout, light-filter and sunscreen fabrics. The most popular, best-value choice for bedrooms, living areas and offices — clean lines, simple operation, and a huge range of colours.' },
-  { slug: 'roman-blinds', name: 'Roman Blinds', gradient: 'g2',
+  { slug: 'roman-blinds', name: 'Roman Blinds', gradient: 'g2', category: 'indoor',
     blurb: 'Soft, elegant folds that warm up living rooms and bedrooms.',
     long: 'Roman blinds add softness and warmth with their signature folds. A beautiful fit for living rooms, bedrooms and formal spaces where you want a more tailored, decorative look.' },
-  { slug: 'venetian-blinds', name: 'Venetian Blinds', gradient: 'g3',
+  { slug: 'venetian-blinds', name: 'Venetian Blinds', gradient: 'g3', category: 'indoor',
     blurb: 'Timber & aluminium. Precise light control with a premium feel.',
     long: 'Timber and aluminium Venetian blinds give you precise light and privacy control with a premium finish. Timber suits living and dining rooms; aluminium is perfect for kitchens, bathrooms and wet areas.' },
-  { slug: 'plantation-shutters', name: 'Plantation Shutters', gradient: 'g4',
+  { slug: 'plantation-shutters', name: 'Plantation Shutters', gradient: 'g4', category: 'indoor',
     blurb: 'The premium, adds-value option. Timeless and built to last.',
     long: 'Plantation shutters are the premium window furnishing — timeless, durable and known to add value to your home. Available in timber and PVC, they handle light, privacy and insulation beautifully.' },
-  { slug: 'curtains', name: 'Curtains', gradient: 'g5',
+  { slug: 'curtains', name: 'Curtains', gradient: 'g5', category: 'indoor',
     blurb: 'Sheers, blockout & layered looks — made to measure for any window.',
     long: 'Made-to-measure curtains and sheers — from soft, light-diffusing sheers to full blockout, or a layered look combining both. Perfect for bedrooms, lounges and creating a cosy, finished feel.' },
-  { slug: 'outdoor-screens', name: 'Outdoor & Zip Screens', gradient: 'g6',
+  { slug: 'outdoor-screens', name: 'Outdoor & Zip Screens', gradient: 'g6', category: 'outdoor',
     blurb: 'Extend the alfresco season — shade, privacy & weather protection.',
     long: 'Outdoor and zip-track screens extend your alfresco season with shade, privacy and weather protection. Turn a patio or deck into a usable, comfortable room most of the year.' },
 ];

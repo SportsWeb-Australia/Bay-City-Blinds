@@ -2,11 +2,12 @@
 import Layout from '../layouts/Layout.astro';
 import TrustStrip from '../components/TrustStrip.astro';
 import Process from '../components/Process.astro';
-import Products from '../components/Products.astro';
+import CategorySelect from '../components/CategorySelect.astro';
 import WhyUs from '../components/WhyUs.astro';
 import Showroom from '../components/Showroom.astro';
 import MeetJackson from '../components/MeetJackson.astro';
 import Reviews from '../components/Reviews.astro';
+import GoogleReviewsWidget from '../components/GoogleReviewsWidget.astro';
 import ServiceAreas from '../components/ServiceAreas.astro';
 import FinalCta from '../components/FinalCta.astro';
 import Gallery from '../components/Gallery.astro';
@@ -44,13 +45,14 @@ const schemas = [localBusiness(), serviceSchema(), faqSchema()];
 
   <TrustStrip />
   <Process />
-  <Products />
+  <CategorySelect />
   <Brands />
   <WhyUs />
   <Showroom />
   <MeetJackson />
   <Gallery />
   <Reviews />
+  <GoogleReviewsWidget />
   <ServiceAreas />
 
   <section class="block" id="faq">

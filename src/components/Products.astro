@@ -1,6 +1,9 @@
 ---
-import { products } from '../data/content';
+import { products as allProducts } from '../data/content';
 import { photo, photoMap } from '../data/photos';
+export interface Props { category?: 'indoor' | 'outdoor'; hideHeading?: boolean }
+const { category, hideHeading = false } = Astro.props;
+const products = category ? allProducts.filter((p) => p.category === category) : allProducts;
 const icons: Record<string, string> = {
   'roller-blinds': '<rect x="4" y="3" width="16" height="18" rx="1"/><path d="M4 8h16M4 13h16M4 18h16"/>',
   'roman-blinds': '<rect x="4" y="3" width="16" height="18" rx="1"/><path d="M4 7c3 2 13 2 16 0M4 12c3 2 13 2 16 0M4 17c3 2 13 2 16 0"/>',
@@ -12,11 +15,13 @@ const icons: Record<string, string> = {
 ---
 <section class="block tint" id="products">
   <div class="wrap">
-    <div class="sec-head reveal">
-      <p class="eyebrow">What we fit</p>
-      <h2>Blinds, shutters &amp; curtains for every room</h2>
-      <p>Quality window furnishings from trusted suppliers, measured and installed by a local who cares how it looks.</p>
-    </div>
+    {!hideHeading && (
+      <div class="sec-head reveal">
+        <p class="eyebrow">What we fit</p>
+        <h2>Blinds, shutters &amp; curtains for every room</h2>
+        <p>Quality window furnishings from trusted suppliers, measured and installed by a local who cares how it looks.</p>
+      </div>
+    )}
     <div class="grid-3">
       {products.map((p) => (
         <a class="pcard reveal" href={`/blinds/${p.slug}`}>

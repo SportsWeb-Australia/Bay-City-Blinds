@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Reviews from '../components/Reviews.astro';
+import GoogleReviewsWidget from '../components/GoogleReviewsWidget.astro';
 import FinalCta from '../components/FinalCta.astro';
 import { localBusiness, breadcrumb } from '../data/schema';
 const title = 'Reviews | Bay City Blinds — Blinds Geelong';
@@ -10,5 +11,6 @@ const schemas = [localBusiness(), breadcrumb([{ name:'Home', url:'/' }, { name:'
 <Layout title={title} description={description} path="/reviews" schemas={schemas}>
   <div style="height:1px"></div>
   <Reviews />
+  <GoogleReviewsWidget />
   <FinalCta />
 </Layout>

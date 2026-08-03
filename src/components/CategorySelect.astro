@@ -1,0 +1,32 @@
+---
+import { photo } from '../data/photos';
+---
+<section class="block tint" id="products">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow">What we fit</p>
+      <h2>Blinds, shutters &amp; curtains for every room — inside and out</h2>
+      <p>Start with where you're furnishing and we'll show you the right range. Free in-home measure &amp; quote either way.</p>
+    </div>
+    <div class="cat-select">
+      <a class="cat-tile reveal" href="/indoor">
+        <img src={photo('plantation-shutters')} width="640" height="480" loading="lazy" alt="Indoor blinds, shutters and curtains by Bay City Blinds, Geelong" />
+        <span class="tint" aria-hidden="true"></span>
+        <span class="body">
+          <h3>Indoor</h3>
+          <p>Roller &amp; roman blinds, Venetians, plantation shutters, curtains</p>
+          <span class="lk">Explore indoor →</span>
+        </span>
+      </a>
+      <a class="cat-tile reveal" href="/outdoor">
+        <img src={photo('outdoor-screens')} width="640" height="480" loading="lazy" alt="Outdoor and zip screens by Bay City Blinds, Geelong" />
+        <span class="tint" aria-hidden="true"></span>
+        <span class="body">
+          <h3>Outdoor</h3>
+          <p>Zip screens &amp; outdoor blinds for alfresco and patio areas</p>
+          <span class="lk">Explore outdoor →</span>
+        </span>
+      </a>
+    </div>
+  </div>
+</section>

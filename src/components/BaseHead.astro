@@ -1,5 +1,8 @@
 ---
 import { site } from '../data/site';
+// GA4 Measurement ID — set PUBLIC_GA_ID as a Cloudflare Pages build env var (public, not a
+// secret). Placeholder below until Carson creates the GA4 property.
+const gaId = import.meta.env.PUBLIC_GA_ID || 'G-XXXXXXXXXX';
 export interface Props {
   title: string;
   description: string;
@@ -47,3 +50,16 @@ const ogUrl = new URL(ogImage, site.url).href;
 {schemas.map((s) => (
   <script type="application/ld+json" set:html={JSON.stringify(s)} />
 ))}
+
+{gaId !== 'G-XXXXXXXXXX' && (
+  <>
+    <script async src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}></script>
+    <script define:vars={{ gaId }}>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', gaId);
+      window.gtag = gtag;
+    </script>
+  </>
+)}

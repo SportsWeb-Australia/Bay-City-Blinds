@@ -1,22 +1,56 @@
 import { useState } from 'react';
+import { site } from '../data/site';
+
+type Status = 'idle' | 'submitting' | 'success' | 'error';
 
 // Interactive lead form (React island). Hydrated on load with client:load.
-// On submit, POST to a Zoho Forms endpoint or Zoho CRM webhook to fire the
-// B1 automation blueprint (create Lead -> notify Jackson -> confirm SMS/email).
+// Submits to the Cloudflare Pages Function at /api/lead, which creates a Zoho CRM
+// lead and fires ZeptoMail/ClickSend auto-replies. See functions/api/lead.js.
 export default function LeadForm({ defaultSuburb = '', variant = 'full' }: { defaultSuburb?: string; variant?: 'full' | 'quick' }) {
-  const [done, setDone] = useState(false);
+  const [status, setStatus] = useState<Status>('idle');
   const [suburb, setSuburb] = useState(defaultSuburb);
   const [contact, setContact] = useState('call');
 
-  function submit(e: React.FormEvent) {
+  async function submit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    // TODO(Business1): fetch('https://forms.zohopublic.com.au/…', { method:'POST', body:new FormData(e.target as HTMLFormElement) })
-    setDone(true);
+    setStatus('submitting');
+    try {
+      const res = await fetch('/api/lead', { method: 'POST', body: new FormData(e.currentTarget) });
+      const data = await res.json().catch(() => ({}));
+      if (res.ok && data.success) {
+        setStatus('success');
+        if (typeof window !== 'undefined' && typeof (window as any).gtag === 'function') {
+          (window as any).gtag('event', 'generate_lead', { form_variant: variant });
+        }
+      } else {
+        setStatus('error');
+      }
+    } catch {
+      setStatus('error');
+    }
   }
 
+  const errorBlock = (
+    <div className="form-ok show" role="alert">
+      <h3>Something went wrong submitting online</h3>
+      <p className="small">No worries — call or text Jackson directly and he'll sort it out.</p>
+      <div className="trust-chips" style={{ marginTop: '.8rem' }}>
+        <a className="chip" href={site.phoneHref}>📞 Call {site.phone}</a>
+        <a className="chip" href={site.smsHref}>💬 Text {site.phone}</a>
+      </div>
+    </div>
+  );
 
   if (variant === 'quick') {
-    return !done ? (
+    if (status === 'success') {
+      return (
+        <div className="od-quick-ok" role="status">
+          <span className="tick-sm">✓</span> Nice one — request received! Jackson will be in touch within 1 business day.
+        </div>
+      );
+    }
+    if (status === 'error') return errorBlock;
+    return (
       <form className="od-quick" onSubmit={submit} noValidate aria-label="Quick free quote form">
         <div className="fd"><label htmlFor="qname">Your name</label><input id="qname" name="name" type="text" placeholder="First name" required autoComplete="given-name" /></div>
         <div className="fd"><label htmlFor="qphone">Mobile</label><input id="qphone" name="phone" type="tel" placeholder="04XX XXX XXX" required autoComplete="tel" /></div>
@@ -28,12 +62,10 @@ export default function LeadForm({ defaultSuburb = '', variant = 'full' }: { def
             <option>A few different things</option><option>Not sure yet</option>
           </select>
         </div>
-        <button className="btn btn-primary" type="submit">Free quote →</button>
+        <button className="btn btn-primary" type="submit" disabled={status === 'submitting'}>
+          {status === 'submitting' ? 'Sending…' : 'Free quote →'}
+        </button>
       </form>
-    ) : (
-      <div className="od-quick-ok" role="status">
-        <span className="tick-sm">✓</span> Nice one — request received! Jackson will be in touch within 1 business day.
-      </div>
     );
   }
 
@@ -42,7 +74,13 @@ export default function LeadForm({ defaultSuburb = '', variant = 'full' }: { def
   return (
     <div className="lead-card">
       <span className="flag">Free — no obligation</span>
-      {!done ? (
+      {status === 'success' ? (
+        <div className="form-ok show">
+          <div className="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4"><path d="M20 6L9 17l-5-5" /></svg></div>
+          <h3>Nice one — request received!</h3>
+          <p className="small">{contact === 'text' ? 'Jackson will text you shortly to sort a time that suits.' : 'Jackson will give you a call shortly to sort a time that suits.'} Talk soon.</p>
+        </div>
+      ) : status === 'error' ? errorBlock : (
         <form onSubmit={submit} noValidate>
           <h3>Book your free measure &amp; quote</h3>
           <p className="small">Tell us where you are and Jackson will be in touch to lock in a time. Usually within 1 business day.</p>
@@ -82,18 +120,14 @@ export default function LeadForm({ defaultSuburb = '', variant = 'full' }: { def
             <label htmlFor="notes">Anything else? <span className="opt">(optional)</span></label>
             <textarea id="notes" name="notes" rows={2} placeholder="e.g. 5 windows + 2 sliding doors, new build in Warralily"></textarea>
           </div>
-          <button className="btn btn-primary btn-lg" type="submit" style={{ width: '100%', marginTop: '1rem' }}>Get my free quote →</button>
+          <button className="btn btn-primary btn-lg" type="submit" disabled={status === 'submitting'} style={{ width: '100%', marginTop: '1rem' }}>
+            {status === 'submitting' ? 'Sending…' : 'Get my free quote →'}
+          </button>
           <div className="assure">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="4" y="11" width="16" height="10" rx="2" /><path d="M8 11V7a4 4 0 018 0v4" /></svg>
             Your details stay private. No spam, ever.
           </div>
         </form>
-      ) : (
-        <div className="form-ok show">
-          <div className="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4"><path d="M20 6L9 17l-5-5" /></svg></div>
-          <h3>Nice one — request received!</h3>
-          <p className="small">{contact === 'text' ? 'Jackson will text you shortly to sort a time that suits.' : 'Jackson will give you a call shortly to sort a time that suits.'} Talk soon.</p>
-        </div>
       )}
     </div>
   );

@@ -9,13 +9,14 @@ export interface Props {
   description: string;
   path?: string;
   schemas?: object[];
+  robots?: string;
 }
-const { title, description, path, schemas } = Astro.props;
+const { title, description, path, schemas, robots } = Astro.props;
 ---
 <!DOCTYPE html>
 <html lang="en-AU">
 <head>
-  <BaseHead title={title} description={description} path={path} schemas={schemas} />
+  <BaseHead title={title} description={description} path={path} schemas={schemas} robots={robots} />
 </head>
 <body>
   <Header />
@@ -28,6 +29,18 @@ const { title, description, path, schemas } = Astro.props;
       es.forEach((en) => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
     }, { threshold: 0.12 });
     document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+
+    // GA4 conversion events: tel/sms taps and tagged CTAs. Guarded so this is a no-op
+    // until PUBLIC_GA_ID is set (see BaseHead.astro).
+    document.addEventListener('click', (e) => {
+      if (typeof window.gtag !== 'function') return;
+      const target = e.target instanceof Element ? e.target.closest('a') : null;
+      if (!target) return;
+      if (target.matches('a[href^="tel:"]')) window.gtag('event', 'click_call');
+      else if (target.matches('a[href^="sms:"]')) window.gtag('event', 'click_sms');
+      const cta = target.closest('[data-cta]');
+      if (cta) window.gtag('event', 'cta_click', { cta_label: cta.getAttribute('data-cta') });
+    });
   </script>
 </body>
 </html>
