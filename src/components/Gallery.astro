@@ -10,14 +10,14 @@ import { photo, photoMap } from '../data/photos';
       <p>Real jobs, real homes across Geelong &amp; the Bellarine.</p>
     </div>
     <div class="gallery">
+      <a href="/free-measure-quote" aria-label="Sheer curtains install, Jackson and Brad Johnson">
+        <img src="/brad-johnson.webp" width="600" height="450" loading="lazy" alt="Jackson and Brad Johnson from Bay City Blinds after a sheer curtains install, Geelong" />
+      </a>
       {gallery.map((g, i) => (
         <a href="/free-measure-quote" aria-label={`${g.prod} in ${g.sub}`}>
           <img src={photo(`gallery-${i + 1}` as keyof typeof photoMap)} width="600" height="450" loading="lazy" alt={`${g.prod} installed in ${g.sub} by Bay City Blinds`} />
         </a>
       ))}
-      <a href="/free-measure-quote" aria-label="Sheer curtains install, Jackson and Brad Johnson">
-        <img src="/brad-johnson.webp" width="600" height="450" loading="lazy" alt="Jackson and Brad Johnson from Bay City Blinds after a sheer curtains install, Geelong" />
-      </a>
     </div>
   </div>
 </section>

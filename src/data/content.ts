@@ -74,10 +74,12 @@ export const faqs = [
 ];
 
 export const gallery = [
-  { prod: 'Roller blinds', sub: 'Armstrong Creek' },
-  { prod: 'Plantation shutters', sub: 'Ocean Grove' },
-  { prod: 'Curtains', sub: 'Highton' },
-  { prod: 'Venetian blinds', sub: 'Torquay' },
-  { prod: 'Roman blinds', sub: 'Lara' },
+  { prod: 'Plantation shutters', sub: 'Highton' },
+  { prod: 'Outdoor roller shutters', sub: 'Ocean Grove' },
+  { prod: 'Roman blind', sub: 'Newtown' },
+  { prod: 'Outdoor screens', sub: 'Torquay' },
+  { prod: 'Roller blinds', sub: 'Lara' },
   { prod: 'Outdoor screens', sub: 'Point Cook' },
+  { prod: 'Sheer curtains', sub: 'Armstrong Creek' },
+  { prod: 'Outdoor screens', sub: 'Bellarine' },
 ];

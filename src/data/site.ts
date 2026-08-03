@@ -9,7 +9,7 @@ export const site = {
   phone: '0430 161 383',
   phoneHref: 'tel:+61430161383',
   smsHref: 'sms:+61430161383',
-  email: 'baycityblinds@gmail.com',
+  email: 'jackson@baycityblinds.com.au',
   abn: '32 865 543 322',
   founded: '2020',
   ratingValue: '5.0',

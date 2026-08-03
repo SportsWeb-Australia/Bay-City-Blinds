@@ -82,7 +82,7 @@ header{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.92);backdro
 .stars{color:var(--star);letter-spacing:1px}
 
 /* hero form card */
-.lead-card{background:#fff;border-radius:var(--r);box-shadow:var(--shadow);border:1px solid var(--line);padding:1.5rem 1.5rem 1.6rem;position:relative;z-index:3}
+.lead-card{width:100%;box-sizing:border-box;background:#fff;border-radius:var(--r);box-shadow:var(--shadow);border:1px solid var(--line);padding:1.5rem 1.5rem 1.6rem;position:relative;z-index:3}
 .lead-card-slim{padding:1rem .6rem .8rem}
 .lead-card-slim .flag{left:14px}
 .lead-card .flag{position:absolute;top:-14px;left:22px;background:var(--star);color:#3a2a00;font-weight:800;font-size:.72rem;letter-spacing:.06em;padding:.28rem .7rem;border-radius:999px;text-transform:uppercase}

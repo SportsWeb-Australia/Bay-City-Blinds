@@ -9,12 +9,14 @@ export const photoMap = {
   'plantation-shutters': 10, // confirmed: two full plantation shutter windows, bright bedroom
   'curtains': 1,
   'outdoor-screens': 53,
-  'gallery-1': 12,
-  'gallery-2': 13,
-  'gallery-3': 15,
-  'gallery-4': 16,
-  'gallery-5': 18,
-  'gallery-6': 19,
+  'gallery-1': 31, // indoor: plantation shutters, bedroom (different room to product card photo)
+  'gallery-2': 63, // outdoor: roller shutters, brick house exterior
+  'gallery-3': 43, // indoor: roman blind, kitchen window
+  'gallery-4': 57, // outdoor: screens, corner brick house
+  'gallery-5': 46, // indoor: roller blinds, kitchen/living
+  'gallery-6': 59, // outdoor: screens down, alfresco dining
+  'gallery-7': 3, // indoor: sheer curtains, bay window living room
+  'gallery-8': 68, // outdoor: roller shutters, brick porch
   'journey-1': 23,
   'journey-2': 24,
   'journey-3': 26,
