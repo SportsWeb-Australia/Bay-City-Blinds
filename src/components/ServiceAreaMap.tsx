@@ -9,7 +9,7 @@ function loadGoogleMaps(apiKey: string): Promise<void> {
   if (mapsLoader) return mapsLoader;
   mapsLoader = new Promise((resolve, reject) => {
     const script = document.createElement('script');
-    script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&loading=async`;
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}`;
     script.async = true;
     script.onload = () => resolve();
     script.onerror = () => reject(new Error('Google Maps failed to load'));
