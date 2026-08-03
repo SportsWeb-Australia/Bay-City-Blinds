@@ -410,7 +410,14 @@ footer .brand small{color:var(--turq)}
 /* --- live map --- */
 .map-live{position:relative;border-radius:var(--r);overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow-sm);min-height:380px}
 .map-live iframe{width:100%;height:100%;min-height:380px;display:block}
-.map-pin-card{position:absolute;left:14px;bottom:14px;background:#fff;border-radius:12px;box-shadow:var(--shadow);padding:.6rem 1rem;font-weight:700;font-size:.85rem;color:var(--teal-deep)}
+.map-live astro-island{display:block;width:100%;height:100%;min-height:380px}
+.map-pin-card{position:absolute;left:14px;bottom:14px;right:14px;background:#fff;border-radius:12px;box-shadow:var(--shadow);padding:.6rem 1rem;font-weight:700;font-size:.85rem;color:var(--teal-deep)}
+.map-pin-sub{display:block;font-weight:500;font-size:.76rem;color:var(--muted);margin-top:.15rem}
+.map-loading,.map-fallback{width:100%;height:100%;min-height:380px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:.4rem;padding:1.5rem;color:var(--teal-deep);background:var(--wash)}
+.map-fallback p{margin:0;max-width:22rem}
+.map-fallback p.small{color:var(--muted);font-size:.85rem;font-weight:400}
+.map-crawltext{max-width:60rem;margin:2rem auto 0;color:var(--muted);font-size:.85rem;line-height:1.6;text-align:center}
+@media(max-width:700px){.map-live{min-height:320px}.map-loading,.map-fallback{min-height:320px}}
 
 /* --- section rhythm fix (header spacing) --- */
 section.block{padding:4.6rem 0}

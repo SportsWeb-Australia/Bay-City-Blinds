@@ -3,11 +3,9 @@
 export const photoMap = {
   'roller-blinds': 46, // confirmed: two roller blinds, clean indoor shot
   'roman-blinds': 43, // confirmed: fabric roman blind above kitchen window
-  'venetian-blinds': 52, // ⚠️ NOT a genuine venetian blind photo — no true venetian shot exists in this
-                         // library (every horizontal-slat shot found is actually plantation shutters).
-                         // Get a real venetian blind photo from Jackson before launch.
+  'venetian-blinds': 'venetian-real', // real venetian blind photo supplied by Jackson
   'plantation-shutters': 10, // confirmed: two full plantation shutter windows, bright bedroom
-  'curtains': 1,
+  'curtains': 'curtains-real', // real curtains photo supplied by Jackson
   'outdoor-screens': 53,
   'gallery-1': 31, // indoor: plantation shutters, bedroom (different room to product card photo)
   'gallery-2': 63, // outdoor: roller shutters, brick house exterior

@@ -1,5 +1,6 @@
 ---
 import { locations } from '../data/content';
+import ServiceAreaMap from './ServiceAreaMap.tsx';
 ---
 <section class="block tint" id="areas">
   <div class="wrap">
@@ -11,13 +12,21 @@ import { locations } from '../data/content';
         <div class="area-chips">
           {locations.map((l) => <a href={`/${l.slug}`}>{l.name}</a>)}
         </div>
-        <a class="btn btn-primary btn-lg" href="/free-measure-quote" style="margin-top:1.5rem">Check my area &amp; book →</a>
+        <a class="btn btn-primary btn-lg" href="/free-measure-quote#quote" style="margin-top:1.5rem">Check your suburb →</a>
       </div>
       <div class="map-live reveal">
-        <iframe title="Bay City Blinds service area, Geelong, Victoria" src="https://www.google.com/maps?q=Geelong+VIC&z=9&output=embed" width="600" height="440" style="border:0" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
-        <div class="map-pin-card">📍 Based in Geelong, servicing a 60&nbsp;km radius</div>
+        <ServiceAreaMap client:visible />
+        <div class="map-pin-card">
+          📍 Based in Geelong, servicing Geelong, the Bellarine, Surf Coast and Melbourne's west
+          <span class="map-pin-sub">Contact us to confirm service availability in your suburb.</span>
+        </div>
       </div>
       </div>
+      <p class="map-crawltext">
+        Bay City Blinds services Geelong and surrounding suburbs, including Highton, Newtown, Belmont, Armstrong Creek,
+        Mount Duneed, Geelong West, Manifold Heights and Lara. Our wider service area includes Torquay, Jan Juc,
+        Barwon Heads, Ocean Grove, Drysdale, Portarlington, Werribee, Tarneit, Point Cook, Williamstown and Footscray.
+      </p>
     </div>
   </div>
 </section>
