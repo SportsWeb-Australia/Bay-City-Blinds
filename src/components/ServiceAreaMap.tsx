@@ -100,6 +100,13 @@ export default function ServiceAreaMap() {
           });
         });
 
+        // Force a resize pass before fitting bounds: the container's height comes through
+        // an Astro island wrapper (display:contents), and if Google measures the box before
+        // that layout has settled it can construct the map into a 0-height canvas that never
+        // repaints. Cheap insurance — resize + recenter, then fit bounds as normal.
+        g.maps.event.trigger(map, 'resize');
+        map.setCenter(baseMarker);
+
         map.fitBounds(bounds);
         // fitBounds can over-zoom on narrow (mobile) viewports; nudge back out a touch.
         g.maps.event.addListenerOnce(map, 'bounds_changed', () => {
@@ -130,7 +137,10 @@ export default function ServiceAreaMap() {
   return (
     <div
       ref={containerRef}
-      style={{ width: '100%', height: '100%', minHeight: 380 }}
+      // Fixed pixel height, not a percentage: the astro-island wrapper around this component
+      // renders as display:contents, which breaks height:100% inheritance from .map-live and
+      // can leave Google Maps measuring a 0-height box at construction time.
+      style={{ width: '100%', height: 380 }}
       aria-label="Bay City Blinds service area covering Geelong, the Bellarine Peninsula, Surf Coast and Melbourne's western suburbs"
     >
       {status === 'loading' && <div className="map-loading">Loading map…</div>}
