@@ -31,6 +31,29 @@ import { site } from '../data/site';
     <div class="nav-cta">
       <a class="nav-phone" href={site.phoneHref}>{site.phone}</a>
       <a class="btn btn-primary" href="/free-measure-quote" data-cta="nav-free-quote">Free quote</a>
+      <button class="burger" id="navBurger" aria-label="Open menu" aria-expanded="false" aria-controls="navMobile">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </nav>
+  <div class="nav-mobile" id="navMobile">
+    <a href="/blinds">Blinds &amp; Shutters</a>
+    <a href="/#process">How it works</a>
+    <a href="/#areas">Service areas</a>
+    <a href="/reviews">Reviews</a>
+    <a href="/#faq">FAQ</a>
+    <a href={site.phoneHref}>{site.phone}</a>
+  </div>
 </header>
+<script>
+  const burger = document.getElementById('navBurger');
+  const navMobile = document.getElementById('navMobile');
+  burger?.addEventListener('click', () => {
+    const open = navMobile?.classList.toggle('open');
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  navMobile?.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => {
+    navMobile.classList.remove('open');
+    burger?.setAttribute('aria-expanded', 'false');
+  }));
+</script>
