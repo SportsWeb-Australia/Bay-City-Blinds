@@ -7,9 +7,9 @@ export const products: Product[] = [
   { slug: 'roller-blinds', name: 'Roller Blinds', gradient: 'g1', category: 'indoor',
     blurb: 'Blockout, light-filter & sunscreen. The easy, clean-lined favourite.',
     long: 'Made-to-measure roller blinds in blockout, light-filter and sunscreen fabrics. The most popular, best-value choice for bedrooms, living areas and offices, with clean lines, simple operation and a huge range of colours.' },
-  { slug: 'roman-blinds', name: 'Roman Blinds', gradient: 'g2', category: 'indoor',
-    blurb: 'Soft, elegant folds that warm up living rooms and bedrooms.',
-    long: 'Roman blinds add softness and warmth with their signature folds. A beautiful fit for living rooms, bedrooms and formal spaces where you want a more tailored, decorative look.' },
+  { slug: 'honeycomb-blinds', name: 'Honeycomb Blinds', gradient: 'g2', category: 'indoor',
+    blurb: 'Cellular design that insulates as well as it looks. Great for energy efficiency.',
+    long: 'Honeycomb (cellular) blinds trap air in their pleated cells for genuine insulation, keeping rooms cooler in summer and warmer in winter, on top of clean, modern looks. A smart pick for bedrooms, living areas and north-facing windows.' },
   { slug: 'venetian-blinds', name: 'Venetian Blinds', gradient: 'g3', category: 'indoor',
     blurb: 'Timber & aluminium. Precise light control with a premium feel.',
     long: 'Timber and aluminium Venetian blinds give you precise light and privacy control with a premium finish. Timber suits living and dining rooms; aluminium is perfect for kitchens, bathrooms and wet areas.' },
@@ -22,6 +22,15 @@ export const products: Product[] = [
   { slug: 'outdoor-screens', name: 'Outdoor & Zip Screens', gradient: 'g6', category: 'outdoor',
     blurb: 'Extend the alfresco season with shade, privacy and weather protection.',
     long: 'Outdoor and zip-track screens extend your alfresco season with shade, privacy and weather protection. Turn a patio or deck into a usable, comfortable room most of the year.' },
+  { slug: 'roller-shutters', name: 'Roller Shutters', gradient: 'g1', category: 'outdoor',
+    blurb: 'Security, insulation and light control for windows and doors.',
+    long: 'Roller shutters add security, noise reduction and insulation to windows and doors, with the convenience of rolling fully out of sight when open. A durable, low-maintenance option for homes across Geelong.' },
+  { slug: 'traditional-awnings', name: 'Traditional Awnings', gradient: 'g4', category: 'outdoor',
+    blurb: 'Classic fixed shade for windows, entries and outdoor areas.',
+    long: 'Traditional fixed awnings give windows and entries reliable shade and weather protection year-round, with a classic look that suits heritage and modern homes alike.' },
+  { slug: 'folding-arm-awnings', name: 'Folding Arm Awnings', gradient: 'g6', category: 'outdoor',
+    blurb: 'Retractable shade that extends your outdoor living space on demand.',
+    long: 'Folding arm awnings retract at the touch of a button, giving you shade over a patio or deck exactly when you want it and full sun the rest of the time. A great way to extend outdoor living.' },
 ];
 
 export type Location = { slug: string; name: string; region: string; intro: string; nearby: string };
@@ -65,9 +74,9 @@ export const reviews = [
 ];
 
 export const faqs = [
-  { q: 'Is there any pressure or obligation to go ahead?', a: 'None at all. Jackson visits your home across Geelong and surrounds, measures your windows, shows you samples and provides a clear written quote, with no pressure and no obligation. You decide if and when to go ahead, in your own time.' },
+  { q: 'Is there any pressure or obligation to go ahead?', a: 'None at all. Jackson or a member of his team visits your home across Geelong and surrounds, measures your windows, shows you samples and provides a clear written quote, with no pressure and no obligation. You decide if and when to go ahead, in your own time.' },
   { q: 'What areas do you service?', a: 'We cover Geelong and all its suburbs, Armstrong Creek, the Surf Coast, the Bellarine Peninsula, Lara, plus Werribee, Tarneit, Point Cook, Williamstown and Footscray in Melbourne\u2019s west. Not sure if you\u2019re in range? Just ask.' },
-  { q: 'What types of blinds do you offer?', a: 'Roller blinds (blockout, light-filter, sunscreen), Roman blinds, timber and aluminium Venetians, plantation shutters, made-to-measure curtains and sheers, plus outdoor and zip-track screens, all from trusted suppliers.' },
+  { q: 'What types of blinds do you offer?', a: 'Roller blinds (blockout, light-filter, sunscreen), honeycomb blinds, timber and aluminium Venetians, plantation shutters, made-to-measure curtains and sheers, plus outdoor and zip-track screens, roller shutters and awnings, all from trusted suppliers.' },
   { q: 'How long does it take to get my blinds?', a: 'Because everything is made to measure, lead times vary by product, Jackson will give you a realistic timeframe with your quote. Most jobs are measured within a day or two of enquiring.' },
   { q: 'Are you insured and do the blinds come with a warranty?', a: 'Yes. Bay City Blinds is fully insured, and our made-to-measure products are covered by manufacturer warranties. You\u2019ll get the details in writing with your quote.' },
   { q: 'Do I have to visit a showroom?', a: 'Nope, that\u2019s our whole point of difference. We\u2019re a mobile showroom, so Jackson brings the samples and expertise to your home at a time that suits you, including evenings and weekends.' },
@@ -76,7 +85,7 @@ export const faqs = [
 export const gallery = [
   { prod: 'Plantation shutters', sub: 'Highton' },
   { prod: 'Outdoor roller shutters', sub: 'Ocean Grove' },
-  { prod: 'Roman blind', sub: 'Newtown' },
+  { prod: 'Venetian blinds', sub: 'Newtown' },
   { prod: 'Outdoor screens', sub: 'Torquay' },
   { prod: 'Roller blinds', sub: 'Lara' },
   { prod: 'Outdoor screens', sub: 'Point Cook' },

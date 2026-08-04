@@ -6,12 +6,17 @@ const { category, hideHeading = false } = Astro.props;
 const products = category ? allProducts.filter((p) => p.category === category) : allProducts;
 const icons: Record<string, string> = {
   'roller-blinds': '<rect x="4" y="3" width="16" height="18" rx="1"/><path d="M4 8h16M4 13h16M4 18h16"/>',
-  'roman-blinds': '<rect x="4" y="3" width="16" height="18" rx="1"/><path d="M4 7c3 2 13 2 16 0M4 12c3 2 13 2 16 0M4 17c3 2 13 2 16 0"/>',
+  'honeycomb-blinds': '<rect x="4" y="3" width="16" height="18" rx="1"/><path d="M4 7l16 0M4 7l4 3-4 3 4 3-4 3M20 7l-4 3 4 3-4 3 4 3"/>',
   'venetian-blinds': '<rect x="4" y="3" width="16" height="18" rx="1"/><path d="M4 6h16M4 9h16M4 12h16M4 15h16M4 18h16"/>',
   'plantation-shutters': '<rect x="3" y="3" width="8" height="18" rx="1"/><rect x="13" y="3" width="8" height="18" rx="1"/><path d="M5 7h4M5 11h4M5 15h4M15 7h4M15 11h4M15 15h4"/>',
   'curtains': '<path d="M4 3v18M20 3v18M6 3c0 4-2 4-2 8s2 4 2 8M10 3c0 4-2 4-2 8s2 4 2 8M14 3c0 4-2 4-2 8s2 4 2 8M18 3c0 4-2 4-2 8s2 4 2 8"/>',
   'outdoor-screens': '<rect x="4" y="3" width="16" height="14" rx="1"/><path d="M4 7h16M4 11h16M4 15h16M8 17v4M16 17v4"/>',
+  'roller-shutters': '<rect x="4" y="3" width="16" height="18" rx="1"/><path d="M4 6h16M4 9h16M4 12h16"/><rect x="4" y="14" width="16" height="7" rx="1"/>',
+  'traditional-awnings': '<path d="M3 8l9-5 9 5H3z"/><path d="M4 8v11M20 8v11"/><path d="M4 12h16M4 16h16"/>',
+  'folding-arm-awnings': '<path d="M2 6h4l14 8-14 8H2"/><path d="M6 6v16"/>',
 };
+// Products without a confirmed real photo yet render a branded gradient tile instead of guessing.
+const hasPhoto = (slug: string): slug is keyof typeof photoMap => slug in photoMap;
 ---
 <section class="block tint" id="products">
   <div class="wrap">
@@ -26,7 +31,13 @@ const icons: Record<string, string> = {
       {products.map((p) => (
         <a class="pcard reveal" href={`/blinds/${p.slug}`}>
           <span class="ph-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" set:html={icons[p.slug]} /></span>
-          <img class="ph-img" src={photo(p.slug as keyof typeof photoMap)} width="640" height="400" loading="lazy" alt={`${p.name} by Bay City Blinds, Geelong`} />
+          {hasPhoto(p.slug) ? (
+            <img class="ph-img" src={photo(p.slug)} width="640" height="400" loading="lazy" alt={`${p.name} by Bay City Blinds, Geelong`} />
+          ) : (
+            <div class:list={['ph', p.gradient]} aria-label={`${p.name} by Bay City Blinds, Geelong`}>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" set:html={icons[p.slug]} />
+            </div>
+          )}
           <div class="body"><h3>{p.name}</h3><p>{p.blurb}</p><span class="lk">Get a price →</span></div>
         </a>
       ))}

@@ -57,8 +57,9 @@ export default function LeadForm({ defaultSuburb = '', variant = 'full' }: { def
         <div className="fd"><label htmlFor="qsuburb">Suburb</label><input id="qsuburb" name="suburb" type="text" value={suburb} onChange={(e) => setSuburb(e.target.value)} required /></div>
         <div className="fd"><label htmlFor="qservice">I'm after</label>
           <select id="qservice" name="service">
-            <option>Roller blinds</option><option>Roman blinds</option><option>Venetian blinds</option>
+            <option>Roller blinds</option><option>Honeycomb blinds</option><option>Venetian blinds</option>
             <option>Plantation shutters</option><option>Curtains</option><option>Outdoor / zip screens</option>
+            <option>Roller shutters</option><option>Awnings</option>
             <option>A few different things</option><option>Not sure yet</option>
           </select>
         </div>
@@ -97,8 +98,9 @@ export default function LeadForm({ defaultSuburb = '', variant = 'full' }: { def
           <div style={two}>
             <div className="field"><label htmlFor="service">I'm after</label>
               <select id="service" name="service">
-                <option>Roller blinds</option><option>Roman blinds</option><option>Venetian blinds</option>
+                <option>Roller blinds</option><option>Honeycomb blinds</option><option>Venetian blinds</option>
                 <option>Plantation shutters</option><option>Curtains</option><option>Outdoor / zip screens</option>
+                <option>Roller shutters</option><option>Awnings</option>
                 <option>A few different things</option><option>Not sure yet, need advice</option>
               </select>
             </div>
