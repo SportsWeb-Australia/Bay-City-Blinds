@@ -124,6 +124,14 @@ header{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.92);backdro
 .lead-card .assure svg{width:14px;height:14px;color:var(--turq)}
 .form-ok{display:none;text-align:center;padding:1.4rem .5rem}
 .form-ok.show{display:block}
+
+/* review page */
+.review-choice{background:#fff;border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow-sm);padding:1.4rem 1.5rem;text-align:center}
+.review-choice h3{font-size:1.1rem;font-weight:800}
+.review-choice p.small{color:var(--muted);font-size:.9rem;margin-top:.2rem}
+.star-picker{display:flex;gap:.3rem;justify-content:center}
+.star-picker button{background:none;border:0;cursor:pointer;font-size:2rem;line-height:1;color:var(--line);transition:color .12s}
+.star-picker button.on{color:var(--star)}
 .form-ok .tick{width:56px;height:56px;border-radius:50%;background:var(--wash);display:grid;place-items:center;margin:0 auto .6rem}
 .form-ok .tick svg{width:30px;height:30px;color:var(--turq)}
 

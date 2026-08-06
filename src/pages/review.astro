@@ -1,0 +1,58 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ReviewForm from '../components/ReviewForm.tsx';
+import { site } from '../data/site';
+
+const title = 'Leave a Review | Bay City Blinds';
+const description = 'Share your experience with Bay City Blinds.';
+const googleReviewUrl = 'https://g.page/r/CYXrhmuVHLc4EBM/review';
+const pageUrl = new URL('/review', site.url).href;
+const qrSrc = `https://api.qrserver.com/v1/create-qr-code/?size=400x400&margin=10&data=${encodeURIComponent(pageUrl)}`;
+---
+<Layout title={title} description={description} path="/review" robots="noindex,nofollow">
+  <section class="block" style="padding-top:3rem">
+    <div class="wrap" style="max-width:640px;text-align:center">
+      <p class="eyebrow">Bay City Blinds</p>
+      <h1 style="font-family:'Bricolage Grotesque';font-weight:800;font-size:clamp(1.8rem,3.4vw,2.4rem);margin:.5rem 0 .8rem">How was your experience?</h1>
+      <p style="color:var(--muted)">Jackson would really appreciate a quick review, it genuinely helps other Geelong homeowners find us.</p>
+    </div>
+  </section>
+
+  <section class="block" style="padding-top:0">
+    <div class="wrap" style="max-width:640px">
+      <div class="review-choice reveal">
+        <h3>Have a Google account?</h3>
+        <p class="small">Takes 30 seconds and helps us most.</p>
+        <a class="btn btn-primary btn-lg" href={googleReviewUrl} target="_blank" rel="noopener noreferrer" style="width:100%;margin-top:.8rem">Leave a Google review →</a>
+      </div>
+
+      <div class="review-choice reveal" style="margin-top:1rem">
+        <h3>No Google account?</h3>
+        <p class="small">No worries, leave your feedback below and we’ll still use it on the site.</p>
+        <button class="btn btn-ghost btn-lg" id="noGoogleBtn" style="width:100%;margin-top:.8rem">Leave feedback here →</button>
+      </div>
+
+      <div id="reviewFormWrap" style="margin-top:1.5rem;display:none">
+        <ReviewForm client:load />
+      </div>
+    </div>
+  </section>
+
+  <section class="block tint" style="padding-bottom:3rem">
+    <div class="wrap" style="max-width:340px;text-align:center">
+      <p class="eyebrow" style="margin-bottom:.8rem">Share this page</p>
+      <img src={qrSrc} width="260" height="260" alt="QR code linking to this review page" style="margin:0 auto;border-radius:12px;box-shadow:var(--shadow-sm)" loading="lazy" />
+      <p class="small" style="color:var(--muted);margin-top:.7rem">Save or screenshot this QR code to share with clients.</p>
+    </div>
+  </section>
+</Layout>
+<script>
+  const btn = document.getElementById('noGoogleBtn');
+  const wrap = document.getElementById('reviewFormWrap');
+  btn?.addEventListener('click', () => {
+    if (!wrap) return;
+    wrap.style.display = 'block';
+    btn.setAttribute('aria-expanded', 'true');
+    wrap.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+</script>
