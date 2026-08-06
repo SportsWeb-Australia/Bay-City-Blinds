@@ -35,9 +35,9 @@ export const products: Product[] = [
 
 // Curtain styles — sub-pages linked from the Curtains nav dropdown and shown
 // as a grid on the main /blinds/curtains page.
-export type CurtainStyle = { slug: string; name: string; blurb: string; long: string; gradient: string; heroImage?: string; features?: { h: string; p: string }[] };
+export type CurtainStyle = { slug: string; name: string; blurb: string; long: string; gradient: string; heroImage?: string; features?: { h: string; p: string }[]; youtubeId?: string };
 export const curtainStyles: CurtainStyle[] = [
-  { slug: 'sheers', name: 'Sheers', gradient: 'g5', heroImage: '/photos/photo-3.webp',
+  { slug: 'sheers', name: 'Sheers', gradient: 'g5', heroImage: '/photos/photo-3.webp', youtubeId: 'yYrW-xqhUl4',
     blurb: 'Soft, light-diffusing fabric that keeps rooms bright while softening the view in.',
     long: 'Sheer curtains let natural light flood in while softening the view in during the day, a gentle, airy layer that finishes a room without blocking it out. Popular on their own in living and dining areas, or layered behind a blockout curtain for the best of both.' },
   { slug: 'blockouts', name: 'Blockouts', gradient: 'g1',
