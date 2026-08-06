@@ -59,7 +59,7 @@ export default function LeadForm({ defaultSuburb = '', variant = 'full' }: { def
         <div className="fd"><label htmlFor="qservice">I'm after</label>
           <select id="qservice" name="service">
             <option>Roller blinds</option><option>Honeycomb blinds</option><option>Venetian blinds</option>
-            <option>Plantation shutters</option><option>Curtains</option><option>Zip screens</option>
+            <option>Plantation shutters</option><option>Curtains</option><option>Zipscreen</option>
             <option>Roller shutters</option><option>Awnings</option>
             <option>A few different things</option><option>Not sure yet</option>
           </select>
@@ -101,7 +101,7 @@ export default function LeadForm({ defaultSuburb = '', variant = 'full' }: { def
             <div className="field"><label htmlFor="service">I'm after</label>
               <select id="service" name="service">
                 <option>Roller blinds</option><option>Honeycomb blinds</option><option>Venetian blinds</option>
-                <option>Plantation shutters</option><option>Curtains</option><option>Zip screens</option>
+                <option>Plantation shutters</option><option>Curtains</option><option>Zipscreen</option>
                 <option>Roller shutters</option><option>Awnings</option>
                 <option>A few different things</option><option>Not sure yet, need advice</option>
               </select>

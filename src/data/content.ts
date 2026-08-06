@@ -2,7 +2,7 @@
 // Each location has UNIQUE copy — that's what makes suburb pages rank
 // instead of reading as thin duplicates.
 
-export type Product = { slug: string; name: string; blurb: string; long: string; gradient: string; category: 'indoor' | 'outdoor' };
+export type Product = { slug: string; name: string; blurb: string; long: string; gradient: string; category: 'indoor' | 'outdoor'; heroImage?: string };
 export const products: Product[] = [
   { slug: 'roller-blinds', name: 'Roller Blinds', gradient: 'g1', category: 'indoor',
     blurb: 'Blockout, light-filter & sunscreen. The easy, clean-lined favourite.',
@@ -16,12 +16,12 @@ export const products: Product[] = [
   { slug: 'plantation-shutters', name: 'Plantation Shutters', gradient: 'g4', category: 'indoor',
     blurb: 'The premium, adds-value option. Timeless and built to last.',
     long: 'Plantation shutters are the premium window furnishing, timeless, durable and known to add value to your home. Available in timber and PVC, they handle light, privacy and insulation beautifully.' },
-  { slug: 'curtains', name: 'Curtains', gradient: 'g5', category: 'indoor',
+  { slug: 'curtains', name: 'Curtains', gradient: 'g5', category: 'indoor', heroImage: '/curtains-hero.webp',
     blurb: 'Sheers, blockout and layered looks, made to measure for any window.',
     long: 'Made-to-measure curtains and sheers, from soft, light-diffusing sheers to full blockout, or a layered look combining both. Perfect for bedrooms, lounges and creating a cosy, finished feel.' },
-  { slug: 'outdoor-screens', name: 'Outdoor & Zip Screens', gradient: 'g6', category: 'outdoor',
+  { slug: 'outdoor-screens', name: 'Outdoor & Zipscreen', gradient: 'g6', category: 'outdoor',
     blurb: 'Extend the alfresco season with shade, privacy and weather protection.',
-    long: 'Outdoor and zip-track screens extend your alfresco season with shade, privacy and weather protection. Turn a patio or deck into a usable, comfortable room most of the year.' },
+    long: 'Outdoor blinds and Zipscreens extend your alfresco season with shade, privacy and weather protection. Turn a patio or deck into a usable, comfortable room most of the year.' },
   { slug: 'roller-shutters', name: 'Roller Shutters', gradient: 'g1', category: 'outdoor',
     blurb: 'Security, insulation and light control for windows and doors.',
     long: 'Roller shutters add security, noise reduction and insulation to windows and doors, with the convenience of rolling fully out of sight when open. A durable, low-maintenance option for homes across Geelong.' },
@@ -76,7 +76,7 @@ export const reviews = [
 export const faqs = [
   { q: 'Is there any pressure or obligation to go ahead?', a: 'None at all. Jackson or a member of his team visits your home across Geelong and surrounds, measures your windows, shows you samples and provides a clear written quote, with no pressure and no obligation. You decide if and when to go ahead, in your own time.' },
   { q: 'What areas do you service?', a: 'We cover Geelong and all its suburbs, Armstrong Creek, the Surf Coast, the Bellarine Peninsula, Lara, plus Werribee, Tarneit, Point Cook, Williamstown and Footscray in Melbourne\u2019s west. Not sure if you\u2019re in range? Just ask.' },
-  { q: 'What types of blinds do you offer?', a: 'Roller blinds (blockout, light-filter, sunscreen), honeycomb blinds, timber and aluminium Venetians, plantation shutters, made-to-measure curtains and sheers, plus outdoor and zip-track screens, roller shutters and awnings, all from trusted suppliers.' },
+  { q: 'What types of blinds do you offer?', a: 'Roller blinds (blockout, light-filter, sunscreen), honeycomb blinds, timber and aluminium Venetians, plantation shutters, made-to-measure curtains and sheers, plus outdoor blinds and Zipscreens, roller shutters and awnings, all from trusted suppliers.' },
   { q: 'How long does it take to get my blinds?', a: 'Because everything is made to measure, lead times vary by product, Jackson will give you a realistic timeframe with your quote. Most jobs are measured within a day or two of enquiring.' },
   { q: 'Are you insured and do the blinds come with a warranty?', a: 'Yes. Bay City Blinds is fully insured, and our made-to-measure products are covered by manufacturer warranties. You\u2019ll get the details in writing with your quote.' },
   { q: 'Do I have to visit a showroom?', a: 'Nope, that\u2019s our whole point of difference. We\u2019re a mobile showroom, so Jackson brings the samples and expertise to your home at a time that suits you, including evenings and weekends.' },

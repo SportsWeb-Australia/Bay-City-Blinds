@@ -37,8 +37,8 @@ const schemas = [
       <div>
         <div class="hero-orb-wrap hero-orb-sub reveal">
           <div class="orb-ring" aria-hidden="true"></div>
-          <img class="hero-orb" src="/jackson-orb.webp" width="1000" height="1000" alt={`${p.name} measured and installed by Bay City Blinds, Geelong`} />
-          <div class="name-tag">Jackson <span>· your local blinds guy</span></div>
+          <img class="hero-orb" src={p.heroImage || '/jackson-orb.webp'} width="1000" height="1000" alt={`${p.name} measured and installed by Bay City Blinds, Geelong`} />
+          {!p.heroImage && <div class="name-tag">Jackson <span>· your local blinds guy</span></div>}
         </div>
       </div>
     </div>
