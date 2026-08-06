@@ -54,8 +54,21 @@ const schemas = [
       </div>
     </div>
     <div class="wrap" id="quote" style="padding-bottom:3rem;margin-top:-1rem">
-      <div style="width:100%;max-width:680px;margin-left:auto">
-        <LeadForm client:load />
+      <div class="product-quote-row">
+        <div style="width:100%;max-width:680px">
+          <LeadForm client:load />
+        </div>
+        {p.features && (
+          <div class="product-features reveal">
+            <p class="eyebrow">Why {p.name.toLowerCase()}?</p>
+            {p.features.map((f) => (
+              <div class="product-feature">
+                <span class="tick-sm">✓</span>
+                <div><b>{f.h}</b><p>{f.p}</p></div>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   </section>

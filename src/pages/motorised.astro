@@ -3,7 +3,6 @@ import Layout from '../layouts/Layout.astro';
 import ServiceAreas from '../components/ServiceAreas.astro';
 import FinalCta from '../components/FinalCta.astro';
 import BenefitsGrid from '../components/BenefitsGrid.astro';
-import VideoPlaceholder from '../components/VideoPlaceholder.astro';
 import { localBusiness, serviceSchema, breadcrumb } from '../data/schema';
 
 const title = 'Motorised Blinds, Shutters & Curtains Geelong | Bay City Blinds';
@@ -53,7 +52,7 @@ const brands = [
     p: 'The world’s leading name in window covering motorisation. Whisper-quiet DC motors, decades of proven reliability, and an app plus remote ecosystem that’s genuinely simple to live with.' },
   { id: 'automate', name: 'Automate', url: 'https://www.automateshades.com/au/',
     p: 'Rollease Acmeda’s motorisation range, engineered in Australia. Wire-free lithium battery motors make retrofitting an existing roller blind straightforward, with app and remote control included.' },
-  { id: 'alpha', name: 'Alpha', url: 'https://alphamotors.com.au/',
+  { id: 'alpha', name: 'Alpha', url: 'https://alphamotors.com.au/', logo: '/logos/alpha-logo.png',
     p: 'Australian-made tubular motors offering reliable, quiet automation at a genuinely accessible price, backed by a 7-year replacement warranty. A smart-value option without cutting corners.' },
 ];
 ---
@@ -69,7 +68,19 @@ const brands = [
   </section>
 
   <BenefitsGrid items={benefits} />
-  <VideoPlaceholder label="Motorisation walkthrough video coming soon" />
+  <section class="block tint" style="padding-top:2rem;padding-bottom:2rem">
+    <div class="wrap" style="max-width:900px">
+      <div class="video-embed reveal">
+        <iframe
+          src="https://www.youtube.com/embed/6DV_3MmdAqU"
+          title="Motorisation video"
+          loading="lazy"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </div>
+  </section>
 
   <section class="block" id="power">
     <div class="wrap">
@@ -95,12 +106,16 @@ const brands = [
       <div class="sec-head reveal">
         <p class="eyebrow">Motor brands</p>
         <h2>Trusted motor systems Jackson fits</h2>
-        <p>Real logo assets to follow, these are Jackson’s go-to motor brands for reliable, well-supported motorisation.</p>
+        <p>These are Jackson’s go-to motor brands for reliable, well-supported motorisation.</p>
       </div>
       <div class="motor-grid">
         {brands.map((b) => (
           <div class="motor-card motor-card-brand reveal" id={b.id}>
-            <span class="motor-logo">{b.name}</span>
+            {b.logo ? (
+              <img class="motor-logo-img" src={b.logo} alt={`${b.name} logo`} loading="lazy" />
+            ) : (
+              <span class="motor-logo">{b.name}</span>
+            )}
             <p>{b.p}</p>
             <a class="motor-link" href={b.url} target="_blank" rel="noopener noreferrer">Visit {b.name} →</a>
           </div>
@@ -109,7 +124,7 @@ const brands = [
     </div>
   </section>
 
-  <section class="block" style="padding-top:0">
+  <section class="block" style="padding-top:2.6rem;padding-bottom:2.6rem">
     <div class="wrap" style="text-align:center">
       <a class="btn btn-primary btn-lg" href="/free-measure-quote">Get a free motorisation quote →</a>
     </div>
