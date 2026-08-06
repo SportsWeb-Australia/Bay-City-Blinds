@@ -2,7 +2,7 @@
 // Each location has UNIQUE copy — that's what makes suburb pages rank
 // instead of reading as thin duplicates.
 
-export type Product = { slug: string; name: string; blurb: string; long: string; gradient: string; category: 'indoor' | 'outdoor'; heroImage?: string };
+export type Product = { slug: string; name: string; blurb: string; long: string; gradient: string; category: 'indoor' | 'outdoor'; heroImage?: string; youtubeId?: string };
 export const products: Product[] = [
   { slug: 'roller-blinds', name: 'Roller Blinds', gradient: 'g1', category: 'indoor',
     blurb: 'Blockout, light-filter & sunscreen. The easy, clean-lined favourite.',
@@ -28,7 +28,7 @@ export const products: Product[] = [
   { slug: 'traditional-awnings', name: 'Traditional Awnings', gradient: 'g4', category: 'outdoor',
     blurb: 'Classic fixed shade for windows, entries and outdoor areas.',
     long: 'Traditional fixed awnings give windows and entries reliable shade and weather protection year-round, with a classic look that suits heritage and modern homes alike.' },
-  { slug: 'folding-arm-awnings', name: 'Folding Arm Awnings', gradient: 'g6', category: 'outdoor',
+  { slug: 'folding-arm-awnings', name: 'Folding Arm Awnings', gradient: 'g6', category: 'outdoor', youtubeId: 'jfVLsh113OY',
     blurb: 'Retractable shade that extends your outdoor living space on demand.',
     long: 'Folding arm awnings retract at the touch of a button, giving you shade over a patio or deck exactly when you want it and full sun the rest of the time. A great way to extend outdoor living.' },
 ];

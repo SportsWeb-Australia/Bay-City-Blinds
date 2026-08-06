@@ -67,6 +67,22 @@ const schemas = [
     </>
   )}
 
+  {p.youtubeId && (
+    <section class="block" style="padding-top:2rem;padding-bottom:2rem">
+      <div class="wrap" style="max-width:900px">
+        <div class="video-embed reveal">
+          <iframe
+            src={`https://www.youtube.com/embed/${p.youtubeId}`}
+            title={`${p.name} video`}
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </div>
+    </section>
+  )}
+
   {p.slug === 'curtains' && (
     <section class="block tint" id="styles">
       <div class="wrap">
