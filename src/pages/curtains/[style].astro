@@ -1,0 +1,72 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import WhyUs from '../../components/WhyUs.astro';
+import Reviews from '../../components/Reviews.astro';
+import ServiceAreas from '../../components/ServiceAreas.astro';
+import FinalCta from '../../components/FinalCta.astro';
+import LeadForm from '../../components/LeadForm.tsx';
+import { curtainStyles } from '../../data/content';
+import { localBusiness, serviceSchema, breadcrumb } from '../../data/schema';
+
+export function getStaticPaths() {
+  return curtainStyles.map((s) => ({ params: { style: s.slug }, props: { s } }));
+}
+const { s } = Astro.props;
+
+const title = `${s.name} Curtains Geelong | Free Measure & Quote | Bay City Blinds`;
+const description = `${s.long.slice(0, 140)} Free in-home measure & quote across Geelong & the Bellarine.`;
+const schemas = [
+  localBusiness(),
+  serviceSchema(),
+  breadcrumb([
+    { name: 'Home', url: '/' },
+    { name: 'Curtains', url: '/blinds/curtains' },
+    { name: s.name, url: `/curtains/${s.slug}` },
+  ]),
+];
+---
+<Layout title={title} description={description} path={`/curtains/${s.slug}`} schemas={schemas}>
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-copy reveal">
+        <p class="eyebrow">Made to measure · Geelong &amp; the Bellarine</p>
+        <h1>{s.name} curtains in <span class="hl">Geelong</span></h1>
+        <p class="sub">{s.long}</p>
+        <a class="btn btn-primary btn-lg" href="#quote" style="margin-top:.6rem">Get my free quote →</a>
+      </div>
+      <div>
+        <div class="hero-orb-wrap hero-orb-sub reveal">
+          <div class="orb-ring" aria-hidden="true"></div>
+          <img class="hero-orb" src={s.heroImage || '/jackson-orb.webp'} width="1000" height="1000" alt={`${s.name} curtains measured and installed by Bay City Blinds, Geelong`} />
+          {!s.heroImage && <div class="name-tag">Jackson <span>· your local blinds guy</span></div>}
+        </div>
+      </div>
+    </div>
+    <div class="wrap" id="quote" style="padding-bottom:3rem;margin-top:-1rem">
+      <div style="width:100%;max-width:680px;margin-left:auto">
+        <LeadForm client:load />
+      </div>
+    </div>
+  </section>
+
+  {s.features && (
+    <section class="block tint">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <p class="eyebrow">Indoor vs outdoor</p>
+          <h2>Two ways to go blockout</h2>
+        </div>
+        <div class="motor-grid" style="grid-template-columns:1fr 1fr;max-width:820px;margin:0 auto">
+          {s.features.map((f) => (
+            <div class="motor-card reveal"><h3>{f.h}</h3><p>{f.p}</p></div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <WhyUs />
+  <Reviews />
+  <ServiceAreas />
+  <FinalCta />
+</Layout>

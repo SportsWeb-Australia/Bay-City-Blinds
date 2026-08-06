@@ -1,0 +1,56 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import WhyUs from '../../components/WhyUs.astro';
+import Reviews from '../../components/Reviews.astro';
+import ServiceAreas from '../../components/ServiceAreas.astro';
+import FinalCta from '../../components/FinalCta.astro';
+import LeadForm from '../../components/LeadForm.tsx';
+import { securityStyles } from '../../data/content';
+import { localBusiness, serviceSchema, breadcrumb } from '../../data/schema';
+
+export function getStaticPaths() {
+  return securityStyles.map((s) => ({ params: { style: s.slug }, props: { s } }));
+}
+const { s } = Astro.props;
+
+const title = `${s.name} Geelong | Free Measure & Quote | Bay City Blinds`;
+const description = `${s.long.slice(0, 140)} Free in-home measure & quote across Geelong & the Bellarine.`;
+const schemas = [
+  localBusiness(),
+  serviceSchema(),
+  breadcrumb([
+    { name: 'Home', url: '/' },
+    { name: 'Security', url: '/security' },
+    { name: s.name, url: `/security/${s.slug}` },
+  ]),
+];
+---
+<Layout title={title} description={description} path={`/security/${s.slug}`} schemas={schemas}>
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-copy reveal">
+        <p class="eyebrow">Made to measure · Geelong &amp; the Bellarine</p>
+        <h1>{s.name} in <span class="hl">Geelong</span></h1>
+        <p class="sub">{s.long}</p>
+        <a class="btn btn-primary btn-lg" href="#quote" style="margin-top:.6rem">Get my free quote →</a>
+      </div>
+      <div>
+        <div class="hero-orb-wrap hero-orb-sub reveal">
+          <div class="orb-ring" aria-hidden="true"></div>
+          <img class="hero-orb" src={s.heroImage || '/jackson-orb.webp'} width="1000" height="1000" alt={`${s.name} measured and installed by Bay City Blinds, Geelong`} />
+          {!s.heroImage && <div class="name-tag">Jackson <span>· your local blinds guy</span></div>}
+        </div>
+      </div>
+    </div>
+    <div class="wrap" id="quote" style="padding-bottom:3rem;margin-top:-1rem">
+      <div style="width:100%;max-width:680px;margin-left:auto">
+        <LeadForm client:load />
+      </div>
+    </div>
+  </section>
+
+  <WhyUs />
+  <Reviews />
+  <ServiceAreas />
+  <FinalCta />
+</Layout>

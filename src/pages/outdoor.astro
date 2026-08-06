@@ -4,6 +4,8 @@ import Products from '../components/Products.astro';
 import WhyUs from '../components/WhyUs.astro';
 import ServiceAreas from '../components/ServiceAreas.astro';
 import FinalCta from '../components/FinalCta.astro';
+import BenefitsGrid from '../components/BenefitsGrid.astro';
+import VideoPlaceholder from '../components/VideoPlaceholder.astro';
 import { localBusiness, serviceSchema, breadcrumb } from '../data/schema';
 
 const title = 'Outdoor Blinds & Zipscreen Geelong | Bay City Blinds';
@@ -13,17 +15,28 @@ const schemas = [
   serviceSchema(),
   breadcrumb([{ name: 'Home', url: '/' }, { name: 'Outdoor', url: '/outdoor' }]),
 ];
+
+const benefits = [
+  { h: 'A room you can actually use', p: 'Shade and wind protection turn a patio or deck into space you use most of the year, not just the three warmest months.', ic: '<path d="M3 12h18M12 3v18"/><circle cx="12" cy="12" r="9"/>' },
+  { h: 'UV and glare control', p: 'Cut harsh western sun and UV without losing the view or shutting the outdoor area off completely.', ic: '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4 12H2M22 12h-2M5 5l1.5 1.5M17.5 17.5L19 19M19 5l-1.5 1.5M6.5 17.5L5 19"/>' },
+  { h: 'Privacy from neighbours', p: 'Zipscreens and outdoor blinds add a real privacy layer to alfresco areas overlooked by neighbouring homes.', ic: '<path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/>' },
+  { h: 'Built for the outdoors', p: 'Weather-resistant fabrics and tracks made to handle sun, wind and rain, not repurposed indoor materials.', ic: '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/>' },
+];
 ---
 <Layout title={title} description={description} path="/outdoor" schemas={schemas}>
   <section class="block" style="padding-bottom:1rem">
     <div class="wrap">
       <div class="sec-head reveal" style="margin-bottom:1rem">
         <p class="eyebrow">Outdoor window furnishings</p>
-        <h2>Extend your alfresco season</h2>
+        <h1 style="font-family:'Bricolage Grotesque';font-weight:800;font-size:clamp(1.8rem,3.4vw,2.6rem);margin:.5rem 0 .6rem">Extend your alfresco season</h1>
         <p>Shade, privacy and weather protection, made to measure and installed by a local. Tap through for a free quote.</p>
       </div>
     </div>
   </section>
+
+  <BenefitsGrid items={benefits} />
+  <VideoPlaceholder label="Outdoor blinds & Zipscreen walkthrough video coming soon" />
+
   <Products category="outdoor" hideHeading />
   <WhyUs />
   <ServiceAreas />

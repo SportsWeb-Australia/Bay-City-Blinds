@@ -333,6 +333,25 @@ footer .brand small{color:var(--turq)}
 .brand-chip svg{width:20px;height:20px;color:var(--turq)}
 .brand-chip small{display:block;font-family:'Inter';font-weight:600;font-size:.6rem;letter-spacing:.12em;color:var(--muted);text-transform:uppercase;margin-top:-2px}
 
+/* ---------- motorised page ---------- */
+.video-placeholder{max-width:900px;margin:0 auto;background:#fff;border:1.5px dashed var(--line);border-radius:20px;
+  padding:3.4rem 2rem;text-align:center;color:var(--muted)}
+.video-play{width:64px;height:64px;border-radius:50%;background:var(--wash);display:grid;place-items:center;margin:0 auto 1rem}
+.video-play svg{width:26px;height:26px;color:var(--teal-deep);margin-left:3px}
+.video-placeholder p{font-weight:600}
+.motor-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.1rem}
+.motor-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:1.4rem;box-shadow:var(--shadow-sm);scroll-margin-top:110px}
+.motor-card h3{font-size:1.1rem;font-weight:800;margin:.3rem 0 .5rem}
+.motor-card p{color:var(--muted);font-size:.9rem;line-height:1.55}
+.motor-tag{display:inline-block;font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--teal-deep);
+  background:var(--wash);border-radius:999px;padding:.25rem .65rem}
+.motor-card-brand{display:flex;flex-direction:column}
+.motor-logo{font-family:'Bricolage Grotesque';font-weight:800;font-size:1.25rem;color:var(--ink);margin-bottom:.5rem}
+.motor-link{margin-top:auto;padding-top:.9rem;font-weight:700;color:var(--turq)}
+.motor-link:hover{color:var(--teal-deep)}
+@media(max-width:960px){.motor-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.motor-grid{grid-template-columns:1fr}.video-placeholder{padding:2.4rem 1.3rem}}
+
 .step{position:relative}
 .step .step-ic{width:46px;height:46px;border-radius:13px;background:var(--wash);display:grid;place-items:center;margin-bottom:.7rem}
 .step .step-ic svg{width:24px;height:24px;color:var(--teal-deep)}

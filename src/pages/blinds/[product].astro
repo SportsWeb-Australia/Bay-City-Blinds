@@ -5,13 +5,24 @@ import Reviews from '../../components/Reviews.astro';
 import ServiceAreas from '../../components/ServiceAreas.astro';
 import FinalCta from '../../components/FinalCta.astro';
 import LeadForm from '../../components/LeadForm.tsx';
-import { products } from '../../data/content';
+import BenefitsGrid from '../../components/BenefitsGrid.astro';
+import VideoPlaceholder from '../../components/VideoPlaceholder.astro';
+import { products, curtainStyles } from '../../data/content';
 import { localBusiness, serviceSchema, breadcrumb } from '../../data/schema';
 
 export function getStaticPaths() {
   return products.map((p) => ({ params: { product: p.slug }, props: { p } }));
 }
 const { p } = Astro.props;
+
+const curtainIcon = '<path d="M4 3v18M20 3v18M6 3c0 4-2 4-2 8s2 4 2 8M10 3c0 4-2 4-2 8s2 4 2 8M14 3c0 4-2 4-2 8s2 4 2 8M18 3c0 4-2 4-2 8s2 4 2 8"/>';
+
+const curtainBenefits = [
+  { h: 'A softer, finished feel', p: 'Curtains bring warmth and texture no hard window covering can, the layer that makes a room feel done.', ic: '<path d="M20.8 4.6a5 5 0 00-7.1 0L12 6.3l-1.7-1.7a5 5 0 10-7.1 7.1L12 20.4l8.8-8.8a5 5 0 000-7z"/>' },
+  { h: 'Genuine insulation', p: 'A well-made curtain, especially with a pelmet box, cuts heat loss and glare noticeably better than most people expect.', ic: '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/>' },
+  { h: 'Light control, your call', p: 'From soft sheers to full blockout, or both layered together, choose exactly how much light and privacy each room gets.', ic: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>' },
+  { h: 'Made to measure, properly hung', p: 'Every curtain is cut and hung for your exact windows and ceiling height, not an off-the-shelf approximation.', ic: '<rect x="4" y="3" width="16" height="18" rx="1"/><path d="M4 8h16M4 13h16M4 18h16"/>' },
+];
 
 const title = `${p.name} Geelong | Free Measure & Quote | Bay City Blinds`;
 const description = `${p.long.slice(0, 140)} Free in-home measure & quote across Geelong & the Bellarine.`;
@@ -48,6 +59,40 @@ const schemas = [
       </div>
     </div>
   </section>
+
+  {p.slug === 'curtains' && (
+    <>
+      <BenefitsGrid items={curtainBenefits} />
+      <VideoPlaceholder label="Curtains walkthrough video coming soon" />
+    </>
+  )}
+
+  {p.slug === 'curtains' && (
+    <section class="block tint" id="styles">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <p class="eyebrow">Curtain styles</p>
+          <h2>Choose your curtain style</h2>
+          <p>Every style is made to measure and can be layered or combined. Tap through for a free quote on any of them.</p>
+        </div>
+        <div class="grid-3">
+          {curtainStyles.map((cs) => (
+            <a class="pcard reveal" href={`/curtains/${cs.slug}`}>
+              <span class="ph-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" set:html={curtainIcon} /></span>
+              {cs.heroImage ? (
+                <img class="ph-img" src={cs.heroImage} width="640" height="400" loading="lazy" alt={`${cs.name} curtains by Bay City Blinds, Geelong`} />
+              ) : (
+                <div class:list={['ph', cs.gradient]} aria-label={`${cs.name} curtains by Bay City Blinds, Geelong`}>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" set:html={curtainIcon} />
+                </div>
+              )}
+              <div class="body"><h3>{cs.name}</h3><p>{cs.blurb}</p><span class="lk">Get a price →</span></div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
 
   <WhyUs />
   <Reviews />

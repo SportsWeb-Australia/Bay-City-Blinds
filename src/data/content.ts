@@ -33,6 +33,40 @@ export const products: Product[] = [
     long: 'Folding arm awnings retract at the touch of a button, giving you shade over a patio or deck exactly when you want it and full sun the rest of the time. A great way to extend outdoor living.' },
 ];
 
+// Curtain styles — sub-pages linked from the Curtains nav dropdown and shown
+// as a grid on the main /blinds/curtains page.
+export type CurtainStyle = { slug: string; name: string; blurb: string; long: string; gradient: string; heroImage?: string; features?: { h: string; p: string }[] };
+export const curtainStyles: CurtainStyle[] = [
+  { slug: 'sheers', name: 'Sheers', gradient: 'g5', heroImage: '/photos/photo-3.webp',
+    blurb: 'Soft, light-diffusing fabric that keeps rooms bright while softening the view in.',
+    long: 'Sheer curtains let natural light flood in while softening the view in during the day, a gentle, airy layer that finishes a room without blocking it out. Popular on their own in living and dining areas, or layered behind a blockout curtain for the best of both.' },
+  { slug: 'blockouts', name: 'Blockouts', gradient: 'g1',
+    blurb: 'Full light and heat block, indoors or outdoors, with a clean, tailored finish.',
+    long: 'Blockout treatments come in two forms: indoor blockout curtains, and outdoor blockout blinds. Both are made to measure and finished with a U-channel side track, a neat, framed edge that blends into the window or door frame and closes off the light gaps a loose curtain edge always leaves. That makes them a genuine option for shift workers and young parents who need a room properly dark at any hour, day or night.',
+    features: [
+      { h: 'Indoor blockouts', p: 'Full light and heat block for bedrooms, nurseries and media rooms, with the U-channel keeping light from creeping in around the sides.' },
+      { h: 'Outdoor blockouts', p: 'Better insulation, increased security and real noise reduction on top of light control, and because they sit outside the glass line, they free up internal room space that bulky indoor curtains can eat into.' },
+    ] },
+  { slug: 'light-filter', name: 'Light Filter', gradient: 'g2',
+    blurb: 'The in-between option: softens harsh sun without full blockout.',
+    long: 'Light-filter curtains sit between sheers and blockout, cutting glare and harsh direct sun while still letting soft, diffused light through. A versatile everyday choice for living areas that get strong afternoon or western sun.' },
+  { slug: 'pelmet-boxes', name: 'Pelmet Boxes', gradient: 'g4',
+    blurb: 'Completes the look, traps heat, and hides the track and any blinds when they’re rolled up.',
+    long: 'A pelmet box conceals the curtain track and heading above the window for a neat, tailored, hotel-style finish that completes the look of the room. It’s also genuinely energy efficient, trapping heat that would otherwise escape over the top of the curtain, and it hides any blind sitting behind it when rolled up. Made to measure in timber or fabric, with a scalloped or straight-cut edge to suit your style.' },
+];
+
+// Security styles — sub-pages linked from the Security nav dropdown and
+// shown as a grid on the main /security page.
+export type SecurityStyle = { slug: string; name: string; blurb: string; long: string; gradient: string; heroImage?: string };
+export const securityStyles: SecurityStyle[] = [
+  { slug: 'security-doors', name: 'Security Doors', gradient: 'g1',
+    blurb: 'Tough, made-to-measure doors that don’t compromise on style.',
+    long: 'Made-to-measure security doors add a genuine layer of protection at your entry points without turning your front door into a cage. Choose from a range of grille and mesh styles to match your home’s look, front and back.' },
+  { slug: 'security-shutters', name: 'Security Shutters', gradient: 'g6',
+    blurb: 'Roller shutters built for break-in resistance, noise and insulation.',
+    long: 'Security-rated roller shutters combine everyday light and privacy control with real break-in resistance, plus the bonus of noise reduction and insulation. A smart upgrade for ground-floor windows and doors.' },
+];
+
 export type Location = { slug: string; name: string; region: string; intro: string; nearby: string };
 export const locations: Location[] = [
   { slug: 'blinds-geelong', name: 'Geelong', region: 'Geelong & suburbs',

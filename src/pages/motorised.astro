@@ -1,0 +1,120 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ServiceAreas from '../components/ServiceAreas.astro';
+import FinalCta from '../components/FinalCta.astro';
+import BenefitsGrid from '../components/BenefitsGrid.astro';
+import VideoPlaceholder from '../components/VideoPlaceholder.astro';
+import { localBusiness, serviceSchema, breadcrumb } from '../data/schema';
+
+const title = 'Motorised Blinds, Shutters & Curtains Geelong | Bay City Blinds';
+const description = 'Motorise any blind, shutter, curtain or awning. Solar, battery and hard-wired options, plus Linx, Somfy, Automate and Alpha motors. Free in-home measure & quote across Geelong & the Bellarine.';
+const schemas = [
+  localBusiness(),
+  serviceSchema(),
+  breadcrumb([{ name: 'Home', url: '/' }, { name: 'Motorised', url: '/motorised' }]),
+];
+
+const benefits = [
+  {
+    h: 'Ease of use',
+    p: 'Open and close with a remote, app or voice command instead of a wand or cord, on one blind or a whole house of them at once.',
+    ic: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+  },
+  {
+    h: 'Better wear and tear management',
+    p: 'No more cords, chains or wands getting caught, tangled or yanked. Motors apply smooth, consistent movement that’s gentler on the fabric and mechanism long-term.',
+    ic: '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/>',
+  },
+  {
+    h: 'Hard-to-reach areas made easy',
+    p: 'Skylights, stairwells, high windows and oversized glazing, anywhere a pole or cord simply can’t reach, motorisation makes fully operable again.',
+    ic: '<path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4z"/><path d="M6 1v3M10 1v3M14 1v3"/>',
+  },
+  {
+    h: 'Accessibility for older people and people with a disability',
+    p: 'A single button press instead of a physical pull or reach. A genuinely practical upgrade for reduced mobility, strength or dexterity.',
+    ic: '<circle cx="12" cy="5" r="2"/><path d="M12 7v6l-3 7M12 13l3 7M8 10l4 1 4-1"/>',
+  },
+];
+
+const powerOptions = [
+  { id: 'solar', name: 'Solar', tag: 'Power option',
+    p: 'A small solar panel keeps the motor’s battery topped up using natural light, so there’s no cabling and no manual recharging. The natural fit for outdoor blinds, awnings and skylights, or any window without a nearby power point.' },
+  { id: 'battery', name: 'Battery', tag: 'Power option',
+    p: 'A rechargeable lithium battery inside the motor, wire-free and simple to retrofit onto your existing blinds. Ideal for renovations, rentals, or anywhere running new cabling isn’t practical.' },
+  { id: 'hard-wired', name: 'Hard wired', tag: 'Power option',
+    p: 'A permanent 240V connection run by a licensed electrician. No batteries to charge, ever, just constant, reliable power. The go-to choice for new builds and full renovations, or blinds used multiple times a day.' },
+];
+
+const brands = [
+  { id: 'linx', name: 'Linx', url: 'https://linxautomation.com.au/',
+    p: 'An Australian-designed automation system for internal and external blinds and awnings. Control everything from the Linx app, a wall switch or a smart-home hub, with voice control through Siri, Google Home and Alexa.' },
+  { id: 'somfy', name: 'Somfy', url: 'https://www.somfy.com.au/',
+    p: 'The world’s leading name in window covering motorisation. Whisper-quiet DC motors, decades of proven reliability, and an app plus remote ecosystem that’s genuinely simple to live with.' },
+  { id: 'automate', name: 'Automate', url: 'https://www.automateshades.com/au/',
+    p: 'Rollease Acmeda’s motorisation range, engineered in Australia. Wire-free lithium battery motors make retrofitting an existing roller blind straightforward, with app and remote control included.' },
+  { id: 'alpha', name: 'Alpha', url: 'https://alphamotors.com.au/',
+    p: 'Australian-made tubular motors offering reliable, quiet automation at a genuinely accessible price, backed by a 7-year replacement warranty. A smart-value option without cutting corners.' },
+];
+---
+<Layout title={title} description={description} path="/motorised" schemas={schemas}>
+  <section class="block" style="padding-bottom:1rem">
+    <div class="wrap">
+      <div class="sec-head reveal" style="margin-bottom:1rem">
+        <p class="eyebrow">Motorised window furnishings</p>
+        <h1 style="font-family:'Bricolage Grotesque';font-weight:800;font-size:clamp(1.8rem,3.4vw,2.6rem);margin:.5rem 0 .6rem">Motorise any blind, shutter or curtain</h1>
+        <p>Motorisation isn’t its own product, it’s an upgrade you can add to almost anything we install: roller and honeycomb blinds, Venetians, plantation shutters, curtains, roller shutters, Zipscreen and awnings. Here’s why it’s worth it, and the power and brand options Jackson fits.</p>
+      </div>
+    </div>
+  </section>
+
+  <BenefitsGrid items={benefits} />
+  <VideoPlaceholder label="Motorisation walkthrough video coming soon" />
+
+  <section class="block" id="power">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <p class="eyebrow">Power options</p>
+        <h2>Solar, battery or hard wired</h2>
+        <p>Jackson will help you pick the right power source for each window based on access to power, how often it’s used, and the install itself.</p>
+      </div>
+      <div class="motor-grid">
+        {powerOptions.map((o) => (
+          <div class="motor-card reveal" id={o.id}>
+            <span class="motor-tag">{o.tag}</span>
+            <h3>{o.name}</h3>
+            <p>{o.p}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="block tint" id="brands">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <p class="eyebrow">Motor brands</p>
+        <h2>Trusted motor systems Jackson fits</h2>
+        <p>Real logo assets to follow, these are Jackson’s go-to motor brands for reliable, well-supported motorisation.</p>
+      </div>
+      <div class="motor-grid">
+        {brands.map((b) => (
+          <div class="motor-card motor-card-brand reveal" id={b.id}>
+            <span class="motor-logo">{b.name}</span>
+            <p>{b.p}</p>
+            <a class="motor-link" href={b.url} target="_blank" rel="noopener noreferrer">Visit {b.name} →</a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="block" style="padding-top:0">
+    <div class="wrap" style="text-align:center">
+      <a class="btn btn-primary btn-lg" href="/free-measure-quote">Get a free motorisation quote →</a>
+    </div>
+  </section>
+
+  <ServiceAreas />
+  <FinalCta />
+</Layout>
