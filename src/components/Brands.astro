@@ -1,23 +1,26 @@
 ---
 const brands = [
-  { name: 'Premium', tag: 'Fabrics' },
-  { name: 'AusMade', tag: 'Shutters' },
-  { name: 'ClearView', tag: 'Screens' },
-  { name: 'SoftLine', tag: 'Curtains' },
-  { name: 'DuraTrack', tag: 'Hardware' },
+  { name: 'Shaw Fabrics', url: 'https://shawblindfabrics.com/' },
+  { name: 'Nettex', url: 'https://www.nettex.com.au/' },
+  { name: 'Ozroll', url: 'https://www.ozroll.com.au/' },
+  { name: 'Linx', url: 'https://linxautomation.com.au/' },
+  { name: 'Somfy', url: 'https://www.somfy.com.au/' },
+  { name: 'Acmeda', url: 'https://www.rolleaseacmeda.com/au' },
+  { name: 'Norman Australia', url: 'https://normanaustralia.com.au/' },
 ];
 ---
 <section class="block" style="padding:2.6rem 0">
   <div class="wrap">
-    <p class="eyebrow reveal" style="text-align:center;margin-bottom:1.1rem">Trusted supplier range · quality that lasts</p>
+    <p class="eyebrow reveal" style="text-align:center;margin-bottom:1.1rem">Trusted Australian brands</p>
     <div class="brands reveal">
       {brands.map((b) => (
-        <span class="brand-chip">
+        <a class="brand-chip" href={b.url} target="_blank" rel="noopener noreferrer">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.9 6.3 6.9.6-5.2 4.6 1.6 6.8L12 17.3 5.8 20.9l1.6-6.8L2.2 8.9l6.9-.6z"/></svg>
-          <span>{b.name}<small>{b.tag}</small></span>
-        </span>
+          <span>{b.name}</span>
+        </a>
       ))}
     </div>
   </div>
-  <!-- Supplier names are placeholders pending Jackson's real brand partners. -->
+  <!-- Logo image files not supplied yet — swap the brand-chip text mark for
+       each supplier's real logo once Jackson confirms he can display them. -->
 </section>

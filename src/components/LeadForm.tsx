@@ -52,7 +52,8 @@ export default function LeadForm({ defaultSuburb = '', variant = 'full' }: { def
     if (status === 'error') return errorBlock;
     return (
       <form className="od-quick" onSubmit={submit} noValidate aria-label="Quick free quote form">
-        <div className="fd"><label htmlFor="qname">Full name</label><input id="qname" name="name" type="text" placeholder="Full name" required autoComplete="name" /></div>
+        <div className="fd"><label htmlFor="qfirstname">First name</label><input id="qfirstname" name="firstName" type="text" placeholder="First name" required autoComplete="given-name" /></div>
+        <div className="fd"><label htmlFor="qlastname">Last name</label><input id="qlastname" name="lastName" type="text" placeholder="Last name" required autoComplete="family-name" /></div>
         <div className="fd"><label htmlFor="qphone">Mobile</label><input id="qphone" name="phone" type="tel" placeholder="04XX XXX XXX" required autoComplete="tel" /></div>
         <div className="fd"><label htmlFor="qsuburb">Suburb</label><input id="qsuburb" name="suburb" type="text" value={suburb} onChange={(e) => setSuburb(e.target.value)} required /></div>
         <div className="fd"><label htmlFor="qservice">I'm after</label>
@@ -86,16 +87,17 @@ export default function LeadForm({ defaultSuburb = '', variant = 'full' }: { def
           <h3>Book your free measure &amp; quote</h3>
           <p className="small">Tell us where you are and Jackson will be in touch to lock in a time. Usually within 1 business day.</p>
           <div style={two}>
-            <div className="field"><label htmlFor="name">Full name</label><input id="name" name="name" type="text" placeholder="Full name" required autoComplete="name" /></div>
-            <div className="field"><label htmlFor="phone">Mobile</label><input id="phone" name="phone" type="tel" placeholder="04XX XXX XXX" required autoComplete="tel" /></div>
+            <div className="field"><label htmlFor="firstName">First name</label><input id="firstName" name="firstName" type="text" placeholder="First name" required autoComplete="given-name" /></div>
+            <div className="field"><label htmlFor="lastName">Last name</label><input id="lastName" name="lastName" type="text" placeholder="Last name" required autoComplete="family-name" /></div>
           </div>
           <div style={two}>
+            <div className="field"><label htmlFor="phone">Mobile</label><input id="phone" name="phone" type="tel" placeholder="04XX XXX XXX" required autoComplete="tel" /></div>
             <div className="field"><label htmlFor="email">Email <span className="opt">(for your written quote)</span></label><input id="email" name="email" type="email" placeholder="you@email.com" autoComplete="email" /></div>
+          </div>
+          <div style={two}>
             <div className="field"><label htmlFor="suburb">Suburb</label>
               <input id="suburb" name="suburb" type="text" placeholder="e.g. Armstrong Creek" value={suburb} onChange={(e) => setSuburb(e.target.value)} required />
             </div>
-          </div>
-          <div style={two}>
             <div className="field"><label htmlFor="service">I'm after</label>
               <select id="service" name="service">
                 <option>Roller blinds</option><option>Honeycomb blinds</option><option>Venetian blinds</option>
@@ -104,6 +106,8 @@ export default function LeadForm({ defaultSuburb = '', variant = 'full' }: { def
                 <option>A few different things</option><option>Not sure yet, need advice</option>
               </select>
             </div>
+          </div>
+          <div style={two}>
             <div className="field"><label htmlFor="besttime">Best time for a visit</label>
               <select id="besttime" name="besttime">
                 <option>Whatever suits Jackson</option><option>Weekday, daytime</option>

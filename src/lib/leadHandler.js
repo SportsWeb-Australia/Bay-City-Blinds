@@ -18,8 +18,12 @@ function required(fields, body) {
 }
 
 function normalizeLead(body, request) {
+  const firstName = (body.get('firstName') || '').trim();
+  const lastName = (body.get('lastName') || '').trim();
   return {
-    name: (body.get('name') || '').trim(),
+    firstName,
+    lastName,
+    name: [firstName, lastName].filter(Boolean).join(' '),
     phone: (body.get('phone') || '').trim(),
     email: (body.get('email') || '').trim(),
     suburb: (body.get('suburb') || '').trim(),
@@ -87,7 +91,7 @@ export async function handleLead(request, env) {
     return Response.json({ success: false, error: 'Invalid form submission' }, { status: 400 });
   }
 
-  const missing = required(['name', 'phone', 'suburb'], body);
+  const missing = required(['firstName', 'lastName', 'phone', 'suburb'], body);
   if (missing.length) {
     return Response.json({ success: false, error: `Missing required field(s): ${missing.join(', ')}` }, { status: 400 });
   }
