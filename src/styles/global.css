@@ -64,6 +64,7 @@ header{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.92);backdro
 .nav-links>a{color:var(--ink);transition:color .15s}
 .nav-links>a:hover{color:var(--turq)}
 .nav-cta{display:flex;align-items:center;gap:.8rem}
+.nav-cta .btn{border-radius:22px;padding:.6rem 1.15rem;font-size:.88rem}
 .nav-phone{font-weight:700;color:var(--teal-deep);white-space:nowrap}
 .burger{display:none;background:none;border:0;cursor:pointer;padding:.4rem}
 .burger span{display:block;width:24px;height:2.4px;background:var(--ink);margin:5px 0;border-radius:2px;transition:.25s}
