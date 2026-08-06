@@ -75,36 +75,66 @@ export const products: Product[] = [
 
 // Curtain styles — sub-pages linked from the Curtains nav dropdown and shown
 // as a grid on the main /blinds/curtains page.
-export type CurtainStyle = { slug: string; name: string; blurb: string; long: string; gradient: string; heroImage?: string; features?: { h: string; p: string }[]; youtubeId?: string };
+export type CurtainStyle = { slug: string; name: string; blurb: string; long: string; gradient: string; heroImage?: string; features?: { h: string; p: string }[]; sideFeatures?: { h: string; p: string }[]; youtubeId?: string };
 export const curtainStyles: CurtainStyle[] = [
   { slug: 'sheers', name: 'Sheers', gradient: 'g5', heroImage: '/photos/photo-3.webp', youtubeId: 'yYrW-xqhUl4',
     blurb: 'Soft, light-diffusing fabric that keeps rooms bright while softening the view in.',
-    long: 'Sheer curtains let natural light flood in while softening the view in during the day, a gentle, airy layer that finishes a room without blocking it out. Popular on their own in living and dining areas, or layered behind a blockout curtain for the best of both.' },
+    long: 'Sheer curtains let natural light flood in while softening the view in during the day, a gentle, airy layer that finishes a room without blocking it out. Popular on their own in living and dining areas, or layered behind a blockout curtain for the best of both.',
+    sideFeatures: [
+      { h: 'Softens without blocking', p: 'Diffuses harsh sun and cuts glare during the day while keeping the room bright, unlike a blockout curtain drawn shut.' },
+      { h: 'Daytime privacy', p: 'Softens the view in from outside while you can still see out, ideal for street-facing windows.' },
+      { h: 'Layers well', p: 'Pair with a blockout curtain on the same track for soft daytime light and full darkness at night.' },
+    ] },
   { slug: 'blockouts', name: 'Blockouts', gradient: 'g1',
     blurb: 'Full light and heat block, indoors or outdoors, with a clean, tailored finish.',
     long: 'Blockout treatments come in two forms: indoor blockout curtains, and outdoor blockout blinds. Both are made to measure and finished with a U-channel side track, a neat, framed edge that blends into the window or door frame and closes off the light gaps a loose curtain edge always leaves. That makes them a genuine option for shift workers and young parents who need a room properly dark at any hour, day or night.',
+    sideFeatures: [
+      { h: 'A neat, framed finish', p: 'The U-channel side track blends into the window or door frame instead of sitting as a visible add-on.' },
+      { h: 'No light gaps', p: 'Locks into the side channel, closing off the edge gaps that let light creep in around a loose curtain.' },
+      { h: 'Built for shift workers & young families', p: 'Genuinely dark rooms at any hour, whether that’s daytime sleep after a night shift or an early bedtime.' },
+    ],
     features: [
       { h: 'Indoor blockouts', p: 'Full light and heat block for bedrooms, nurseries and media rooms, with the U-channel keeping light from creeping in around the sides.' },
       { h: 'Outdoor blockouts', p: 'Better insulation, increased security and real noise reduction on top of light control, and because they sit outside the glass line, they free up internal room space that bulky indoor curtains can eat into.' },
     ] },
   { slug: 'light-filter', name: 'Light Filter', gradient: 'g2',
     blurb: 'The in-between option: softens harsh sun without full blockout.',
-    long: 'Light-filter curtains sit between sheers and blockout, cutting glare and harsh direct sun while still letting soft, diffused light through. A versatile everyday choice for living areas that get strong afternoon or western sun.' },
+    long: 'Light-filter curtains sit between sheers and blockout, cutting glare and harsh direct sun while still letting soft, diffused light through. A versatile everyday choice for living areas that get strong afternoon or western sun.',
+    sideFeatures: [
+      { h: 'Cuts glare, keeps light', p: 'Softens harsh direct sun without shutting the room out, unlike a full blockout curtain.' },
+      { h: 'Everyday living-area pick', p: 'The most-used option for lounges and living rooms that get strong afternoon or western sun.' },
+      { h: 'Middle ground, real flexibility', p: 'Sits between sheers and blockout, so you get glare control most days without losing natural light.' },
+    ] },
   { slug: 'pelmet-boxes', name: 'Pelmet Boxes', gradient: 'g4',
     blurb: 'Completes the look, traps heat, and hides the track and any blinds when they’re rolled up.',
-    long: 'A pelmet box conceals the curtain track and heading above the window for a neat, tailored, hotel-style finish that completes the look of the room. It’s also genuinely energy efficient, trapping heat that would otherwise escape over the top of the curtain, and it hides any blind sitting behind it when rolled up. Made to measure in timber or fabric, with a scalloped or straight-cut edge to suit your style.' },
+    long: 'A pelmet box conceals the curtain track and heading above the window for a neat, tailored, hotel-style finish that completes the look of the room. It’s also genuinely energy efficient, trapping heat that would otherwise escape over the top of the curtain, and it hides any blind sitting behind it when rolled up. Made to measure in timber or fabric, with a scalloped or straight-cut edge to suit your style.',
+    sideFeatures: [
+      { h: 'Completes the look', p: 'Hides the curtain track and heading for a tailored, hotel-style finish instead of exposed hardware.' },
+      { h: 'Traps heat', p: 'Stops warm air escaping out the top of the curtain, a genuine energy-efficiency upgrade, not just cosmetic.' },
+      { h: 'Hides blinds when rolled up', p: 'Conceals a roller or Venetian blind sitting behind it when it’s fully raised, for a cleaner window top.' },
+    ] },
 ];
 
 // Security styles — sub-pages linked from the Security nav dropdown and
 // shown as a grid on the main /security page.
-export type SecurityStyle = { slug: string; name: string; blurb: string; long: string; gradient: string; heroImage?: string };
+export type SecurityStyle = { slug: string; name: string; blurb: string; long: string; gradient: string; heroImage?: string; sideFeatures?: { h: string; p: string }[] };
 export const securityStyles: SecurityStyle[] = [
   { slug: 'security-doors', name: 'Security Doors', gradient: 'g1',
     blurb: 'Tough, made-to-measure doors that don’t compromise on style.',
-    long: 'Made-to-measure security doors add a genuine layer of protection at your entry points without turning your front door into a cage. Choose from a range of grille and mesh styles to match your home’s look, front and back.' },
+    long: 'Made-to-measure security doors add a genuine layer of protection at your entry points without turning your front door into a cage. Choose from a range of grille and mesh styles to match your home’s look, front and back.',
+    sideFeatures: [
+      { h: 'A real deterrent at the door', p: 'Solid, made-to-measure construction at the entry points burglars actually target, front and back.' },
+      { h: 'Doesn’t look like a cage', p: 'Grille and mesh styles chosen to suit your home, not bolted on as an obvious afterthought.' },
+      { h: 'Stays useful every day', p: 'Ventilate and let light in with the door secured, not just a barrier you only close when you leave.' },
+    ] },
   { slug: 'security-shutters', name: 'Security Shutters', gradient: 'g6',
     blurb: 'Roller shutters built for break-in resistance, noise and insulation.',
-    long: 'Security-rated roller shutters combine everyday light and privacy control with real break-in resistance, plus the bonus of noise reduction and insulation. A smart upgrade for ground-floor windows and doors.' },
+    long: 'Security-rated roller shutters combine everyday light and privacy control with real break-in resistance, plus the bonus of noise reduction and insulation. A smart upgrade for ground-floor windows and doors.',
+    sideFeatures: [
+      { h: 'Break-in resistance', p: 'Solid rolled construction makes ground-floor windows and doors far harder to force than blinds or curtains alone.' },
+      { h: 'Noise and heat control', p: 'Closed shutters cut outside noise and add real insulation, on top of the security benefit.' },
+      { h: 'Everyday light control too', p: 'Not just a lock-up measure, adjust them daily for light and privacy like a standard shutter.' },
+    ] },
 ];
 
 export type Location = { slug: string; name: string; region: string; intro: string; nearby: string };
