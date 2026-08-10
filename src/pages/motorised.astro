@@ -46,11 +46,11 @@ const powerOptions = [
 ];
 
 const brands = [
-  { id: 'linx', name: 'Linx', url: 'https://linxautomation.com.au/',
+  { id: 'linx', name: 'Linx', url: 'https://linxautomation.com.au/', logo: '/logos/linx-logo.png', logoDark: true,
     p: 'An Australian-designed automation system for internal and external blinds and awnings. Control everything from the Linx app, a wall switch or a smart-home hub, with voice control through Siri, Google Home and Alexa.' },
-  { id: 'somfy', name: 'Somfy', url: 'https://www.somfy.com.au/',
+  { id: 'somfy', name: 'Somfy', url: 'https://www.somfy.com.au/', logo: '/logos/somfy-logo.svg', logoDark: true,
     p: 'The world’s leading name in window covering motorisation. Whisper-quiet DC motors, decades of proven reliability, and an app plus remote ecosystem that’s genuinely simple to live with.' },
-  { id: 'automate', name: 'Automate', url: 'https://www.automateshades.com/au/',
+  { id: 'automate', name: 'Automate', url: 'https://www.automateshades.com/au/', logo: '/logos/automate-logo.svg',
     p: 'Rollease Acmeda’s motorisation range, engineered in Australia. Wire-free lithium battery motors make retrofitting an existing roller blind straightforward, with app and remote control included.' },
   { id: 'alpha', name: 'Alpha', url: 'https://alphamotors.com.au/', logo: '/logos/alpha-logo.png',
     p: 'Australian-made tubular motors offering reliable, quiet automation at a genuinely accessible price, backed by a 7-year replacement warranty. A smart-value option without cutting corners.' },
@@ -112,7 +112,11 @@ const brands = [
         {brands.map((b) => (
           <div class="motor-card motor-card-brand reveal" id={b.id}>
             {b.logo ? (
-              <img class="motor-logo-img" src={b.logo} alt={`${b.name} logo`} loading="lazy" />
+              b.logoDark ? (
+                <span class="motor-logo-chip"><img class="motor-logo-img" src={b.logo} alt={`${b.name} logo`} loading="lazy" /></span>
+              ) : (
+                <img class="motor-logo-img" src={b.logo} alt={`${b.name} logo`} loading="lazy" />
+              )
             ) : (
               <span class="motor-logo">{b.name}</span>
             )}
