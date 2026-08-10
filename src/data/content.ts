@@ -79,7 +79,7 @@ export const products: Product[] = [
       { h: 'Classic street-facing look', p: 'Suits heritage-style homes especially well, adding character to a facade rather than just function.' },
       { h: 'Weather protection year-round', p: 'Keeps rain off entries and reduces direct sun on windows behind it, in every season, not just summer.' },
     ] },
-  { slug: 'folding-arm-awnings', name: 'Folding Arm Awnings', gradient: 'g6', category: 'outdoor', youtubeId: 'jfVLsh113OY',
+  { slug: 'folding-arm-awnings', name: 'Folding Arm Awnings', gradient: 'g6', category: 'outdoor', youtubeId: 'jfVLsh113OY', heroImage: '/photos/folding-arm-awnings.webp',
     blurb: 'Retractable shade that extends your outdoor living space on demand.',
     long: 'Folding arm awnings retract at the touch of a button, giving you shade over a patio or deck exactly when you want it and full sun the rest of the time. A great way to extend outdoor living.',
     features: [
