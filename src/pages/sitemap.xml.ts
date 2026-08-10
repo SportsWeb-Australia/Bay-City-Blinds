@@ -1,6 +1,6 @@
 import type { APIRoute } from 'astro';
 import { site } from '../data/site';
-import { products, locations, curtainStyles, securityStyles } from '../data/content';
+import { products, locations, curtainStyles, securityStyles, motorBrands } from '../data/content';
 import { articles } from '../data/blog';
 
 const staticPaths = ['/', '/blinds', '/indoor', '/outdoor', '/motorised', '/security', '/free-measure-quote', '/about', '/reviews', '/tips'];
@@ -11,6 +11,7 @@ export const GET: APIRoute = () => {
     ...products.map((p) => `/blinds/${p.slug}`),
     ...curtainStyles.map((s) => `/curtains/${s.slug}`),
     ...securityStyles.map((s) => `/security/${s.slug}`),
+    ...motorBrands.map((b) => `/motorised/${b.slug}`),
     ...articles.map((a) => `/tips/${a.slug}`),
     ...locations.map((l) => `/${l.slug}`),
   ];

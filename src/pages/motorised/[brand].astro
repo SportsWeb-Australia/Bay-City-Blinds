@@ -1,0 +1,79 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import WhyUs from '../../components/WhyUs.astro';
+import Reviews from '../../components/Reviews.astro';
+import ServiceAreas from '../../components/ServiceAreas.astro';
+import FinalCta from '../../components/FinalCta.astro';
+import LeadForm from '../../components/LeadForm.tsx';
+import { motorBrands } from '../../data/content';
+import { localBusiness, serviceSchema, breadcrumb } from '../../data/schema';
+
+export function getStaticPaths() {
+  return motorBrands.map((b) => ({ params: { brand: b.slug }, props: { b } }));
+}
+const { b } = Astro.props;
+
+const title = `${b.name} Motorised Blinds Geelong | Free Measure & Quote | Bay City Blinds`;
+const description = `${b.long.slice(0, 140)} Free in-home measure & quote across Geelong & the Bellarine.`;
+const schemas = [
+  localBusiness(),
+  serviceSchema(),
+  breadcrumb([
+    { name: 'Home', url: '/' },
+    { name: 'Motorised', url: '/motorised' },
+    { name: b.name, url: `/motorised/${b.slug}` },
+  ]),
+];
+---
+<Layout title={title} description={description} path={`/motorised/${b.slug}`} schemas={schemas}>
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-copy reveal">
+        <p class="eyebrow">Made to measure · Geelong &amp; the Bellarine</p>
+        <h1>{b.name} motorised blinds in <span class="hl">Geelong</span></h1>
+        <p class="sub">{b.long}</p>
+        <div style="display:flex;gap:.8rem;flex-wrap:wrap;margin-top:.6rem">
+          <a class="btn btn-primary btn-lg" href="#quote">Get my free quote →</a>
+          <a class="btn btn-ghost btn-lg" href={b.url} target="_blank" rel="noopener noreferrer">Visit {b.name} →</a>
+        </div>
+      </div>
+      <div>
+        <div class="hero-orb-wrap hero-orb-sub reveal">
+          <div class="orb-ring" aria-hidden="true"></div>
+          <div class:list={['brand-logo-circle', { dark: b.logoDark }]}>
+            <img src={b.logo} width={b.logoW} height={b.logoH} alt={`${b.name} logo`} />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="wrap" id="quote" style="padding-bottom:3rem;margin-top:2.5rem">
+      <div class="product-quote-row">
+        <div style="width:100%;max-width:680px">
+          <LeadForm client:load />
+        </div>
+        {b.features && (
+          <div class="product-features reveal">
+            <p class="eyebrow">Why {b.name}?</p>
+            {b.features.map((f) => (
+              <div class="product-feature">
+                <span class="tick-sm">✓</span>
+                <div><b>{f.h}</b><p>{f.p}</p></div>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
+  </section>
+
+  <section class="block" style="padding-top:0">
+    <div class="wrap" style="text-align:center">
+      <a href="/motorised" class="motor-link">← Back to all motorised options</a>
+    </div>
+  </section>
+
+  <WhyUs />
+  <Reviews />
+  <ServiceAreas />
+  <FinalCta />
+</Layout>

@@ -145,6 +145,44 @@ export const securityStyles: SecurityStyle[] = [
     ] },
 ];
 
+// Motor brands — hub cards on /motorised plus a dedicated page per brand
+// (nav dropdown links straight to these instead of #anchors on the hub).
+export type MotorBrand = { slug: string; name: string; url: string; logo: string; logoW: number; logoH: number; logoDark?: boolean; blurb: string; long: string; features: { h: string; p: string }[] };
+export const motorBrands: MotorBrand[] = [
+  { slug: 'linx', name: 'Linx', url: 'https://linxautomation.com.au/', logo: '/logos/linx-logo.png', logoW: 223, logoH: 118, logoDark: true,
+    blurb: 'An Australian-designed automation system for internal and external blinds and awnings.',
+    long: 'Linx is an Australian-designed automation system built for internal and external blinds and awnings alike. Everything is controlled from the Linx app, a wall switch or a smart-home hub, with voice control through Siri, Google Home and Alexa, a solid all-round choice when you want one system running blinds throughout the whole house.',
+    features: [
+      { h: 'One app, whole-house control', p: 'Control every motorised blind or awning fitted with Linx from a single app, wall switch or smart-home hub.' },
+      { h: 'Voice control built in', p: 'Works with Siri, Google Home and Alexa, so “close the lounge blinds” just works.' },
+      { h: 'Suits indoor and outdoor', p: 'The same system runs internal blinds and external awnings, no need to mix and match brands room to room.' },
+    ] },
+  { slug: 'somfy', name: 'Somfy', url: 'https://www.somfy.com.au/', logo: '/logos/somfy-logo.svg', logoW: 127, logoH: 32, logoDark: true,
+    blurb: 'The world’s leading name in window covering motorisation.',
+    long: 'Somfy is the world’s leading name in window covering motorisation, with decades of proven reliability behind it. Whisper-quiet DC motors and an app plus remote ecosystem that’s genuinely simple to live with make it a strong pick when you want a system with a long track record.',
+    features: [
+      { h: 'Decades of proven reliability', p: 'The most established name in the industry, with a long history of dependable motors behind it.' },
+      { h: 'Whisper-quiet DC motors', p: 'Smooth, quiet operation that doesn’t interrupt a room, even with several blinds moving at once.' },
+      { h: 'A genuinely simple app', p: 'Somfy’s app and remote ecosystem is built to be easy to live with day to day, not just to set up.' },
+    ] },
+  { slug: 'automate', name: 'Automate', url: 'https://www.automateshades.com/au/', logo: '/logos/automate-logo.svg', logoW: 3651, logoH: 481,
+    blurb: 'Rollease Acmeda’s motorisation range, engineered in Australia.',
+    long: 'Automate is Rollease Acmeda’s motorisation range, engineered in Australia. Wire-free lithium battery motors make retrofitting an existing roller blind straightforward, with app and remote control included, a practical option when you’re motorising blinds you already own rather than starting from scratch.',
+    features: [
+      { h: 'Easy retrofit to existing blinds', p: 'Wire-free lithium battery motors make it straightforward to motorise a roller blind you already own.' },
+      { h: 'Engineered in Australia', p: 'Part of Rollease Acmeda’s range, built and supported for Australian conditions and homes.' },
+      { h: 'App and remote included', p: 'Control included out of the box, no separate purchase needed to get moving.' },
+    ] },
+  { slug: 'alpha', name: 'Alpha', url: 'https://alphamotors.com.au/', logo: '/logos/alpha-logo.png', logoW: 452, logoH: 81,
+    blurb: 'Australian-made tubular motors at a genuinely accessible price.',
+    long: 'Alpha makes Australian-made tubular motors offering reliable, quiet automation at a genuinely accessible price, backed by a 7-year replacement warranty. A smart-value option when you want motorisation without cutting corners on price or support.',
+    features: [
+      { h: 'Genuinely accessible pricing', p: 'Motorisation without the premium price tag, a smart-value option that doesn’t cut corners.' },
+      { h: '7-year replacement warranty', p: 'Backed by a solid warranty, so accessible pricing doesn’t mean weaker support.' },
+      { h: 'Australian-made', p: 'Tubular motors made in Australia, built for local conditions and easy local support.' },
+    ] },
+];
+
 export type Location = { slug: string; name: string; region: string; intro: string; nearby: string };
 export const locations: Location[] = [
   { slug: 'blinds-geelong', name: 'Geelong', region: 'Geelong & suburbs',
