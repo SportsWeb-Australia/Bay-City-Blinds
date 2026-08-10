@@ -135,7 +135,7 @@ export const curtainStyles: CurtainStyle[] = [
 // shown as a grid on the main /security page.
 export type SecurityStyle = { slug: string; name: string; blurb: string; long: string; gradient: string; heroImage?: string; sideFeatures?: { h: string; p: string }[] };
 export const securityStyles: SecurityStyle[] = [
-  { slug: 'security-doors', name: 'Security Doors', gradient: 'g1',
+  { slug: 'security-doors', name: 'Security Doors', gradient: 'g1', heroImage: '/photos/security-doors.webp',
     blurb: 'Tough, made-to-measure doors that don’t compromise on style.',
     long: 'Made-to-measure security doors add a genuine layer of protection at your entry points without turning your front door into a cage. Choose from a range of grille and mesh styles to match your home’s look, front and back.',
     sideFeatures: [
