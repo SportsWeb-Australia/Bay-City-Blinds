@@ -71,7 +71,7 @@ export const products: Product[] = [
       { h: 'Noise and heat control', p: 'Closed shutters cut outside noise and add real insulation, useful on busy roads or west-facing windows.' },
       { h: 'Out of sight when open', p: 'Rolls fully away into a compact housing, so it doesn’t change the look of the window when not in use.' },
     ] },
-  { slug: 'traditional-awnings', name: 'Traditional Awnings', gradient: 'g4', category: 'outdoor',
+  { slug: 'traditional-awnings', name: 'Traditional Awnings', gradient: 'g4', category: 'outdoor', heroImage: '/photos/traditional-awnings.webp',
     blurb: 'Classic fixed shade for windows, entries and outdoor areas.',
     long: 'Traditional fixed awnings give windows and entries reliable shade and weather protection year-round, with a classic look that suits heritage and modern homes alike.',
     features: [
