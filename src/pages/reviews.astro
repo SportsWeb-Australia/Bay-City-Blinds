@@ -9,7 +9,15 @@ const description = 'See why Geelong & Bellarine homeowners rate Bay City Blinds
 const schemas = [localBusiness(), breadcrumb([{ name:'Home', url:'/' }, { name:'Reviews', url:'/reviews' }])];
 ---
 <Layout title={title} description={description} path="/reviews" schemas={schemas}>
-  <div style="height:1px"></div>
+  <section class="block" style="padding-bottom:0">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <p class="eyebrow">Real local reviews</p>
+        <h1>Bay City Blinds reviews, Geelong</h1>
+        <p>See why Geelong &amp; Bellarine homeowners rate Bay City Blinds 5 stars for mobile measure &amp; quote, quality blinds and tidy installs.</p>
+      </div>
+    </div>
+  </section>
   <Reviews />
   <GoogleReviewsWidget />
   <FinalCta />

@@ -9,7 +9,7 @@ import Gallery from '../components/Gallery.astro';
 import LeadForm from '../components/LeadForm.tsx';
 import Faq from '../components/Faq.tsx';
 import { locations } from '../data/content';
-import { localBusiness, serviceSchema, faqSchema, breadcrumb } from '../data/schema';
+import { localBusiness, serviceSchema, breadcrumb } from '../data/schema';
 import { site } from '../data/site';
 
 // One statically-rendered page per service area — full HTML, unique meta + schema.
@@ -23,7 +23,6 @@ const description = `Free in-home blinds, shutters & curtains measure & quote in
 const schemas = [
   localBusiness(loc.name),
   serviceSchema(),
-  faqSchema(),
   breadcrumb([
     { name: 'Home', url: '/' },
     { name: 'Service areas', url: '/#areas' },

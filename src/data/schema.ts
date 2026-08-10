@@ -21,6 +21,7 @@ export function localBusiness(areaOverride?: string) {
     priceRange: site.priceRange,
     foundingDate: site.founded,
     slogan: 'The mobile blinds showroom that comes to you.',
+    sameAs: [site.facebook, site.instagram, site.youtube].filter(Boolean),
     address: {
       '@type': 'PostalAddress',
       addressLocality: site.addressLocality,

@@ -161,7 +161,7 @@ header{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.92);backdro
 /* ---------- section shell ---------- */
 section.block{padding:4.4rem 0}
 .sec-head{text-align:center;max-width:44rem;margin:0 auto 2.6rem}
-.sec-head h2{font-size:clamp(1.8rem,3.4vw,2.6rem);font-weight:800;margin:.5rem 0 .6rem}
+.sec-head h1,.sec-head h2{font-size:clamp(1.8rem,3.4vw,2.6rem);font-weight:800;margin:.5rem 0 .6rem}
 .sec-head p{color:var(--muted);font-size:1.06rem}
 .tint{background:var(--wash-2)}
 
@@ -499,7 +499,7 @@ footer .brand small{color:var(--turq)}
 /* --- section rhythm fix (header spacing) --- */
 section.block{padding:4.6rem 0}
 .sec-head{margin-bottom:2.4rem}
-.sec-head h2{text-wrap:balance}
+.sec-head h1,.sec-head h2{text-wrap:balance}
 
 /* ===== v7: air + photo journey + sms ===== */
 /* hero: calmer, more space */

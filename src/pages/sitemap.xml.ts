@@ -1,13 +1,15 @@
 import type { APIRoute } from 'astro';
 import { site } from '../data/site';
-import { products, locations } from '../data/content';
+import { products, locations, curtainStyles, securityStyles } from '../data/content';
 
-const staticPaths = ['/', '/blinds', '/indoor', '/outdoor', '/free-measure-quote', '/about', '/reviews'];
+const staticPaths = ['/', '/blinds', '/indoor', '/outdoor', '/motorised', '/security', '/free-measure-quote', '/about', '/reviews'];
 
 export const GET: APIRoute = () => {
   const urls = [
     ...staticPaths,
     ...products.map((p) => `/blinds/${p.slug}`),
+    ...curtainStyles.map((s) => `/curtains/${s.slug}`),
+    ...securityStyles.map((s) => `/security/${s.slug}`),
     ...locations.map((l) => `/${l.slug}`),
   ];
   const body = `<?xml version="1.0" encoding="UTF-8"?>
