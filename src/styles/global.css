@@ -223,6 +223,13 @@ section.block{padding:4.4rem 0}
 .why p{color:var(--muted);font-size:.92rem}
 .why-2col{grid-template-columns:repeat(2,minmax(0,360px));justify-content:center}
 
+/* ---------- article body (Tips & Advice) ---------- */
+.article-body h2{font-size:1.4rem;font-weight:800;margin:2rem 0 .8rem}
+.article-body h2:first-child{margin-top:0}
+.article-body p{color:var(--ink);font-size:1.02rem;line-height:1.75;margin-bottom:1.1rem}
+.article-body a{color:var(--teal-deep);font-weight:700;text-decoration:underline;text-underline-offset:2px}
+.article-body a:hover{color:var(--turq)}
+
 /* ---------- mobile showroom band ---------- */
 .showroom{background:linear-gradient(135deg,var(--teal-deep),var(--ink));color:#eaf7fa;border-radius:26px;overflow:hidden;position:relative}
 .showroom .wrap2{display:grid;grid-template-columns:1.2fr .8fr;gap:2rem;align-items:center;padding:2.8rem}

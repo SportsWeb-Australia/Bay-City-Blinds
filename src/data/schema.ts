@@ -85,6 +85,21 @@ export function faqSchema(items = faqs) {
   };
 }
 
+export function articleSchema(a: { slug: string; title: string; description: string; date: string; heroImage: string }) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: a.title,
+    description: a.description,
+    image: site.url + a.heroImage,
+    datePublished: a.date,
+    dateModified: a.date,
+    author: { '@type': 'Organization', name: site.name, '@id': BID },
+    publisher: { '@id': BID },
+    mainEntityOfPage: { '@type': 'WebPage', '@id': `${site.url}/tips/${a.slug}` },
+  };
+}
+
 export function breadcrumb(trail: { name: string; url: string }[]) {
   return {
     '@context': 'https://schema.org',

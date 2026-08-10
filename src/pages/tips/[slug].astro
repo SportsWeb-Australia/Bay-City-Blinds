@@ -1,0 +1,49 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ServiceAreas from '../../components/ServiceAreas.astro';
+import FinalCta from '../../components/FinalCta.astro';
+import { articles } from '../../data/blog';
+import { localBusiness, articleSchema, breadcrumb } from '../../data/schema';
+
+export function getStaticPaths() {
+  return articles.map((a) => ({ params: { slug: a.slug }, props: { a } }));
+}
+const { a } = Astro.props;
+
+const title = `${a.title} | Bay City Blinds`;
+const fmt = (d: string) => new Date(d).toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' });
+const schemas = [
+  localBusiness(),
+  articleSchema(a),
+  breadcrumb([
+    { name: 'Home', url: '/' },
+    { name: 'Tips & Advice', url: '/tips' },
+    { name: a.title, url: `/tips/${a.slug}` },
+  ]),
+];
+---
+<Layout title={title} description={a.description} path={`/tips/${a.slug}`} schemas={schemas}>
+  <section class="block" style="padding-bottom:1rem">
+    <div class="wrap" style="max-width:800px">
+      <div class="sec-head reveal" style="text-align:left;max-width:none;margin-bottom:1.6rem">
+        <p class="eyebrow">{a.category} · {fmt(a.date)}</p>
+        <h1>{a.title}</h1>
+        <p>{a.description}</p>
+      </div>
+      <img class="ph-img reveal" src={a.heroImage} width="800" height="500" alt={a.title} style="width:100%;height:auto;border-radius:var(--r);margin-bottom:2rem" />
+      <article class="article-body reveal">
+        {a.sections.map((s) => (
+          <>
+            <h2>{s.h}</h2>
+            {s.p.map((para) => <p set:html={para} />)}
+          </>
+        ))}
+      </article>
+      <div style="margin-top:2.4rem;padding-top:1.6rem;border-top:1px solid var(--line)">
+        <a class="btn btn-primary btn-lg" href="/free-measure-quote">Get my free quote →</a>
+      </div>
+    </div>
+  </section>
+  <ServiceAreas />
+  <FinalCta />
+</Layout>

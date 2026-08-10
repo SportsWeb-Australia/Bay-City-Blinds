@@ -1,0 +1,39 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ServiceAreas from '../../components/ServiceAreas.astro';
+import FinalCta from '../../components/FinalCta.astro';
+import { articles } from '../../data/blog';
+import { localBusiness, breadcrumb } from '../../data/schema';
+
+const title = 'Tips & Advice | Blinds, Shutters & Curtains Geelong | Bay City Blinds';
+const description = 'Practical, no-nonsense advice on choosing and caring for blinds, shutters, curtains and outdoor screens, written for Geelong & Bellarine homes.';
+const schemas = [localBusiness(), breadcrumb([{ name: 'Home', url: '/' }, { name: 'Tips & Advice', url: '/tips' }])];
+
+const fmt = (d: string) => new Date(d).toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' });
+---
+<Layout title={title} description={description} path="/tips" schemas={schemas}>
+  <section class="block" style="padding-bottom:1rem">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <p class="eyebrow">Tips &amp; advice</p>
+        <h1>Blinds, shutters &amp; curtains advice for Geelong homes</h1>
+        <p>Practical guides from Jackson and the team, no fluff, just what actually helps when you're choosing window furnishings for your home.</p>
+      </div>
+      <div class="grid-3">
+        {articles.map((a) => (
+          <a class="pcard reveal" href={`/tips/${a.slug}`}>
+            <img class="ph-img" src={a.heroImage} width="640" height="400" loading="lazy" alt={a.title} />
+            <div class="body">
+              <p class="eyebrow" style="margin-bottom:.3rem">{a.category} · {fmt(a.date)}</p>
+              <h3>{a.title}</h3>
+              <p>{a.excerpt}</p>
+              <span class="lk">Read more →</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+  <ServiceAreas />
+  <FinalCta />
+</Layout>
