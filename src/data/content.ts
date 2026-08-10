@@ -44,7 +44,7 @@ export const products: Product[] = [
       { h: 'No light gaps', p: 'Locks into the side channel, closing off the edge gaps that let light creep in around a standard blind.' },
       { h: 'Properly dark, any hour', p: 'A genuine option for shift workers, young parents and media rooms that need full darkness on demand.' },
     ] },
-  { slug: 'pelmet-boxes', name: 'Pelmet Boxes', gradient: 'g3', category: 'indoor',
+  { slug: 'pelmet-boxes', name: 'Pelmet Boxes', gradient: 'g3', category: 'indoor', heroImage: '/photos/pelmet-boxes.webp',
     blurb: 'Completes the look, traps heat, and hides your blind or head rail when it’s rolled up.',
     long: 'A pelmet box conceals the head rail and mechanism above your blind or shutter for a neat, tailored, hotel-style finish that completes the look of the room. It’s also genuinely energy efficient, trapping heat that would otherwise escape out the top, and it hides the blind itself when fully raised. Made to measure in timber or fabric, with a scalloped or straight-cut edge to suit your style.',
     features: [
@@ -121,7 +121,7 @@ export const curtainStyles: CurtainStyle[] = [
       { h: 'Everyday living-area pick', p: 'The most-used option for lounges and living rooms that get strong afternoon or western sun.' },
       { h: 'Middle ground, real flexibility', p: 'Sits between sheers and blockout, so you get glare control most days without losing natural light.' },
     ] },
-  { slug: 'pelmet-boxes', name: 'Pelmet Boxes', gradient: 'g4',
+  { slug: 'pelmet-boxes', name: 'Pelmet Boxes', gradient: 'g4', heroImage: '/photos/pelmet-boxes.webp',
     blurb: 'Completes the look, traps heat, and hides the track and any blinds when they’re rolled up.',
     long: 'A pelmet box conceals the curtain track and heading above the window for a neat, tailored, hotel-style finish that completes the look of the room. It’s also genuinely energy efficient, trapping heat that would otherwise escape over the top of the curtain, and it hides any blind sitting behind it when rolled up. Made to measure in timber or fabric, with a scalloped or straight-cut edge to suit your style.',
     sideFeatures: [
