@@ -64,7 +64,7 @@ header{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.92);backdro
 .nav-links>a{color:var(--ink);transition:color .15s}
 .nav-links>a:hover{color:var(--turq)}
 .nav-cta{display:flex;align-items:center;gap:.8rem}
-.nav-cta .btn{border-radius:22px;padding:.6rem 1.15rem;font-size:.88rem}
+.nav-cta .btn{border-radius:22px;padding:.55rem .95rem;font-size:.82rem;white-space:nowrap}
 .nav-phone{font-weight:700;color:var(--teal-deep);white-space:nowrap}
 .burger{display:none;background:none;border:0;cursor:pointer;padding:.4rem}
 .burger span{display:block;width:24px;height:2.4px;background:var(--ink);margin:5px 0;border-radius:2px;transition:.25s}
@@ -221,6 +221,7 @@ section.block{padding:4.4rem 0}
 .why .ic svg{width:22px;height:22px;color:var(--teal-deep)}
 .why h3{font-size:1.06rem;font-weight:700;margin-bottom:.2rem}
 .why p{color:var(--muted);font-size:.92rem}
+.why-2col{grid-template-columns:repeat(2,minmax(0,360px));justify-content:center}
 
 /* ---------- mobile showroom band ---------- */
 .showroom{background:linear-gradient(135deg,var(--teal-deep),var(--ink));color:#eaf7fa;border-radius:26px;overflow:hidden;position:relative}
@@ -363,6 +364,9 @@ footer .brand small{color:var(--turq)}
 .motor-link:hover{color:var(--teal-deep)}
 @media(max-width:960px){.motor-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:640px){.motor-grid{grid-template-columns:1fr}.video-placeholder{padding:2.4rem 1.3rem}}
+.motor-grid-3{grid-template-columns:repeat(3,minmax(0,300px));justify-content:center}
+@media(max-width:960px){.motor-grid-3{grid-template-columns:repeat(3,minmax(0,240px))}}
+@media(max-width:640px){.motor-grid-3{grid-template-columns:1fr;justify-content:stretch}}
 
 .step{position:relative}
 .step .step-ic{width:46px;height:46px;border-radius:13px;background:var(--wash);display:grid;place-items:center;margin-bottom:.7rem}

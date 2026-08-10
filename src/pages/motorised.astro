@@ -67,7 +67,7 @@ const brands = [
     </div>
   </section>
 
-  <BenefitsGrid items={benefits} />
+  <BenefitsGrid items={benefits} class="why-2col" />
   <section class="block tint" style="padding-top:2rem;padding-bottom:2rem">
     <div class="wrap" style="max-width:900px">
       <div class="video-embed reveal">
@@ -89,7 +89,7 @@ const brands = [
         <h2>Solar, battery or hard wired</h2>
         <p>Jackson will help you pick the right power source for each window based on access to power, how often it’s used, and the install itself.</p>
       </div>
-      <div class="motor-grid">
+      <div class="motor-grid motor-grid-3">
         {powerOptions.map((o) => (
           <div class="motor-card reveal" id={o.id}>
             <span class="motor-tag">{o.tag}</span>

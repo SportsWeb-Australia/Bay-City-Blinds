@@ -1,11 +1,11 @@
 ---
 export interface BenefitItem { h: string; p: string; ic: string }
-export interface Props { items: BenefitItem[] }
-const { items } = Astro.props;
+export interface Props { items: BenefitItem[]; class?: string }
+const { items, class: className } = Astro.props;
 ---
 <section class="block" style="padding-top:0">
   <div class="wrap">
-    <div class="why">
+    <div class:list={['why', className]}>
       {items.map((b) => (
         <div class="item reveal">
           <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" set:html={b.ic} /></div>
