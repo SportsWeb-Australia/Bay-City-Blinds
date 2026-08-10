@@ -143,7 +143,7 @@ export const securityStyles: SecurityStyle[] = [
       { h: 'Doesn’t look like a cage', p: 'Grille and mesh styles chosen to suit your home, not bolted on as an obvious afterthought.' },
       { h: 'Stays useful every day', p: 'Ventilate and let light in with the door secured, not just a barrier you only close when you leave.' },
     ] },
-  { slug: 'security-shutters', name: 'Security Shutters', gradient: 'g6',
+  { slug: 'security-shutters', name: 'Security Shutters', gradient: 'g6', heroImage: '/photos/security-shutters.webp',
     blurb: 'Roller shutters built for break-in resistance, noise and insulation.',
     long: 'Security-rated roller shutters combine everyday light and privacy control with real break-in resistance, plus the bonus of noise reduction and insulation. A smart upgrade for ground-floor windows and doors.',
     sideFeatures: [
