@@ -119,6 +119,8 @@ header{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.92);backdro
 .field{margin-top:.72rem}
 .field label{display:block;font-size:.78rem;font-weight:700;color:var(--ink);margin-bottom:.28rem}
 .field input,.field select{width:100%;border:1.5px solid var(--line);border-radius:12px;padding:.72rem .85rem;font-size:.98rem;font-family:'Inter';color:var(--ink);background:#fff;transition:border .15s, box-shadow .15s}
+.form-row-2{display:grid;grid-template-columns:1fr 1fr;gap:.7rem}
+@media(max-width:640px){.form-row-2{grid-template-columns:1fr}}
 .field input:focus,.field select:focus{outline:none;border-color:var(--turq);box-shadow:0 0 0 4px rgba(20,169,198,.14)}
 .lead-card .btn{width:100%;margin-top:1rem}
 .lead-card .assure{display:flex;align-items:center;justify-content:center;gap:.4rem;font-size:.78rem;color:var(--muted);margin-top:.7rem}

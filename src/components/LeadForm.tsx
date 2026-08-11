@@ -83,7 +83,6 @@ export default function LeadForm({ defaultSuburb = '', variant = 'full' }: { def
     );
   }
 
-  const two: React.CSSProperties = { display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '.7rem' };
 
   return (
     <div className="lead-card">
@@ -101,15 +100,15 @@ export default function LeadForm({ defaultSuburb = '', variant = 'full' }: { def
           <input type="hidden" name="formVariant" value="full" />
           <h3>Book your free measure &amp; quote</h3>
           <p className="small">Tell us where you are and Jackson will be in touch to lock in a time. Usually within 1 business day.</p>
-          <div style={two}>
+          <div className="form-row-2">
             <div className="field"><label htmlFor="firstName">First name</label><input id="firstName" name="firstName" type="text" placeholder="First name" required autoComplete="given-name" /></div>
             <div className="field"><label htmlFor="lastName">Last name</label><input id="lastName" name="lastName" type="text" placeholder="Last name" required autoComplete="family-name" /></div>
           </div>
-          <div style={two}>
+          <div className="form-row-2">
             <div className="field"><label htmlFor="phone">Mobile</label><input id="phone" name="phone" type="tel" placeholder="04XX XXX XXX" required autoComplete="tel" /></div>
             <div className="field"><label htmlFor="email">Email <span className="opt">(for your written quote)</span></label><input id="email" name="email" type="email" placeholder="you@email.com" autoComplete="email" /></div>
           </div>
-          <div style={two}>
+          <div className="form-row-2">
             <div className="field"><label htmlFor="suburb">Suburb</label>
               <input id="suburb" name="suburb" type="text" placeholder="e.g. Armstrong Creek" value={suburb} onChange={(e) => setSuburb(e.target.value)} required />
             </div>
