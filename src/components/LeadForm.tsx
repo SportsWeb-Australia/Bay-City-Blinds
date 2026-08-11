@@ -10,6 +10,15 @@ export default function LeadForm({ defaultSuburb = '', variant = 'full' }: { def
   const [status, setStatus] = useState<Status>('idle');
   const [suburb, setSuburb] = useState(defaultSuburb);
   const [contact, setContact] = useState('call');
+  const [loadedAt] = useState(() => Date.now());
+
+  // Honeypot: hidden from real users, catches bots that auto-fill every field.
+  const honeypot = (
+    <div aria-hidden="true" style={{ position: 'absolute', left: '-9999px', width: 1, height: 1, overflow: 'hidden' }}>
+      <label htmlFor="website">Website</label>
+      <input id="website" name="website" type="text" tabIndex={-1} autoComplete="off" />
+    </div>
+  );
 
   async function submit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -52,6 +61,9 @@ export default function LeadForm({ defaultSuburb = '', variant = 'full' }: { def
     if (status === 'error') return errorBlock;
     return (
       <form className="od-quick" onSubmit={submit} noValidate aria-label="Quick free quote form">
+        {honeypot}
+        <input type="hidden" name="formLoadedAt" value={loadedAt} />
+        <input type="hidden" name="formVariant" value="quick" />
         <div className="fd"><label htmlFor="qfirstname">First name</label><input id="qfirstname" name="firstName" type="text" placeholder="First name" required autoComplete="given-name" /></div>
         <div className="fd"><label htmlFor="qlastname">Last name</label><input id="qlastname" name="lastName" type="text" placeholder="Last name" required autoComplete="family-name" /></div>
         <div className="fd"><label htmlFor="qphone">Mobile</label><input id="qphone" name="phone" type="tel" placeholder="04XX XXX XXX" required autoComplete="tel" /></div>
@@ -84,6 +96,9 @@ export default function LeadForm({ defaultSuburb = '', variant = 'full' }: { def
         </div>
       ) : status === 'error' ? errorBlock : (
         <form onSubmit={submit} noValidate>
+          {honeypot}
+          <input type="hidden" name="formLoadedAt" value={loadedAt} />
+          <input type="hidden" name="formVariant" value="full" />
           <h3>Book your free measure &amp; quote</h3>
           <p className="small">Tell us where you are and Jackson will be in touch to lock in a time. Usually within 1 business day.</p>
           <div style={two}>

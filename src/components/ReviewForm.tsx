@@ -8,6 +8,7 @@ type Status = 'idle' | 'submitting' | 'success' | 'error';
 export default function ReviewForm() {
   const [status, setStatus] = useState<Status>('idle');
   const [rating, setRating] = useState(5);
+  const [loadedAt] = useState(() => Date.now());
 
   async function submit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -41,6 +42,11 @@ export default function ReviewForm() {
 
   return (
     <form className="lead-card" onSubmit={submit} noValidate>
+      <div aria-hidden="true" style={{ position: 'absolute', left: '-9999px', width: 1, height: 1, overflow: 'hidden' }}>
+        <label htmlFor="rwebsite">Website</label>
+        <input id="rwebsite" name="website" type="text" tabIndex={-1} autoComplete="off" />
+      </div>
+      <input type="hidden" name="formLoadedAt" value={loadedAt} />
       <h3>Leave your feedback</h3>
       <p className="small">No Google account needed, tell us how it went and we’ll add it to the site.</p>
       <div className="field">

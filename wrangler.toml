@@ -2,3 +2,8 @@ name = "bay-city-blinds"
 compatibility_date = "2026-08-03"
 compatibility_flags = ["nodejs_compat"]
 pages_build_output_dir = "dist"
+
+[vars]
+ZEPTOMAIL_FROM = "jackson@baycityblinds.com.au"
+ZEPTOMAIL_TO = "jackson@baycityblinds.com.au"
+ZEPTOMAIL_API_URL = "https://api.zeptomail.com.au/v1.1/email"

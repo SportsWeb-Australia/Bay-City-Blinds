@@ -7,48 +7,71 @@
 // later additions (Zoho CRM / B1-Supabase once that schema exists).
 //
 // Secrets required (set as env vars on whichever platform is live):
-//   ZEPTOMAIL_TOKEN, ZEPTOMAIL_FROM_ADDRESS, JACKSON_NOTIFY_EMAIL
+//   ZEPTOMAIL_TOKEN (encrypted secret — never in source, never client-side)
+// Non-sensitive vars (see wrangler.toml [vars]):
+//   ZEPTOMAIL_FROM, ZEPTOMAIL_TO, ZEPTOMAIL_API_URL
 // Optional: MOCK_PROVIDERS=true to short-circuit ZeptoMail with a canned success for
 // local testing before real secrets exist. Never set MOCK_PROVIDERS in production.
 
 const CALL_TIMEOUT_MS = 8000;
+const NOTES_MAX_LEN = 2000;
+const MIN_FILL_TIME_MS = 1500; // reject submissions faster than a human could plausibly fill the form
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+function escapeHtml(str) {
+  return String(str).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+}
 
 function required(fields, body) {
   return fields.filter((f) => !body.get(f) || !String(body.get(f)).trim());
 }
 
+function isSpam(body) {
+  // Honeypot: a field real users never see or fill; bots that auto-fill every input trip it.
+  if ((body.get('website') || '').trim()) return true;
+  // Fill-time heuristic: submissions faster than this are almost certainly scripted.
+  const loadedAt = Number(body.get('formLoadedAt'));
+  if (loadedAt && Date.now() - loadedAt < MIN_FILL_TIME_MS) return true;
+  return false;
+}
+
 function normalizeLead(body, request) {
   const firstName = (body.get('firstName') || '').trim();
   const lastName = (body.get('lastName') || '').trim();
+  const email = (body.get('email') || '').trim();
   return {
     firstName,
     lastName,
     name: [firstName, lastName].filter(Boolean).join(' '),
     phone: (body.get('phone') || '').trim(),
-    email: (body.get('email') || '').trim(),
+    email: email && EMAIL_RE.test(email) ? email : '',
     suburb: (body.get('suburb') || '').trim(),
     service: (body.get('service') || '').trim(),
     besttime: (body.get('besttime') || '').trim(),
     contact: (body.get('contact') || '').trim(),
-    notes: (body.get('notes') || '').trim(),
+    notes: (body.get('notes') || '').trim().slice(0, NOTES_MAX_LEN),
+    formVariant: (body.get('formVariant') || 'full').trim(),
     page: request.headers.get('referer') || '',
   };
 }
 
-async function sendZeptoMail({ to, subject, html }, env) {
+async function sendZeptoMail({ to, subject, html, replyTo }, env) {
   if (env.MOCK_PROVIDERS === 'true') return { ok: true };
+  const apiUrl = env.ZEPTOMAIL_API_URL || 'https://api.zeptomail.com.au/v1.1/email';
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), CALL_TIMEOUT_MS);
   try {
-    const res = await fetch('https://api.zeptomail.com.au/v1.1/email', {
+    const payload = {
+      from: { address: env.ZEPTOMAIL_FROM, name: 'Bay City Blinds' },
+      to: [{ email_address: { address: to } }],
+      subject,
+      htmlbody: html,
+    };
+    if (replyTo) payload.reply_to = [{ address: replyTo }];
+    const res = await fetch(apiUrl, {
       method: 'POST',
       headers: { Authorization: env.ZEPTOMAIL_TOKEN, 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        from: { address: env.ZEPTOMAIL_FROM_ADDRESS },
-        to: [{ email_address: { address: to } }],
-        subject,
-        htmlbody: html,
-      }),
+      body: JSON.stringify(payload),
       signal: controller.signal,
     });
     if (!res.ok) throw new Error(`ZeptoMail send failed: ${res.status} ${await res.text()}`);
@@ -62,25 +85,29 @@ async function sendZeptoMail({ to, subject, html }, env) {
 }
 
 function customerEmailHtml(lead) {
-  return `<p>Hi ${lead.name || 'there'},</p>
+  const name = escapeHtml(lead.name || 'there');
+  const service = escapeHtml(lead.service || 'window furnishings');
+  const suburb = escapeHtml(lead.suburb || 'your area');
+  return `<p>Hi ${name},</p>
 <p>Thanks for reaching out to Bay City Blinds — Jackson's got your enquiry and will be in touch within 1 business day.</p>
-<p>What you told us: ${lead.service || 'window furnishings'} in ${lead.suburb || 'your area'}.</p>
+<p>What you told us: ${service} in ${suburb}.</p>
 <p>Talk soon,<br/>Bay City Blinds</p>`;
 }
 
 function jacksonEmailHtml(lead) {
-  return `<p>New website lead:</p>
-<ul>
-<li>Name: ${lead.name}</li>
-<li>Phone: ${lead.phone}</li>
-<li>Email: ${lead.email || '—'}</li>
-<li>Suburb: ${lead.suburb}</li>
-<li>Service: ${lead.service}</li>
-<li>Best time: ${lead.besttime || '—'}</li>
-<li>Contact preference: ${lead.contact || '—'}</li>
-<li>Notes: ${lead.notes || '—'}</li>
-<li>Page: ${lead.page}</li>
-</ul>`;
+  const row = (label, value) => `<tr><td style="padding:4px 12px 4px 0;color:#5C7A82;white-space:nowrap">${label}</td><td style="padding:4px 0"><b>${value || '—'}</b></td></tr>`;
+  return `<p>New website enquiry:</p>
+<table cellpadding="0" cellspacing="0" style="font-family:sans-serif;font-size:14px">
+${row('Name', escapeHtml(lead.name))}
+${row('Phone', escapeHtml(lead.phone))}
+${row('Email', lead.email ? escapeHtml(lead.email) : '')}
+${row('Service required', escapeHtml(lead.service))}
+${row('Suburb', escapeHtml(lead.suburb))}
+${row('Best time', escapeHtml(lead.besttime))}
+${row('Contact preference', escapeHtml(lead.contact))}
+${row('Message', escapeHtml(lead.notes))}
+${row('Page/form source', escapeHtml(`${lead.page} (${lead.formVariant} form)`))}
+</table>`;
 }
 
 export async function handleLead(request, env) {
@@ -89,6 +116,11 @@ export async function handleLead(request, env) {
     body = await request.formData();
   } catch {
     return Response.json({ success: false, error: 'Invalid form submission' }, { status: 400 });
+  }
+
+  if (isSpam(body)) {
+    // Pretend success — don't tip off bots that they were caught, don't send any email.
+    return Response.json({ success: true });
   }
 
   const missing = required(['firstName', 'lastName', 'phone', 'suburb'], body);
@@ -100,7 +132,12 @@ export async function handleLead(request, env) {
   const warnings = [];
 
   const jacksonEmailRes = await sendZeptoMail(
-    { to: env.JACKSON_NOTIFY_EMAIL, subject: `New lead: ${lead.name} (${lead.suburb})`, html: jacksonEmailHtml(lead) },
+    {
+      to: env.ZEPTOMAIL_TO,
+      subject: `New Website Enquiry – ${lead.name}`,
+      html: jacksonEmailHtml(lead),
+      replyTo: lead.email || undefined,
+    },
     env
   );
   if (!jacksonEmailRes.ok) {
