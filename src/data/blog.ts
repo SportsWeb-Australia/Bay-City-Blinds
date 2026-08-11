@@ -15,6 +15,84 @@ export type Article = {
 
 export const articles: Article[] = [
   {
+    slug: 'plantation-shutters-home-value-geelong',
+    title: 'Plantation Shutters: Do They Really Add Home Value in Geelong?',
+    description: 'Thinking of listing your Geelong home this spring? Here’s an honest look at why plantation shutters are one of the few window furnishings buyers and agents actually notice.',
+    date: '2026-08-17',
+    category: 'Buying Guide',
+    heroImage: '/photos/photo-10.webp',
+    excerpt: 'Spring listing season is coming up around Geelong. Of everything you could spend on before a sale, plantation shutters are one of the few window upgrades that genuinely gets noticed.',
+    sections: [
+      {
+        h: 'Why shutters read differently to buyers than blinds or curtains',
+        p: [
+          'Most window furnishings are treated by buyers and agents as personal taste, something the new owner will probably replace anyway. Plantation shutters are different. Because they’re a permanent, built-in fixture rather than a soft furnishing, they get valued more like joinery than decor, closer to how buyers think about a good kitchen bench or built-in wardrobes.',
+          'That’s not marketing spin, it’s simply how they’re installed: fitted directly to the window frame or reveal, not hung on a track that comes down with the old owner’s belongings.',
+        ],
+      },
+      {
+        h: 'What actually makes the difference at inspection',
+        p: [
+          'A run of matching <a href="/blinds/plantation-shutters">plantation shutters</a> through a living area or main bedroom presents as finished and considered, especially compared to a mismatched mix of old blinds and curtains room to room, which is one of the more common things we see in homes going to market around Geelong.',
+          'Timber and PVC shutters also hold up visibly better than fabric options in listing photos and open-for-inspection walkthroughs, no sun-faded fabric, no bent slats, no dated pattern doing the home any favours.',
+        ],
+      },
+      {
+        h: 'Where it’s worth prioritising if you’re on a budget',
+        p: [
+          'If a full-house shutter upgrade isn’t realistic before listing, focus on the rooms buyers spend the most time in during an inspection: the main living area and the master bedroom. Kitchens and bathrooms matter less for this specific decision since <a href="/blinds/roller-blinds">roller blinds</a> are still the norm and expected there.',
+        ],
+      },
+      {
+        h: 'If you’re not selling, they’re still worth it',
+        p: [
+          'Even if a sale isn’t on the horizon, shutters are worth considering simply because they last. Solid timber or PVC construction handles daily use for decades with minimal maintenance, unlike fabric options that fade or wear, so the “adds value” case holds up whether you’re preparing to sell in six months or just want something you won’t be replacing again in five years.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'spring-clean-window-furnishings-geelong',
+    title: 'Spring Clean Checklist: Refreshing Your Blinds, Shutters & Curtains',
+    description: 'A practical spring checklist for cleaning and assessing your Geelong home’s blinds, shutters and curtains, and knowing when it’s time to replace rather than clean.',
+    date: '2026-08-24',
+    category: 'Seasonal Guide',
+    heroImage: '/photos/photo-46.webp',
+    excerpt: 'Spring cleaning always seems to skip the windows themselves. Here’s a room-by-room way to work through blinds, shutters and curtains, and how to tell when it’s time to replace rather than clean.',
+    sections: [
+      {
+        h: 'Start with a dust-down, not a deep clean',
+        p: [
+          'Before anything else, a simple vacuum with a brush attachment or a microfibre dust wand over every blind, shutter louvre and curtain hem removes most of what’s built up over winter, closed windows and heaters running both add more dust than people expect. Do this room by room rather than all at once, it’s a lot less to tackle in one go.',
+        ],
+      },
+      {
+        h: 'Roller and honeycomb blinds',
+        p: [
+          '<a href="/blinds/roller-blinds">Roller blinds</a> generally just need a wipe with a barely damp cloth, fully wet cleaning can warp the fabric or the roller tube. <a href="/blinds/honeycomb-blinds">Honeycomb blinds</a> are trickier since the pleated cells collect dust, a handheld vacuum on low suction with a brush head works better than wiping, which can crush the cells.',
+        ],
+      },
+      {
+        h: 'Venetians and plantation shutters',
+        p: [
+          '<a href="/blinds/venetian-blinds">Venetian blinds</a>, aluminium especially, are the easiest to clean properly. Close the slats, wipe one direction, then reverse and wipe the other. <a href="/blinds/plantation-shutters">Plantation shutters</a> take the same approach on each louvre, and it’s worth checking the tilt rod and hinges move freely while you’re there, a light silicone spray sorts most stiff hinges.',
+        ],
+      },
+      {
+        h: 'Curtains',
+        p: [
+          'Check the care label before anything else, some fabrics are dry-clean only. A lot of made-to-measure curtains can be taken down and gently machine washed on a delicate cycle, but check first, and always re-hang while still slightly damp to avoid the hem needing re-ironing.',
+        ],
+      },
+      {
+        h: 'When it’s time to replace rather than clean',
+        p: [
+          'Fabric that’s visibly sun-faded on one side, a roller mechanism that’s stopped tracking straight, or shutter louvres that won’t hold their angle any more, these are all signs a clean won’t fix. If you’re only going to properly address one or two rooms this spring, it’s usually the room that gets the most direct sun, that’s where fabric and mechanisms wear fastest.',
+        ],
+      },
+    ],
+  },
+  {
     slug: 'winter-insulation-blinds-geelong',
     title: 'Winter Insulation: How the Right Blinds Cut Heat Loss in Geelong Homes',
     description: 'Still weeks of Geelong winter left. Here’s how honeycomb blinds, curtains and pelmet boxes genuinely help keep heat in and cold out, and where they make the biggest difference.',

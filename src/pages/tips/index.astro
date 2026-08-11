@@ -10,6 +10,7 @@ const description = 'Practical, no-nonsense advice on choosing and caring for bl
 const schemas = [localBusiness(), breadcrumb([{ name: 'Home', url: '/' }, { name: 'Tips & Advice', url: '/tips' }])];
 
 const fmt = (d: string) => new Date(d).toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' });
+const sorted = [...articles].sort((a, b) => b.date.localeCompare(a.date));
 ---
 <Layout title={title} description={description} path="/tips" schemas={schemas}>
   <section class="block" style="padding-bottom:1rem">
@@ -20,7 +21,7 @@ const fmt = (d: string) => new Date(d).toLocaleDateString('en-AU', { day: 'numer
         <p>Practical guides from Jackson and the team, no fluff, just what actually helps when you're choosing window furnishings for your home.</p>
       </div>
       <div class="grid-3">
-        {articles.map((a) => (
+        {sorted.map((a) => (
           <a class="pcard reveal" href={`/tips/${a.slug}`}>
             <img class="ph-img" src={a.heroImage} width="640" height="400" loading="lazy" alt={a.title} />
             <div class="body">
