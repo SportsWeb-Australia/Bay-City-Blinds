@@ -1,15 +1,89 @@
 # Bay City Blinds — Cloudflare Pages redirects (301s)
-# PARTIAL MAP — pending full legacy-URL audit once Carson pulls the old site's
-# content via Claude in Chrome. See docs/05-redirect-map.md.
+# FULL AUDIT — built from the real old site's sitemap.xml files
+# (page-sitemap.xml, post-sitemap.xml, product-sitemap.xml) on 2026-08-11.
+# See docs/05-redirect-map.md for notes on what was excluded and why.
 
-/about-us/            /about                 301
-/products/             /blinds                301
-/gallery/              /#gallery              301
-/faq                   /#faq                  301
-/contact/              /free-measure-quote    301
-/area-we-serve/        /#areas                301
-/tag/blog/              /                     301
+# Core pages
+/about-us/                              /about                          301
+/history/                               /about                          301
+/team/                                  /about                          301
+/contact/                               /free-measure-quote             301
+/pricing/                               /free-measure-quote             301
+/faq/                                   /#faq                           301
+/gallery/                               /#gallery                       301
+/portfolio/                             /#gallery                       301
+/blog/                                  /tips                           301
 
-# TODO: 2 legacy blog posts — targets unknown until legacy content is pulled
-# /blog/<old-slug-1>   /<new-target>          301
-# /blog/<old-slug-2>   /<new-target>          301
+# Product / category pages
+/products/                              /blinds                         301
+/blinds-2/                              /blinds                         301
+/service-detail/                        /blinds                         301
+/custom-blinds-and-shutters/            /blinds                         301
+/window-blinds-and-shutters/            /blinds                         301
+/curtains-and-blinds/                   /blinds                         301
+/venetian-blinds/                       /blinds/venetian-blinds         301
+/wooden-blinds/                         /blinds/venetian-blinds         301
+/vertical-blinds/                       /blinds                         301
+/roman-blinds/                          /blinds                         301
+/bamboo-blinds/                         /blinds                         301
+/skylight-blinds/                       /motorised                      301
+/roller-blinds/                         /blinds/roller-blinds           301
+/roller-blinds-2/                       /blinds/roller-blinds           301
+/blackout-blinds/                       /blinds/blockout-blinds         301
+/curtains/                              /blinds/curtains                301
+/plantation-shutters/                   /blinds/plantation-shutters     301
+/roller-shutters/                       /blinds/roller-shutters         301
+/outdoor-blinds/                        /outdoor                        301
+/awnings-2/                             /outdoor                        301
+
+# WooCommerce shop (no e-commerce on the new site)
+/shop/                                  /blinds                         301
+/cart/                                  /blinds                         301
+/checkout/                              /blinds                         301
+/my-account/                            /blinds                         301
+
+# Old FAQ shorthand (kept from the original guessed map, still valid)
+/area-we-serve/                         /#areas                         301
+/tag/blog/                              /tips                           301
+
+# Blog posts — 31 real posts on the old site, no 1:1 replacement content
+# exists yet on the new site, so all route to the new Tips & Advice hub for
+# now. Worth revisiting: several of these topics are strong candidates to
+# properly rebuild as new /tips articles (see docs/05-redirect-map.md).
+/how-sunscreen-blinds-help-beat-the-heat-in-geelong-summers/           /tips  301
+/top-5-blinds-for-coastal-homes-around-geelong/                        /tips  301
+/how-to-choose-the-best-blinds-for-your-home-in-geelong/               /tips  301
+/top-7-types-of-window-blinds-popular-in-geelong-homes/                /tips  301
+/are-blinds-worth-it-benefits-for-privacy-energy-style-in-geelong/     /tips  301
+/curtains-vs-blinds-whats-better-for-geelong-homes/                    /tips  301
+/best-curtain-fabrics-for-geelong-weather/                             /tips  301
+/how-custom-curtains-transform-your-living-space/                      /tips  301
+/why-plantation-shutters-are-perfect-for-geelong-homes/                /tips  301
+/cost-of-plantation-shutters-in-geelong-what-to-expect/                /tips  301
+/shutters-vs-curtains-which-adds-more-value-to-your-geelong-home/      /tips  301
+/outdoor-blinds-for-patios-a-complete-guide-for-geelong-homes/         /tips  301
+/how-outdoor-blinds-improve-energy-efficiency-in-geelong-homes/        /tips  301
+/best-outdoor-blind-materials-for-coastal-areas-like-geelong/          /tips  301
+/awnings-vs-outdoor-blinds-whats-right-for-your-geelong-home/          /tips  301
+/benefits-of-installing-awnings-in-geelongs-climate/                   /tips  301
+/top-awning-styles-for-modern-australian-homes/                        /tips  301
+/why-roller-blinds-are-the-most-popular-choice-in-geelong-homes/       /tips  301
+/blockout-vs-sunscreen-roller-blinds-which-one-do-you-need/            /tips  301
+/how-to-clean-and-maintain-roller-blinds-properly/                     /tips  301
+/security-benefits-of-roller-shutters-for-geelong-homes/               /tips  301
+/do-roller-shutters-help-with-noise-reduction/                         /tips  301
+/manual-vs-electric-roller-shutters-which-is-better/                   /tips  301
+/how-to-combine-curtains-and-blinds-for-a-modern-look/                 /tips  301
+/layering-window-treatments-a-complete-design-guide/                   /tips  301
+/best-curtain-and-blind-combinations-for-living-rooms/                 /tips  301
+/why-custom-blinds-are-better-than-ready-made-options/                 /tips  301
+/made-to-measure-blinds-what-you-need-to-know/                         /tips  301
+/how-custom-shutters-add-value-to-your-property/                       /tips  301
+/best-window-coverings-for-privacy-in-geelong-homes/                   /tips  301
+/blinds-vs-shutters-pros-and-cons-explained/                           /tips  301
+/how-to-choose-the-right-window-coverings-for-each-room/               /tips  301
+
+# Deliberately NOT redirected — leftover WordPress/WooCommerce theme demo
+# content, never real business pages (23 /portfolio/portfolio-*/ demo
+# layouts, 20 /shortcodes/*/ demo pages, 19 /product/*/ fake WooCommerce
+# demo products like hoodies and sunglasses). No SEO value to preserve.

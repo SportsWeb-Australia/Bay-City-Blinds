@@ -1,37 +1,49 @@
 # Bay City Blinds Redirect Map
 
-Use this file if replacing or rebuilding an existing website.
+**Status: COMPLETE.** Built from the real old site's sitemap.xml files
+(page-sitemap.xml, post-sitemap.xml, product-sitemap.xml) on 2026-08-11,
+not guessed. Implemented in `public/_redirects` (Cloudflare Pages redirects).
 
-## Redirect Rules
+## What the old site actually was
 
-Use 301 redirects for permanently moved pages.
+`baycityblinds.com.au` was a WordPress + WooCommerce site (Bridge theme).
+Alongside real business content it was still carrying a large amount of
+leftover theme demo content that was never cleaned up:
 
-Redirect each old URL to the closest matching new URL.
+- 23 `/portfolio/portfolio-*/` demo portfolio layout pages
+- 20 `/shortcodes/*/` theme shortcode demo pages
+- 19 `/product/*/` fake WooCommerce demo products (hoodies, sunglasses, beanies — a stock fashion-store demo import, nothing to do with blinds)
 
-Do not redirect every page to the homepage unless there is no relevant replacement.
+None of that is redirected — it was never real content with search
+visibility or backlinks worth preserving.
 
-Avoid redirect chains.
+## What's redirected
 
-## Redirect Table
+- Core pages (About, Contact, FAQ, Gallery, Pricing, Team, History) →
+  closest equivalent on the new site.
+- Product/category pages → matching `/blinds/[product]` page, or `/blinds`
+  where there's no direct equivalent (e.g. discontinued Roman blinds,
+  vertical blinds, bamboo blinds — none of these are offered on the new
+  site).
+- WooCommerce shop pages (`/shop/`, `/cart/`, `/checkout/`, `/my-account/`)
+  → `/blinds`, since there's no e-commerce on the new site.
+- **31 real blog posts** → `/tips` (the new hub). The old site had a
+  genuine, actively-maintained blog with topics like "Cost of Plantation
+  Shutters in Geelong" and "Blockout vs Sunscreen Roller Blinds" — far more
+  than the "2 legacy posts" originally assumed before this audit. None of
+  them have a matching article on the new site yet, so all 31 route to the
+  `/tips` hub for now rather than 404ing.
 
-**Status: PARTIAL.** These map the old URLs already on file from the site audit. Implemented in
-`public/_redirects` (Cloudflare Pages redirects). Full audit (below) still pending.
+## Worth doing next (content opportunity, not a redirect fix)
 
-| Old URL | New URL | Redirect Type | Priority | Notes |
-|---|---|---|---|---|
-| / | / | 301 if needed | High | Homepage |
-| /about-us/ | /about | 301 | High | About page |
-| /products/ | /blinds | 301 | High | Product hub |
-| /gallery/ | /#gallery | 301 | Medium | Gallery section |
-| /faq | /#faq | 301 | Medium | FAQ section |
-| /contact/ | /free-measure-quote | 301 | High | Contact/free quote |
-| /area-we-serve/ | /#areas | 301 | Medium | Service areas section |
-| /tag/blog/ | / | 301 | Low | Blog tag archive, no direct replacement |
-| 2× legacy blog posts | TBD | 301 | Low | Targets unknown until content is pulled |
+A meaningful number of those 31 old posts closely match topics already on
+the new site's Tips & Advice content calendar (see chat history /
+handover notes). Rebuilding the strongest of these as real `/tips/[slug]`
+articles — reusing the good topic ideas, written fresh — would let us
+retarget their specific old URLs individually instead of bulk-routing
+everything to the hub, recovering more of whatever ranking equity those
+pages built up. Not urgent, but flagged so it doesn't get lost.
 
-## To Complete
+## Full table
 
-Claude must audit the existing Bay City Blinds URL structure before launch and complete this map
-properly — pull the real old-site URL list (via Claude in Chrome, the old site's sitemap.xml, or
-Google Search Console if Carson gets access from Jackson) and confirm the 2 legacy blog post URLs
-and their replacement targets.
+See `public/_redirects` for the authoritative, complete list (64 rules).
