@@ -41,7 +41,7 @@ export default function ReviewForm() {
   }
 
   return (
-    <form className="lead-card" onSubmit={submit} noValidate>
+    <form className="lead-card" onSubmit={submit}>
       <div aria-hidden="true" style={{ position: 'absolute', left: '-9999px', width: 1, height: 1, overflow: 'hidden' }}>
         <label htmlFor="rwebsite">Website</label>
         <input id="rwebsite" name="website" type="text" tabIndex={-1} autoComplete="off" />

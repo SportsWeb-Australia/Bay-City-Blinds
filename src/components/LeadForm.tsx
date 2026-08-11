@@ -60,7 +60,7 @@ export default function LeadForm({ defaultSuburb = '', variant = 'full' }: { def
     }
     if (status === 'error') return errorBlock;
     return (
-      <form className="od-quick" onSubmit={submit} noValidate aria-label="Quick free quote form">
+      <form className="od-quick" onSubmit={submit} aria-label="Quick free quote form">
         {honeypot}
         <input type="hidden" name="formLoadedAt" value={loadedAt} />
         <input type="hidden" name="formVariant" value="quick" />
@@ -96,7 +96,7 @@ export default function LeadForm({ defaultSuburb = '', variant = 'full' }: { def
           <p className="small">Jackson or one of his team will be in contact with you shortly. Talk soon.</p>
         </div>
       ) : status === 'error' ? errorBlock : (
-        <form onSubmit={submit} noValidate>
+        <form onSubmit={submit}>
           {honeypot}
           <input type="hidden" name="formLoadedAt" value={loadedAt} />
           <input type="hidden" name="formVariant" value="full" />
