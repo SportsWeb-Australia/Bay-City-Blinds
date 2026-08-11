@@ -120,9 +120,12 @@ export async function handleLead(request, env) {
     return Response.json({ success: true });
   }
 
-  const missing = required(['firstName', 'lastName', 'phone', 'suburb'], body);
+  const missing = required(['firstName', 'lastName', 'phone', 'email', 'suburb'], body);
   if (missing.length) {
     return Response.json({ success: false, error: `Missing required field(s): ${missing.join(', ')}` }, { status: 400 });
+  }
+  if (!EMAIL_RE.test(String(body.get('email')).trim())) {
+    return Response.json({ success: false, error: 'Please enter a valid email address' }, { status: 400 });
   }
 
   const lead = normalizeLead(body, request);
