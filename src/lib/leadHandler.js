@@ -86,12 +86,9 @@ async function sendZeptoMail({ to, subject, html, replyTo }, env) {
 
 function customerEmailHtml(lead) {
   const name = escapeHtml(lead.name || 'there');
-  const service = escapeHtml(lead.service || 'window furnishings');
-  const suburb = escapeHtml(lead.suburb || 'your area');
   return `<p>Hi ${name},</p>
-<p>Thanks for reaching out to Bay City Blinds — Jackson's got your enquiry and will be in touch within 1 business day.</p>
-<p>What you told us: ${service} in ${suburb}.</p>
-<p>Talk soon,<br/>Bay City Blinds</p>`;
+<p>Thanks for reaching out to us at Bay City Blinds. We have your enquiry and Jackson or one of his team will be in touch shortly.</p>
+<p>Kind Regards,<br/>Jackson and the team at Bay City Blinds<br/>0430 161 383</p>`;
 }
 
 function jacksonEmailHtml(lead) {
