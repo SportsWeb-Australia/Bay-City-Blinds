@@ -52,8 +52,13 @@ const nav = [
     ],
   },
   { label: 'Service areas', href: '/#areas', children: null },
-  { label: 'Reviews', href: '/reviews', children: null },
-  { label: 'Tips & Advice', href: '/tips', children: null },
+  {
+    label: 'Reviews', href: '/reviews',
+    children: [
+      { label: 'Customer reviews', href: '/reviews' },
+      { label: 'Tips & advice', href: '/tips' },
+    ],
+  },
 ];
 ---
 <div class="util">
