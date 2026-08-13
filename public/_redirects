@@ -3,6 +3,12 @@
 # (page-sitemap.xml, post-sitemap.xml, product-sitemap.xml) on 2026-08-11.
 # See docs/05-redirect-map.md for notes on what was excluded and why.
 
+# Search-engine verification files must be served at their exact .html URL —
+# Cloudflare Pages auto-redirects any *.html request to the extensionless
+# version by default, which breaks Google/Bing's verification check. A 200
+# rule here forces it to serve as-is instead of redirecting.
+/google8860ca88c98818ff.html /google8860ca88c98818ff.html 200
+
 # Core pages
 /about-us/                              /about                          301
 /history/                               /about                          301
