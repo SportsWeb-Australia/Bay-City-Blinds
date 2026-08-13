@@ -45,6 +45,7 @@ function normalizeLead(body, request) {
     name: [firstName, lastName].filter(Boolean).join(' '),
     phone: (body.get('phone') || '').trim(),
     email: email && EMAIL_RE.test(email) ? email : '',
+    address: (body.get('address') || '').trim(),
     suburb: (body.get('suburb') || '').trim(),
     service: (body.get('service') || '').trim(),
     besttime: (body.get('besttime') || '').trim(),
@@ -99,6 +100,7 @@ ${row('Name', escapeHtml(lead.name))}
 ${row('Phone', escapeHtml(lead.phone))}
 ${row('Email', lead.email ? escapeHtml(lead.email) : '')}
 ${row('Service required', escapeHtml(lead.service))}
+${row('Address', escapeHtml(lead.address))}
 ${row('Suburb', escapeHtml(lead.suburb))}
 ${row('Best time', escapeHtml(lead.besttime))}
 ${row('Contact preference', escapeHtml(lead.contact))}
@@ -120,7 +122,7 @@ export async function handleLead(request, env) {
     return Response.json({ success: true });
   }
 
-  const missing = required(['firstName', 'lastName', 'phone', 'email', 'suburb'], body);
+  const missing = required(['firstName', 'lastName', 'phone', 'email', 'address', 'suburb'], body);
   if (missing.length) {
     return Response.json({ success: false, error: `Missing required field(s): ${missing.join(', ')}` }, { status: 400 });
   }

@@ -68,6 +68,7 @@ export default function LeadForm({ defaultSuburb = '', variant = 'full' }: { def
         <div className="fd"><label htmlFor="qlastname">Last name</label><input id="qlastname" name="lastName" type="text" placeholder="Last name" required autoComplete="family-name" /></div>
         <div className="fd"><label htmlFor="qphone">Mobile</label><input id="qphone" name="phone" type="tel" placeholder="04XX XXX XXX" required autoComplete="tel" /></div>
         <div className="fd"><label htmlFor="qemail">Email</label><input id="qemail" name="email" type="email" placeholder="you@email.com" required autoComplete="email" /></div>
+        <div className="fd"><label htmlFor="qaddress">Address</label><input id="qaddress" name="address" type="text" placeholder="e.g. 12 Smith Street" required autoComplete="street-address" /></div>
         <div className="fd"><label htmlFor="qsuburb">Suburb</label><input id="qsuburb" name="suburb" type="text" value={suburb} onChange={(e) => setSuburb(e.target.value)} required /></div>
         <div className="fd"><label htmlFor="qservice">I'm after</label>
           <select id="qservice" name="service">
@@ -109,6 +110,10 @@ export default function LeadForm({ defaultSuburb = '', variant = 'full' }: { def
           <div className="form-row-2">
             <div className="field"><label htmlFor="phone">Mobile</label><input id="phone" name="phone" type="tel" placeholder="04XX XXX XXX" required autoComplete="tel" /></div>
             <div className="field"><label htmlFor="email">Email</label><input id="email" name="email" type="email" placeholder="you@email.com" required autoComplete="email" /></div>
+          </div>
+          <div className="field">
+            <label htmlFor="address">Address</label>
+            <input id="address" name="address" type="text" placeholder="e.g. 12 Smith Street" required autoComplete="street-address" />
           </div>
           <div className="form-row-2">
             <div className="field"><label htmlFor="suburb">Suburb</label>
