@@ -1,4 +1,7 @@
 ---
+// Photo source is p.heroImage directly (content.ts) — do not reintroduce a
+// separate slug-keyed photo lookup here. See the comment above `Product` in
+// content.ts for why.
 import { products as allProducts } from '../data/content';
 export interface Props { category?: 'indoor' | 'outdoor'; hideHeading?: boolean }
 const { category, hideHeading = false } = Astro.props;

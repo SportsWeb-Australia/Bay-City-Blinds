@@ -2,6 +2,14 @@
 // Each location has UNIQUE copy — that's what makes suburb pages rank
 // instead of reading as thin duplicates.
 
+// heroImage is the ONLY photo source for a product — used by both the
+// individual product page (blinds/[product].astro) and the grid cards
+// (components/Products.astro). Do not add a second/parallel photo lookup
+// (e.g. a slug-keyed map elsewhere) for products — that caused a real bug
+// where grid cards silently showed a placeholder despite heroImage being
+// set correctly, because the grid was reading from a different, stale
+// source. If a product has no real photo yet, just omit heroImage — the
+// gradient placeholder is the deliberate fallback, not a bug to work around.
 export type Product = { slug: string; name: string; blurb: string; long: string; gradient: string; category: 'indoor' | 'outdoor'; heroImage?: string; youtubeId?: string; features?: { h: string; p: string }[] };
 export const products: Product[] = [
   { slug: 'roller-blinds', name: 'Roller Blinds', gradient: 'g1', category: 'indoor', heroImage: '/photos/photo-46.webp',

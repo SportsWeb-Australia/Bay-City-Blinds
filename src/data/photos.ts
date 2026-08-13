@@ -1,12 +1,15 @@
-// Photo manifest — maps site slots to numbered photos in /public/photos/.
-// To change any image: open the photo picker, find the number, edit here.
+// Photo manifest for the homepage category tiles (CategorySelect.astro) and
+// the gallery/journey image slots (Gallery.astro, Process.astro) ONLY.
+//
+// This is NOT where product photos live — that's heroImage on each product
+// in content.ts, used directly by both the product pages and the grid cards
+// (Products.astro). Adding a product slug here again is exactly the mistake
+// that caused grid cards to silently show a placeholder despite heroImage
+// being set correctly (two disconnected photo sources drifting out of sync).
+// If a product needs a different photo, edit heroImage in content.ts.
 export const photoMap = {
-  'roller-blinds': 46, // confirmed: two roller blinds, clean indoor shot
-  'venetian-blinds': 'venetian-real', // real venetian blind photo supplied by Jackson
-  'plantation-shutters': 10, // confirmed: two full plantation shutter windows, bright bedroom
-  'curtains': 'curtains-real', // real curtains photo supplied by Jackson
-  'outdoor-screens': 53,
-  'roller-shutters': 63, // confirmed: outdoor roller shutters, brick house exterior (also used at gallery-2)
+  'plantation-shutters': 10, // CategorySelect "Indoor" tile — confirmed: two full plantation shutter windows, bright bedroom
+  'outdoor-screens': 53, // CategorySelect "Outdoor" tile
   'gallery-1': 31, // indoor: plantation shutters, bedroom (different room to product card photo)
   'gallery-2': 63, // outdoor: roller shutters, brick house exterior
   'gallery-3': 'venetian-real', // real venetian blind photo (was the roman blind photo — product discontinued)
