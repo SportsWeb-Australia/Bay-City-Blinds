@@ -12,6 +12,14 @@ const description = 'Book your free, no-obligation in-home measure & quote for b
 const schemas = [localBusiness(), serviceSchema(), faqSchema()];
 ---
 <Layout title={title} description={description} path="/free-measure-quote" schemas={schemas}>
+  <section class="suburb-check-band" id="check-suburb">
+    <div class="wrap">
+      <div class="suburb-check-note reveal">
+        <span class="suburb-check-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+        <p><b>Not sure if we service your suburb?</b> Pop your suburb in the form below and send it through, we’ll get back to you with a prompt answer either way, service it or not.</p>
+      </div>
+    </div>
+  </section>
   <section class="hero">
     <div class="wrap">
       <div class="hero-copy reveal">
@@ -23,7 +31,9 @@ const schemas = [localBusiness(), serviceSchema(), faqSchema()];
           <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 8v4l3 2"/><circle cx="12" cy="12" r="9"/></svg>Reply within 1 business day</span>
         </div>
       </div>
-      <div class="reveal" id="quote"><LeadForm client:load /></div>
+      <div class="reveal" id="quote">
+        <LeadForm client:load />
+      </div>
     </div>
   </section>
   <TrustStrip />

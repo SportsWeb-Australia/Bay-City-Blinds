@@ -5,7 +5,7 @@ import Reviews from '../../components/Reviews.astro';
 import ServiceAreas from '../../components/ServiceAreas.astro';
 import FinalCta from '../../components/FinalCta.astro';
 import LeadForm from '../../components/LeadForm.tsx';
-import { securityStyles } from '../../data/content';
+import { securityStyles, securityScreenOptions } from '../../data/content';
 import { localBusiness, serviceSchema, breadcrumb } from '../../data/schema';
 
 export function getStaticPaths() {
@@ -61,6 +61,42 @@ const schemas = [
       </div>
     </div>
   </section>
+
+  {s.slug === 'security-doors' && (
+    <section class="block tint" id="screens">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <p class="eyebrow">Choose your screen strength</p>
+          <h2>Security door screen options</h2>
+          <p>All our security doors are made to measure and available with a range of screen mesh options, from an entry-level everyday upgrade through to our heaviest-duty, Crimsafe-style screen. Screen thickness runs from 2mm up to 9mm depending on the tier.</p>
+        </div>
+        <div class="grid-3">
+          {securityScreenOptions.map((o) => (
+            <div class="pcard reveal">
+              <span class="ph-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></span>
+              <div class:list={['ph', 'g1']} aria-label={`${o.name} security screen by Bay City Blinds, Geelong`}>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+              </div>
+              <div class="body">
+                <p class="eyebrow" style="margin-bottom:.2rem">{o.tier}{o.mm && ` · ${o.mm} screen`}</p>
+                <h3>{o.name}</h3>
+                <p>{o.blurb}</p>
+                <ul style="margin:.7rem 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:.35rem">
+                  {o.features.map((f) => (
+                    <li style="display:flex;gap:.45rem;align-items:flex-start;font-size:.9rem">
+                      <span class="tick-sm" style="flex:none;margin-top:.1rem">✓</span>{f}
+                    </li>
+                  ))}
+                </ul>
+                <a class="lk" href="#quote" style="margin-top:.8rem;display:inline-flex">Get a price →</a>
+              </div>
+            </div>
+          ))}
+        </div>
+        <p class="small" style="text-align:center;margin-top:1.2rem;opacity:.75">Not sure which screen suits your home? Jackson will talk you through the options on your free in-home measure &amp; quote.</p>
+      </div>
+    </section>
+  )}
 
   <WhyUs />
   <Reviews />

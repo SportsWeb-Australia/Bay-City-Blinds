@@ -3,6 +3,15 @@ import { site } from '../data/site';
 // GA4 Measurement ID — set PUBLIC_GA_ID as a Cloudflare Pages build env var (public, not a
 // secret). Placeholder below until Carson creates the GA4 property.
 const gaId = import.meta.env.PUBLIC_GA_ID || 'G-XXXXXXXXXX';
+// Google Ads conversion tracking. Set PUBLIC_GOOGLE_ADS_ID (AW-XXXXXXXXX) and the two
+// conversion labels as Cloudflare Pages build env vars. Until PUBLIC_GOOGLE_ADS_ID is
+// set, every Ads call below is a no-op and only GA4 runs.
+const adsId = import.meta.env.PUBLIC_GOOGLE_ADS_ID || '';
+const adsLeadLabel = import.meta.env.PUBLIC_GOOGLE_ADS_LEAD_LABEL || '';
+const adsCallLabel = import.meta.env.PUBLIC_GOOGLE_ADS_CALL_LABEL || '';
+const analyticsId = gaId !== 'G-XXXXXXXXXX' ? gaId : '';
+// gtag.js only needs loading once; either product can host the loader.
+const loaderId = analyticsId || adsId;
 export interface Props {
   title: string;
   description: string;
@@ -53,15 +62,23 @@ const ogUrl = new URL(ogImage, site.url).href;
   <script type="application/ld+json" set:html={JSON.stringify(s)} />
 ))}
 
-{gaId !== 'G-XXXXXXXXXX' && (
+{loaderId && (
   <>
-    <script async src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}></script>
-    <script define:vars={{ gaId }}>
+    <script async src={`https://www.googletagmanager.com/gtag/js?id=${loaderId}`}></script>
+    <script define:vars={{ analyticsId, adsId, adsLeadLabel, adsCallLabel }}>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', gaId);
+      if (analyticsId) gtag('config', analyticsId);
+      if (adsId) gtag('config', adsId);
       window.gtag = gtag;
+      window.GADS = { id: adsId, leadLabel: adsLeadLabel, callLabel: adsCallLabel };
+      // Fires a Google Ads conversion. No-op unless both the account id and the
+      // relevant conversion label are configured, so it is safe to call anywhere.
+      window.gadsConversion = function (label, params) {
+        if (!adsId || !label || typeof window.gtag !== 'function') return;
+        window.gtag('event', 'conversion', Object.assign({ send_to: adsId + '/' + label }, params || {}));
+      };
     </script>
   </>
 )}

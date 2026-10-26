@@ -7,7 +7,7 @@ import { site } from '../data/site';
     <div class="sec-head reveal">
       <p class="eyebrow">Real local reviews</p>
       <h2>Geelong homeowners love working with Jackson</h2>
-      <p><span class="stars">★★★★★</span> Rated {site.ratingValue} from {site.reviewCount} reviews across Google &amp; Facebook</p>
+      <p><span class="stars">★★★★★</span> Rated <span data-review-rating>{site.ratingValue}</span> from <span data-review-count>{site.reviewCount}</span> Google reviews</p>
     </div>
     <div class="tgrid">
       {reviews.map((r) => (

@@ -30,14 +30,45 @@ const { title, description, path, schemas, robots } = Astro.props;
     }, { threshold: 0.12 });
     document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
 
-    // GA4 conversion events: tel/sms taps and tagged CTAs. Guarded so this is a no-op
-    // until PUBLIC_GA_ID is set (see BaseHead.astro).
+    // Live Google review count/rating. The page ships with a static fallback (site.ts);
+    // we only overwrite it when /api/review-stats returns a validated response, so a missing
+    // key, outage or bad payload leaves the last known-good number on screen.
+    if (document.querySelector('[data-review-count],[data-review-rating]')) {
+      fetch('/api/review-stats')
+        .then((r) => (r.ok ? r.json() : null))
+        .then((d) => {
+          if (!d || !Number.isInteger(d.count) || d.count < 1 || !(Number(d.rating) >= 1 && Number(d.rating) <= 5)) return;
+          document.querySelectorAll('[data-review-count]').forEach((el) => { el.textContent = String(d.count); });
+          document.querySelectorAll('[data-review-rating]').forEach((el) => { el.textContent = Number(d.rating).toFixed(1); });
+        })
+        .catch(() => {});
+    }
+
+    // TEMP DIAGNOSTIC (remove once Carson confirms events are showing in GA4/Tag
+    // Assistant): confirms window.gtag exists at the point this script runs, i.e.
+    // after BaseHead's inline gtag bootstrap script in <head> has executed.
+    console.log('[Analytics] window.gtag exists:', typeof window.gtag === 'function');
+
+    // GA4 conversion events: tel/mailto/sms taps and tagged CTAs. Guarded so this is a
+    // no-op until PUBLIC_GA_ID is set (see BaseHead.astro). No PII is ever sent — only
+    // the page path, never the actual phone number or email address in the href.
     document.addEventListener('click', (e) => {
       if (typeof window.gtag !== 'function') return;
       const target = e.target instanceof Element ? e.target.closest('a') : null;
       if (!target) return;
-      if (target.matches('a[href^="tel:"]')) window.gtag('event', 'click_call');
-      else if (target.matches('a[href^="sms:"]')) window.gtag('event', 'click_sms');
+      if (target.matches('a[href^="tel:"]')) {
+        console.log('[Analytics] phone_click fired');
+        window.gtag('event', 'click_call');
+        window.gtag('event', 'phone_click', { page_path: window.location.pathname });
+        // Google Ads phone-call conversion. Matters here because the security pages
+        // push calling as hard as the form — without this those leads are invisible.
+        window.gadsConversion?.(window.GADS?.callLabel);
+      } else if (target.matches('a[href^="mailto:"]')) {
+        console.log('[Analytics] email_click fired');
+        window.gtag('event', 'email_click', { page_path: window.location.pathname });
+      } else if (target.matches('a[href^="sms:"]')) {
+        window.gtag('event', 'click_sms');
+      }
       const cta = target.closest('[data-cta]');
       if (cta) window.gtag('event', 'cta_click', { cta_label: cta.getAttribute('data-cta') });
     });

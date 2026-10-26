@@ -13,7 +13,9 @@ export const site = {
   abn: '32 865 543 322',
   founded: '2020',
   ratingValue: '5.0',
-  reviewCount: '72',
+  // Fallback only: shown until /api/review-stats (live Google Places count) answers, and
+  // used for the static JSON-LD. 87 = what Carson read on the Google profile on 2026-10-26.
+  reviewCount: '87',
   priceRange: '$$',
   geo: { lat: -38.1499, lng: 144.3617 },
   addressLocality: 'Geelong',

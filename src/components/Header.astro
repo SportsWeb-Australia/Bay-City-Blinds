@@ -9,7 +9,6 @@ const nav = [
     children: [
       { label: 'Sheers', href: '/curtains/sheers' },
       { label: 'Blockouts', href: '/curtains/blockouts' },
-      { label: 'Pelmet boxes', href: '/curtains/pelmet-boxes' },
     ],
   },
   {
@@ -59,6 +58,7 @@ const nav = [
       { label: 'Tips & advice', href: '/tips' },
     ],
   },
+  { label: 'Service & Repairs', href: '/service-and-repairs', children: null },
 ];
 ---
 <div class="util">
@@ -75,12 +75,15 @@ const nav = [
 </div>
 <header>
   <nav class="nav">
-    <a class="brand" href="/">
-      <span class="logo-mark" aria-hidden="true">
-        <img src="/bay-city-blinds-badge.webp" width="76" height="76" alt="" />
-      </span>
-      <span class="brand-text">Bay City Blinds<small>Geelong · mobile showroom</small></span>
-    </a>
+    <div class="brand-wrap">
+      <a class="brand" href="/">
+        <span class="logo-mark" aria-hidden="true">
+          <img src="/bay-city-blinds-badge.webp" width="76" height="76" alt="" />
+        </span>
+        <span class="brand-text">Bay City Blinds<small>Geelong · mobile showroom</small></span>
+      </a>
+      <a class="brand-phone" href={site.phoneHref}>{site.phone}</a>
+    </div>
     <div class="nav-links">
       {nav.map((item) => (
         item.children ? (
@@ -102,7 +105,6 @@ const nav = [
       ))}
     </div>
     <div class="nav-cta">
-      <a class="nav-phone" href={site.phoneHref}>{site.phone}</a>
       <a class="btn btn-primary" href="/free-measure-quote" data-cta="nav-free-quote">Free quote</a>
       <button class="burger" id="navBurger" aria-label="Open menu" aria-expanded="false" aria-controls="navMobile">
         <span></span><span></span><span></span>

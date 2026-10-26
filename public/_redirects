@@ -9,6 +9,9 @@
 # rule here forces it to serve as-is instead of redirecting.
 /google8860ca88c98818ff.html /google8860ca88c98818ff.html 200
 
+# Pelmet boxes now lives only under /blinds, not as a separate curtain style
+/curtains/pelmet-boxes/                 /blinds/pelmet-boxes            301
+
 # Core pages
 /about-us/                              /about                          301
 /history/                               /about                          301
@@ -52,42 +55,43 @@
 /area-we-serve/                         /#areas                         301
 /tag/blog/                              /tips                           301
 
-# Blog posts — 31 real posts on the old site, no 1:1 replacement content
-# exists yet on the new site, so all route to the new Tips & Advice hub for
-# now. Worth revisiting: several of these topics are strong candidates to
-# properly rebuild as new /tips articles (see docs/05-redirect-map.md).
-/how-sunscreen-blinds-help-beat-the-heat-in-geelong-summers/           /tips  301
-/top-5-blinds-for-coastal-homes-around-geelong/                        /tips  301
-/how-to-choose-the-best-blinds-for-your-home-in-geelong/               /tips  301
-/top-7-types-of-window-blinds-popular-in-geelong-homes/                /tips  301
-/are-blinds-worth-it-benefits-for-privacy-energy-style-in-geelong/     /tips  301
-/curtains-vs-blinds-whats-better-for-geelong-homes/                    /tips  301
-/best-curtain-fabrics-for-geelong-weather/                             /tips  301
-/how-custom-curtains-transform-your-living-space/                      /tips  301
-/why-plantation-shutters-are-perfect-for-geelong-homes/                /tips  301
-/cost-of-plantation-shutters-in-geelong-what-to-expect/                /tips  301
-/shutters-vs-curtains-which-adds-more-value-to-your-geelong-home/      /tips  301
-/outdoor-blinds-for-patios-a-complete-guide-for-geelong-homes/         /tips  301
-/how-outdoor-blinds-improve-energy-efficiency-in-geelong-homes/        /tips  301
-/best-outdoor-blind-materials-for-coastal-areas-like-geelong/          /tips  301
-/awnings-vs-outdoor-blinds-whats-right-for-your-geelong-home/          /tips  301
-/benefits-of-installing-awnings-in-geelongs-climate/                   /tips  301
-/top-awning-styles-for-modern-australian-homes/                        /tips  301
-/why-roller-blinds-are-the-most-popular-choice-in-geelong-homes/       /tips  301
-/blockout-vs-sunscreen-roller-blinds-which-one-do-you-need/            /tips  301
-/how-to-clean-and-maintain-roller-blinds-properly/                     /tips  301
-/security-benefits-of-roller-shutters-for-geelong-homes/               /tips  301
-/do-roller-shutters-help-with-noise-reduction/                         /tips  301
-/manual-vs-electric-roller-shutters-which-is-better/                   /tips  301
-/how-to-combine-curtains-and-blinds-for-a-modern-look/                 /tips  301
-/layering-window-treatments-a-complete-design-guide/                   /tips  301
-/best-curtain-and-blind-combinations-for-living-rooms/                 /tips  301
-/why-custom-blinds-are-better-than-ready-made-options/                 /tips  301
-/made-to-measure-blinds-what-you-need-to-know/                         /tips  301
-/how-custom-shutters-add-value-to-your-property/                       /tips  301
-/best-window-coverings-for-privacy-in-geelong-homes/                   /tips  301
-/blinds-vs-shutters-pros-and-cons-explained/                           /tips  301
-/how-to-choose-the-right-window-coverings-for-each-room/               /tips  301
+# Blog posts — 31 real posts on the old site. Where a fresh /tips article now
+# covers the same topic, redirect straight to it (better than the old thin
+# AI-boilerplate copy, and keeps the link equity on-topic rather than dumping
+# everything on the hub). Remaining topics without a rebuilt equivalent yet
+# still route to the /tips hub — candidates for a future batch.
+/how-sunscreen-blinds-help-beat-the-heat-in-geelong-summers/           /tips/blockout-vs-sunscreen-roller-blinds-geelong        301
+/top-5-blinds-for-coastal-homes-around-geelong/                        /tips/best-window-coverings-coastal-homes-geelong        301
+/how-to-choose-the-best-blinds-for-your-home-in-geelong/               /tips/choosing-window-coverings-room-by-room-geelong     301
+/top-7-types-of-window-blinds-popular-in-geelong-homes/                /tips/choosing-window-coverings-room-by-room-geelong     301
+/are-blinds-worth-it-benefits-for-privacy-energy-style-in-geelong/     /tips/curtains-vs-blinds-geelong-homes                   301
+/curtains-vs-blinds-whats-better-for-geelong-homes/                    /tips/curtains-vs-blinds-geelong-homes                   301
+/best-curtain-fabrics-for-geelong-weather/                             /tips/best-window-coverings-coastal-homes-geelong        301
+/how-custom-curtains-transform-your-living-space/                      /tips/made-to-measure-vs-off-the-shelf-blinds            301
+/why-plantation-shutters-are-perfect-for-geelong-homes/                /tips/plantation-shutters-home-value-geelong             301
+/cost-of-plantation-shutters-in-geelong-what-to-expect/                /tips/plantation-shutters-home-value-geelong             301
+/shutters-vs-curtains-which-adds-more-value-to-your-geelong-home/      /tips/plantation-shutters-home-value-geelong             301
+/outdoor-blinds-for-patios-a-complete-guide-for-geelong-homes/         /tips/outdoor-blinds-vs-awnings-geelong                  301
+/how-outdoor-blinds-improve-energy-efficiency-in-geelong-homes/        /tips/outdoor-blinds-vs-awnings-geelong                  301
+/best-outdoor-blind-materials-for-coastal-areas-like-geelong/          /tips/best-window-coverings-coastal-homes-geelong        301
+/awnings-vs-outdoor-blinds-whats-right-for-your-geelong-home/          /tips/outdoor-blinds-vs-awnings-geelong                  301
+/benefits-of-installing-awnings-in-geelongs-climate/                   /tips/outdoor-blinds-vs-awnings-geelong                  301
+/top-awning-styles-for-modern-australian-homes/                        /tips/outdoor-blinds-vs-awnings-geelong                  301
+/why-roller-blinds-are-the-most-popular-choice-in-geelong-homes/       /tips/blockout-vs-sunscreen-roller-blinds-geelong        301
+/blockout-vs-sunscreen-roller-blinds-which-one-do-you-need/            /tips/blockout-vs-sunscreen-roller-blinds-geelong        301
+/how-to-clean-and-maintain-roller-blinds-properly/                     /tips                                                     301
+/security-benefits-of-roller-shutters-for-geelong-homes/               /tips/roller-shutters-security-noise-geelong             301
+/do-roller-shutters-help-with-noise-reduction/                         /tips/roller-shutters-security-noise-geelong             301
+/manual-vs-electric-roller-shutters-which-is-better/                   /tips/roller-shutters-security-noise-geelong             301
+/how-to-combine-curtains-and-blinds-for-a-modern-look/                 /tips/layering-curtains-and-blinds-geelong               301
+/layering-window-treatments-a-complete-design-guide/                   /tips/layering-curtains-and-blinds-geelong               301
+/best-curtain-and-blind-combinations-for-living-rooms/                 /tips/layering-curtains-and-blinds-geelong               301
+/why-custom-blinds-are-better-than-ready-made-options/                 /tips/made-to-measure-vs-off-the-shelf-blinds            301
+/made-to-measure-blinds-what-you-need-to-know/                         /tips/made-to-measure-vs-off-the-shelf-blinds            301
+/how-custom-shutters-add-value-to-your-property/                       /tips/made-to-measure-vs-off-the-shelf-blinds            301
+/best-window-coverings-for-privacy-in-geelong-homes/                   /tips/choosing-window-coverings-room-by-room-geelong     301
+/blinds-vs-shutters-pros-and-cons-explained/                            /tips/curtains-vs-blinds-geelong-homes                  301
+/how-to-choose-the-right-window-coverings-for-each-room/               /tips/choosing-window-coverings-room-by-room-geelong     301
 
 # Deliberately NOT redirected — leftover WordPress/WooCommerce theme demo
 # content, never real business pages (23 /portfolio/portfolio-*/ demo

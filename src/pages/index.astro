@@ -25,13 +25,21 @@ const schemas = [localBusiness(), serviceSchema(), faqSchema()];
   <section class="heroF">
     <img class="heroF-img" src="/jackson-hero.webp" width="2200" height="1466" fetchpriority="high" alt="Jackson from Bay City Blinds giving a thumbs up in front of his branded mobile showroom van in Geelong" />
     <div class="heroF-tint" aria-hidden="true"></div>
+    <div class="heroF-badge-row" aria-hidden="false">
+      <a href="/reviews" aria-label="Read Bay City Blinds Google reviews">
+        <span class="heroF-badge">
+          <img src="/5-star-bay-city-blinds-review-v2.webp" width="700" height="305" loading="eager" alt="Bay City Blinds 5-star rating on Google Reviews" />
+          <span class="heroF-badge-text">from <b data-review-count>{site.reviewCount}</b> reviews</span>
+        </span>
+      </a>
+    </div>
     <div class="wrap heroF-grid">
       <div class="heroF-copy reveal">
         <p class="eyebrow">Geelong's mobile blinds showroom · since 2020</p>
         <h1>The showroom that <span class="hl">comes to you</span>.</h1>
         <p class="sub">Blinds, curtains, shutters &amp; outdoor blinds, measured in your Geelong home, made to measure, installed by a local you'll actually meet.</p>
         <div class="trust-chips">
-          <span class="chip"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 2l2.9 6.3 6.9.6-5.2 4.6 1.6 6.8L12 17.3 5.8 20.9l1.6-6.8L2.2 8.9l6.9-.6z"/></svg>{site.ratingValue} · {site.reviewCount} Google reviews</span>
+          <span class="chip"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 2l2.9 6.3 6.9.6-5.2 4.6 1.6 6.8L12 17.3 5.8 20.9l1.6-6.8L2.2 8.9l6.9-.6z"/></svg><span data-review-rating>{site.ratingValue}</span> · <span data-review-count>{site.reviewCount}</span> Google reviews</span>
           <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>Local, family-owned in Geelong</span>
           <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>14+ years experience</span>
           <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 2"/></svg>Evenings &amp; weekends</span>

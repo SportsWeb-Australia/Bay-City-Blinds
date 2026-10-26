@@ -3,7 +3,7 @@ import { site } from '../data/site';
 import { products, locations, curtainStyles, securityStyles, motorBrands } from '../data/content';
 import { articles } from '../data/blog';
 
-const staticPaths = ['/', '/blinds', '/indoor', '/outdoor', '/motorised', '/security', '/free-measure-quote', '/about', '/reviews', '/tips'];
+const staticPaths = ['/', '/blinds', '/indoor', '/outdoor', '/motorised', '/security', '/free-measure-quote', '/about', '/reviews', '/tips', '/service-and-repairs'];
 
 export const GET: APIRoute = () => {
   const urls = [

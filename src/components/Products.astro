@@ -2,10 +2,14 @@
 // Photo source is p.heroImage directly (content.ts) — do not reintroduce a
 // separate slug-keyed photo lookup here. See the comment above `Product` in
 // content.ts for why.
-import { products as allProducts } from '../data/content';
+import { products as allProducts, securityStyles } from '../data/content';
 export interface Props { category?: 'indoor' | 'outdoor'; hideHeading?: boolean }
 const { category, hideHeading = false } = Astro.props;
 const products = category ? allProducts.filter((p) => p.category === category) : allProducts;
+// Security Doors isn't in the `products` array (it has its own page template
+// under /security), but it belongs in this "what we fit" grid alongside
+// everything else — shown whenever the full, unfiltered grid renders.
+const securityDoors = !category ? securityStyles.find((s) => s.slug === 'security-doors') : null;
 const icons: Record<string, string> = {
   'roller-blinds': '<rect x="4" y="3" width="16" height="18" rx="1"/><path d="M4 8h16M4 13h16M4 18h16"/>',
   'honeycomb-blinds': '<rect x="4" y="3" width="16" height="18" rx="1"/><path d="M4 7l16 0M4 7l4 3-4 3 4 3-4 3M20 7l-4 3 4 3-4 3 4 3"/>',
@@ -25,8 +29,8 @@ const icons: Record<string, string> = {
     {!hideHeading && (
       <div class="sec-head reveal">
         <p class="eyebrow">What we fit</p>
-        <h2>Blinds, shutters &amp; curtains for every room</h2>
-        <p>Quality window furnishings from trusted suppliers, measured and installed by a local who cares how it looks.</p>
+        <h2>Blinds, shutters, curtains &amp; security doors for every room</h2>
+        <p>Quality window furnishings and security doors from trusted suppliers, measured and installed by a local who cares how it looks.</p>
       </div>
     )}
     <div class="grid-3">
@@ -43,6 +47,13 @@ const icons: Record<string, string> = {
           <div class="body"><h3>{p.name}</h3><p>{p.blurb}</p><span class="lk">Get a price →</span></div>
         </a>
       ))}
+      {securityDoors && (
+        <a class="pcard reveal" href="/security/security-doors">
+          <span class="ph-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></span>
+          <img class="ph-img" src={securityDoors.heroImage} width="640" height="400" loading="lazy" alt={`${securityDoors.name} by Bay City Blinds, Geelong`} />
+          <div class="body"><h3>{securityDoors.name}</h3><p>{securityDoors.blurb}</p><span class="lk">Get a price →</span></div>
+        </a>
+      )}
     </div>
   </div>
 </section>

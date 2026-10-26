@@ -4,7 +4,6 @@ import WhyUs from '../components/WhyUs.astro';
 import ServiceAreas from '../components/ServiceAreas.astro';
 import FinalCta from '../components/FinalCta.astro';
 import BenefitsGrid from '../components/BenefitsGrid.astro';
-import VideoPlaceholder from '../components/VideoPlaceholder.astro';
 import { securityStyles } from '../data/content';
 import { localBusiness, serviceSchema, breadcrumb } from '../data/schema';
 
@@ -27,15 +26,14 @@ const benefits = [
   <section class="block" style="padding-bottom:1rem">
     <div class="wrap">
       <div class="sec-head reveal" style="margin-bottom:1rem">
-        <p class="eyebrow">Security window furnishings</p>
+        <p class="eyebrow">Made-to-measure home security · Geelong</p>
         <h1 style="font-family:'Bricolage Grotesque';font-weight:800;font-size:clamp(1.8rem,3.4vw,2.6rem);margin:.5rem 0 .6rem">Security doors &amp; shutters for Geelong homes</h1>
         <p>Made-to-measure security, fitted the same way as the rest of Jackson’s range: measured properly, installed tidily, and backed by a clear written quote.</p>
       </div>
     </div>
   </section>
 
-  <BenefitsGrid items={benefits} />
-  <VideoPlaceholder label="Security doors & shutters walkthrough video coming soon" />
+  <BenefitsGrid items={benefits} class="why-2col" />
 
   <section class="block tint" id="styles">
     <div class="wrap">
@@ -44,13 +42,17 @@ const benefits = [
         <h2>Security doors &amp; security shutters</h2>
         <p>Tap through for a free in-home measure &amp; quote on either.</p>
       </div>
-      <div class="grid-3" style="max-width:760px;margin:0 auto">
+      <div class="grid-3 grid-centered" style="max-width:640px;margin:0 auto">
         {securityStyles.map((s) => (
           <a class="pcard reveal" href={`/security/${s.slug}`}>
             <span class="ph-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></span>
-            <div class:list={['ph', s.gradient]} aria-label={`${s.name} by Bay City Blinds, Geelong`}>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
-            </div>
+            {s.heroImage ? (
+              <img class="ph-img" src={s.heroImage} width="640" height="400" loading="lazy" alt={`${s.name} by Bay City Blinds, Geelong`} />
+            ) : (
+              <div class:list={['ph', s.gradient]} aria-label={`${s.name} by Bay City Blinds, Geelong`}>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+              </div>
+            )}
             <div class="body"><h3>{s.name}</h3><p>{s.blurb}</p><span class="lk">Get a price →</span></div>
           </a>
         ))}

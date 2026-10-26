@@ -1,0 +1,101 @@
+---
+import Layout from '../layouts/Layout.astro';
+import WhyUs from '../components/WhyUs.astro';
+import Reviews from '../components/Reviews.astro';
+import ServiceAreas from '../components/ServiceAreas.astro';
+import FinalCta from '../components/FinalCta.astro';
+import LeadForm from '../components/LeadForm.tsx';
+import { photo } from '../data/photos';
+import { localBusiness, serviceSchema, breadcrumb } from '../data/schema';
+
+const title = 'Blind, Shutter & Awning Repairs Geelong | Bay City Blinds';
+const description = 'Mobile blind, shutter and awning repairs across Geelong & the Bellarine. No call-out fee for the initial inspection, then a clear, obligation-free quote.';
+const schemas = [
+  localBusiness(),
+  serviceSchema(),
+  breadcrumb([{ name: 'Home', url: '/' }, { name: 'Service & Repairs', url: '/service-and-repairs' }]),
+];
+
+// What we repair & service. Icons reused from the existing site icon set for
+// visual consistency (no new icon library needed).
+const repairTypes = [
+  { h: 'Hardware & mechanism repairs', p: 'Brackets, clutches, tilt mechanisms and lift systems worn out or broken from everyday use.', ic: '<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 11-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 11-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 11-2.83-2.83l.06-.06A1.65 1.65 0 004.6 15a1.65 1.65 0 00-1.51-1H3a2 2 0 110-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 112.83-2.83l.06.06A1.65 1.65 0 009 4.6a1.65 1.65 0 001-1.51V3a2 2 0 114 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 112.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 110 4h-.09a1.65 1.65 0 00-1.51 1z"/>' },
+  { h: 'Outdoor blind zips & tracks', p: 'Zipscreen zips wearing through, tracks misaligned, or a channel that no longer holds the fabric properly.', ic: '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/>' },
+  { h: 'Cords, chains & tilt controls', p: 'Snapped chains, tangled cords, or a tilt wand that no longer turns the slats properly.', ic: '<path d="M9 17H7A5 5 0 017 7h2M15 7h2a5 5 0 010 10h-2M8 12h8"/>' },
+  { h: 'Motorisation & remote issues', p: 'A motorised blind, shutter or awning that won’t respond, has lost its programming, or needs a battery or wiring check.', ic: '<rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/>' },
+  { h: 'Fabric, mesh & screen replacement', p: 'Torn, faded or damaged fabric and mesh replaced without needing to replace the whole unit.', ic: '<rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/>' },
+  { h: 'General wear-and-tear parts', p: 'Anything else that’s stopped working properly with age and daily use, we’ll diagnose it and let you know exactly what’s involved.', ic: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>' },
+];
+
+const steps = [
+  { t: 'Enquire', d: 'Tell us what’s playing up, fill in the form below or call or text Jackson direct.', img: '/process-1-enquire.webp' },
+  { t: 'We come and look', d: 'Jackson and his team visit and assess the problem in person, no call-out fee for the inspection.', img: '/jackson-van-wide.webp' },
+  { t: 'Obligation-free quote', d: 'A clear written price for the repair. No pressure, take all the time you need to decide.', img: photo('journey-4') },
+];
+---
+<Layout title={title} description={description} path="/service-and-repairs" schemas={schemas}>
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-copy reveal">
+        <p class="eyebrow">Mobile repairs · Geelong &amp; the Bellarine</p>
+        <h1>Blind, shutter &amp; awning <span class="hl">service &amp; repairs</span></h1>
+        <p class="sub">Something stopped working properly? Jackson and his team services and repairs blinds, shutters, curtains and awnings across Geelong, not just new installs. From worn hardware to a Zipscreen zip that’s had enough, we’ll come and take a look.</p>
+        <div class="trust-chips">
+          <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>No call-out fee to inspect</span>
+          <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Obligation-free quotes</span>
+        </div>
+        <a class="btn btn-primary btn-lg" href="#quote" style="margin-top:.6rem">Book a repair assessment →</a>
+      </div>
+      <div class="reveal" id="quote"><LeadForm client:load /></div>
+    </div>
+  </section>
+
+  <section class="block" style="padding-top:0">
+    <div class="wrap">
+      <div class="promise reveal">
+        <span class="promise-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></span>
+        <div><b>Every service and repair quote is obligation-free.</b> There’s no call-out fee for the initial visit and inspection, and the quote that follows is yours to sit with, no pressure to go ahead.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block tint">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <p class="eyebrow">What we service &amp; repair</p>
+        <h2>Common repairs we handle across Geelong homes</h2>
+        <p>If it’s not listed here, ask anyway, chances are Jackson or a member of his team has seen it before.</p>
+      </div>
+      <div class="why">
+        {repairTypes.map((r) => (
+          <div class="item reveal">
+            <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" set:html={r.ic} /></div>
+            <div><h3>{r.h}</h3><p>{r.p}</p></div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="process">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <p class="eyebrow">How it works</p>
+        <h2>From enquiry to a fixed-up blind, in three steps</h2>
+      </div>
+      <ol class="journey">
+        {steps.map((s, i) => (
+          <li class="jstep jstep-photo reveal">
+            <div class="j-img"><img src={s.img} width="640" height="400" loading="lazy" alt={`Step ${i + 1}: ${s.t}, Bay City Blinds repair service, Geelong`} /><span class="j-num">{i + 1}</span></div>
+            <div class="j-body"><h3>{s.t}</h3><p>{s.d}</p></div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <WhyUs />
+  <Reviews />
+  <ServiceAreas />
+  <FinalCta />
+</Layout>

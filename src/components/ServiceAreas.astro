@@ -12,7 +12,7 @@ import ServiceAreaMap from './ServiceAreaMap.tsx';
         <div class="area-chips">
           {locations.map((l) => <a href={`/${l.slug}`}>{l.name}</a>)}
         </div>
-        <a class="btn btn-primary btn-lg" href="/free-measure-quote#quote" style="margin-top:1.5rem">Check your suburb →</a>
+        <a class="btn btn-primary btn-lg" href="/free-measure-quote#check-suburb" style="margin-top:1.5rem">Check your suburb →</a>
       </div>
       <div class="map-live reveal">
         <ServiceAreaMap client:load />

@@ -13,10 +13,17 @@
 // Optional: MOCK_PROVIDERS=true to short-circuit ZeptoMail with a canned success for
 // local testing before real secrets exist. Never set MOCK_PROVIDERS in production.
 
+// Two form versions post here (see src/data/forms.ts):
+//   formVersion=short   the shortened form: name, mobile, email, suburb, property type
+//                       (new build / existing home) are required; address, best time,
+//                       how-heard and notes are no longer asked or required.
+//   anything else       the preserved legacy form (and any older cached page): original
+//                       rules, including a required address.
+import { EMAIL_RE, PROPERTY_TYPES, CONTACT_PREFS, isPropertyType, isContactPref, normalizeAuMobile, formatAuMobile } from './leadValidation.js';
+
 const CALL_TIMEOUT_MS = 8000;
 const NOTES_MAX_LEN = 2000;
 const MIN_FILL_TIME_MS = 1500; // reject submissions faster than a human could plausibly fill the form
-const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 function escapeHtml(str) {
   return String(str).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -35,6 +42,8 @@ function isSpam(body) {
   return false;
 }
 
+const isShort = (body) => String(body.get('formVersion') || '') === 'short';
+
 function normalizeLead(body, request) {
   const firstName = (body.get('firstName') || '').trim();
   const lastName = (body.get('lastName') || '').trim();
@@ -45,11 +54,18 @@ function normalizeLead(body, request) {
     name: [firstName, lastName].filter(Boolean).join(' '),
     phone: (body.get('phone') || '').trim(),
     email: email && EMAIL_RE.test(email) ? email : '',
+    formVersion: isShort(body) ? 'short' : 'legacy',
+    propertyType: isPropertyType(String(body.get('propertyType'))) ? String(body.get('propertyType')) : '',
     address: (body.get('address') || '').trim(),
     suburb: (body.get('suburb') || '').trim(),
     service: (body.get('service') || '').trim(),
     besttime: (body.get('besttime') || '').trim(),
-    contact: (body.get('contact') || '').trim(),
+    // short form posts contactPreference (call|text|email); legacy posts contact (call|text)
+    contact: (() => {
+      const v = String(body.get('contactPreference') || body.get('contact') || '').trim().toLowerCase();
+      return isContactPref(v) ? v : '';
+    })(),
+    howHeard: (body.get('howHeard') || '').trim(),
     notes: (body.get('notes') || '').trim().slice(0, NOTES_MAX_LEN),
     formVariant: (body.get('formVariant') || 'full').trim(),
     page: request.headers.get('referer') || '',
@@ -93,19 +109,27 @@ function customerEmailHtml(lead) {
 }
 
 function jacksonEmailHtml(lead) {
-  const row = (label, value) => `<tr><td style="padding:4px 12px 4px 0;color:#5C7A82;white-space:nowrap">${label}</td><td style="padding:4px 0"><b>${value || '—'}</b></td></tr>`;
+  const cell = (label, value) => `<tr><td style="padding:4px 12px 4px 0;color:#5C7A82;white-space:nowrap">${label}</td><td style="padding:4px 0"><b>${value || '—'}</b></td></tr>`;
+  // Only show the optional / legacy-only rows when they actually have something in them,
+  // so a short-form enquiry isn't a wall of dashes.
+  const optional = (label, value) => (value ? cell(label, escapeHtml(value)) : '');
+  const property = PROPERTY_TYPES[lead.propertyType]
+    ? `<p style="font-family:sans-serif;font-size:15px;margin:0 0 10px"><span style="display:inline-block;padding:4px 12px;border-radius:6px;font-weight:700;color:#fff;background:${lead.propertyType === 'new-build' ? '#0B6C7E' : '#5C4A9A'}">${PROPERTY_TYPES[lead.propertyType].toUpperCase()}</span></p>`
+    : '';
   return `<p>New website enquiry:</p>
-<table cellpadding="0" cellspacing="0" style="font-family:sans-serif;font-size:14px">
-${row('Name', escapeHtml(lead.name))}
-${row('Phone', escapeHtml(lead.phone))}
-${row('Email', lead.email ? escapeHtml(lead.email) : '')}
-${row('Service required', escapeHtml(lead.service))}
-${row('Address', escapeHtml(lead.address))}
-${row('Suburb', escapeHtml(lead.suburb))}
-${row('Best time', escapeHtml(lead.besttime))}
-${row('Contact preference', escapeHtml(lead.contact))}
-${row('Message', escapeHtml(lead.notes))}
-${row('Page/form source', escapeHtml(`${lead.page} (${lead.formVariant} form)`))}
+${property}<table cellpadding="0" cellspacing="0" style="font-family:sans-serif;font-size:14px">
+${cell('Name', escapeHtml(lead.name))}
+${cell('Mobile', escapeHtml(lead.phone))}
+${cell('Email', lead.email ? escapeHtml(lead.email) : '')}
+${cell('Suburb', escapeHtml(lead.suburb))}
+${lead.propertyType ? cell('Property', PROPERTY_TYPES[lead.propertyType] || '') : ''}
+${cell('Interested in', escapeHtml(lead.service))}
+${cell('Contact preference', CONTACT_PREFS[lead.contact] || '')}
+${optional('Address', lead.address)}
+${optional('Best time', lead.besttime)}
+${optional('How they heard about us', lead.howHeard)}
+${optional('Message', lead.notes)}
+${cell('Page/form source', escapeHtml(`${lead.page} (${lead.formVariant} form, ${lead.formVersion} version)`))}
 </table>`;
 }
 
@@ -122,12 +146,28 @@ export async function handleLead(request, env) {
     return Response.json({ success: true });
   }
 
-  const missing = required(['firstName', 'lastName', 'phone', 'email', 'address', 'suburb'], body);
+  const short = isShort(body);
+  // Short form: address is no longer asked, so it is no longer required. Legacy form keeps
+  // its original required list exactly.
+  const requiredFields = short
+    ? ['firstName', 'lastName', 'phone', 'email', 'suburb', 'propertyType']
+    : ['firstName', 'lastName', 'phone', 'email', 'address', 'suburb'];
+  const missing = required(requiredFields, body);
   if (missing.length) {
     return Response.json({ success: false, error: `Missing required field(s): ${missing.join(', ')}` }, { status: 400 });
   }
   if (!EMAIL_RE.test(String(body.get('email')).trim())) {
     return Response.json({ success: false, error: 'Please enter a valid email address' }, { status: 400 });
+  }
+  if (short) {
+    if (!isPropertyType(String(body.get('propertyType')))) {
+      return Response.json({ success: false, error: 'Please choose new build or existing home' }, { status: 400 });
+    }
+    const mobile = normalizeAuMobile(body.get('phone'));
+    if (!mobile) {
+      return Response.json({ success: false, error: 'Please enter an Australian mobile number' }, { status: 400 });
+    }
+    body.set('phone', formatAuMobile(mobile)); // tidy, consistent format in Jackson's inbox
   }
 
   const lead = normalizeLead(body, request);

@@ -12,7 +12,7 @@ export default function Faq() {
             <span className="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4"><path d="M12 5v14M5 12h14" /></svg></span>
           </button>
           <div className="ans" style={{ maxHeight: open === i ? '260px' : '0' }}>
-            <p>{f.a}</p>
+            <p dangerouslySetInnerHTML={{ __html: f.a }} />
           </div>
         </div>
       ))}

@@ -1,0 +1,163 @@
+// Shared /api/lead handler — pure Web Fetch API (Request/Response, formData()) so it
+// runs unchanged on both hosts: Cloudflare Pages Functions (functions/api/lead.js) and
+// Vercel Edge Functions (api/lead.js). Only the thin wrapper files differ per platform.
+//
+// Emails the enquiry to Jackson via ZeptoMail, with an optional auto-reply to the
+// customer if they gave an email address. No CRM or SMS integration yet — those are
+// later additions (Zoho CRM / B1-Supabase once that schema exists).
+//
+// Secrets required (set as env vars on whichever platform is live):
+//   ZEPTOMAIL_TOKEN (encrypted secret — never in source, never client-side)
+// Non-sensitive vars (see wrangler.toml [vars]):
+//   ZEPTOMAIL_FROM, ZEPTOMAIL_TO, ZEPTOMAIL_API_URL
+// Optional: MOCK_PROVIDERS=true to short-circuit ZeptoMail with a canned success for
+// local testing before real secrets exist. Never set MOCK_PROVIDERS in production.
+
+const CALL_TIMEOUT_MS = 8000;
+const NOTES_MAX_LEN = 2000;
+const MIN_FILL_TIME_MS = 1500; // reject submissions faster than a human could plausibly fill the form
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+function escapeHtml(str) {
+  return String(str).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+}
+
+function required(fields, body) {
+  return fields.filter((f) => !body.get(f) || !String(body.get(f)).trim());
+}
+
+function isSpam(body) {
+  // Honeypot: a field real users never see or fill; bots that auto-fill every input trip it.
+  if ((body.get('website') || '').trim()) return true;
+  // Fill-time heuristic: submissions faster than this are almost certainly scripted.
+  const loadedAt = Number(body.get('formLoadedAt'));
+  if (loadedAt && Date.now() - loadedAt < MIN_FILL_TIME_MS) return true;
+  return false;
+}
+
+function normalizeLead(body, request) {
+  const firstName = (body.get('firstName') || '').trim();
+  const lastName = (body.get('lastName') || '').trim();
+  const email = (body.get('email') || '').trim();
+  return {
+    firstName,
+    lastName,
+    name: [firstName, lastName].filter(Boolean).join(' '),
+    phone: (body.get('phone') || '').trim(),
+    email: email && EMAIL_RE.test(email) ? email : '',
+    address: (body.get('address') || '').trim(),
+    suburb: (body.get('suburb') || '').trim(),
+    service: (body.get('service') || '').trim(),
+    besttime: (body.get('besttime') || '').trim(),
+    contact: (body.get('contact') || '').trim(),
+    howHeard: (body.get('howHeard') || '').trim(),
+    notes: (body.get('notes') || '').trim().slice(0, NOTES_MAX_LEN),
+    formVariant: (body.get('formVariant') || 'full').trim(),
+    page: request.headers.get('referer') || '',
+  };
+}
+
+async function sendZeptoMail({ to, subject, html, replyTo }, env) {
+  if (env.MOCK_PROVIDERS === 'true') return { ok: true };
+  const apiUrl = env.ZEPTOMAIL_API_URL || 'https://api.zeptomail.com.au/v1.1/email';
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), CALL_TIMEOUT_MS);
+  try {
+    const payload = {
+      from: { address: env.ZEPTOMAIL_FROM, name: 'Bay City Blinds' },
+      to: [{ email_address: { address: to } }],
+      subject,
+      htmlbody: html,
+    };
+    if (replyTo) payload.reply_to = [{ address: replyTo }];
+    const res = await fetch(apiUrl, {
+      method: 'POST',
+      headers: { Authorization: env.ZEPTOMAIL_TOKEN, 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+      signal: controller.signal,
+    });
+    if (!res.ok) throw new Error(`ZeptoMail send failed: ${res.status} ${await res.text()}`);
+    return { ok: true };
+  } catch (err) {
+    console.error(`[lead] ZeptoMail -> ${to} failed:`, err.message || err);
+    return { ok: false, error: err.message || String(err) };
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
+function customerEmailHtml(lead) {
+  const name = escapeHtml(lead.name || 'there');
+  return `<p>Hi ${name},</p>
+<p>Thanks for reaching out to us at Bay City Blinds. We have your enquiry and Jackson or one of his team will be in touch shortly.</p>
+<p>Kind Regards,<br/>Jackson and the team at Bay City Blinds<br/>0430 161 383</p>`;
+}
+
+function jacksonEmailHtml(lead) {
+  const row = (label, value) => `<tr><td style="padding:4px 12px 4px 0;color:#5C7A82;white-space:nowrap">${label}</td><td style="padding:4px 0"><b>${value || '—'}</b></td></tr>`;
+  return `<p>New website enquiry:</p>
+<table cellpadding="0" cellspacing="0" style="font-family:sans-serif;font-size:14px">
+${row('Name', escapeHtml(lead.name))}
+${row('Phone', escapeHtml(lead.phone))}
+${row('Email', lead.email ? escapeHtml(lead.email) : '')}
+${row('Service required', escapeHtml(lead.service))}
+${row('Address', escapeHtml(lead.address))}
+${row('Suburb', escapeHtml(lead.suburb))}
+${row('Best time', escapeHtml(lead.besttime))}
+${row('Contact preference', escapeHtml(lead.contact))}
+${row('How they heard about us', escapeHtml(lead.howHeard))}
+${row('Message', escapeHtml(lead.notes))}
+${row('Page/form source', escapeHtml(`${lead.page} (${lead.formVariant} form)`))}
+</table>`;
+}
+
+export async function handleLead(request, env) {
+  let body;
+  try {
+    body = await request.formData();
+  } catch {
+    return Response.json({ success: false, error: 'Invalid form submission' }, { status: 400 });
+  }
+
+  if (isSpam(body)) {
+    // Pretend success — don't tip off bots that they were caught, don't send any email.
+    return Response.json({ success: true });
+  }
+
+  const missing = required(['firstName', 'lastName', 'phone', 'email', 'address', 'suburb'], body);
+  if (missing.length) {
+    return Response.json({ success: false, error: `Missing required field(s): ${missing.join(', ')}` }, { status: 400 });
+  }
+  if (!EMAIL_RE.test(String(body.get('email')).trim())) {
+    return Response.json({ success: false, error: 'Please enter a valid email address' }, { status: 400 });
+  }
+
+  const lead = normalizeLead(body, request);
+  const warnings = [];
+
+  const jacksonEmailRes = await sendZeptoMail(
+    {
+      to: env.ZEPTOMAIL_TO,
+      subject: `New Website Enquiry – ${lead.name}`,
+      html: jacksonEmailHtml(lead),
+      replyTo: lead.email || undefined,
+    },
+    env
+  );
+  if (!jacksonEmailRes.ok) {
+    // Jackson's notification is the whole point of this endpoint right now — if it fails,
+    // tell the user so they fall back to calling/texting directly rather than assuming it worked.
+    warnings.push('jackson_email_failed');
+    return Response.json({ success: false, warnings }, { status: 502 });
+  }
+
+  if (lead.email) {
+    const customerEmailRes = await sendZeptoMail(
+      { to: lead.email, subject: 'Thanks for your enquiry — Bay City Blinds', html: customerEmailHtml(lead) },
+      env
+    );
+    if (!customerEmailRes.ok) warnings.push('customer_email_failed');
+  }
+
+  return Response.json({ success: true, warnings: warnings.length ? warnings : undefined });
+}

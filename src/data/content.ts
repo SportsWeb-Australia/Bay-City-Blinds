@@ -38,11 +38,12 @@ export const products: Product[] = [
     ] },
   { slug: 'plantation-shutters', name: 'Plantation Shutters', gradient: 'g4', category: 'indoor', heroImage: '/photos/photo-10.webp',
     blurb: 'The premium, adds-value option. Timeless and built to last.',
-    long: 'Plantation shutters are the premium window furnishing, timeless, durable and known to add value to your home. Available in timber and PVC, they handle light, privacy and insulation beautifully.',
+    long: 'Plantation shutters are the premium window furnishing, timeless, durable and known to add value to your home. Available in timber and PVC, they handle light, privacy and insulation beautifully, and suit everything from a classic Geelong weatherboard to a relaxed coastal look and feel around the Bellarine and Surf Coast.',
     features: [
       { h: 'Adds real value to your home', p: 'Plantation shutters are widely recognised by buyers and agents as a premium, permanent fixture, not just a window covering.' },
       { h: 'Built to last', p: 'Solid timber or PVC construction handles daily use for decades with minimal maintenance, unlike fabric options that fade or wear.' },
       { h: 'Insulation and light control in one', p: 'Adjustable louvres manage light and airflow while adding a genuine layer of thermal insulation to the window.' },
+      { h: 'Suits a coastal look and feel', p: 'A soft, timber-look or crisp white finish brings that relaxed, coastal look and feel to a home, popular right along the Bellarine and Surf Coast without losing the shutter’s classic, timeless style.' },
     ] },
   { slug: 'blockout-blinds', name: 'Blockout Blinds', gradient: 'g2', category: 'indoor', heroImage: '/photos/blockout-blinds.webp',
     blurb: 'Full-block roller blinds with a neat, framed U-channel finish.',
@@ -52,7 +53,7 @@ export const products: Product[] = [
       { h: 'No light gaps', p: 'Locks into the side channel, closing off the edge gaps that let light creep in around a standard blind.' },
       { h: 'Properly dark, any hour', p: 'A genuine option for shift workers, young parents and media rooms that need full darkness on demand.' },
     ] },
-  { slug: 'pelmet-boxes', name: 'Pelmet Boxes', gradient: 'g3', category: 'indoor', heroImage: '/photos/pelmet-boxes.webp',
+  { slug: 'pelmet-boxes', name: 'Pelmet Boxes', gradient: 'g3', category: 'indoor', heroImage: '/photos/pelmet-boxes-v2.webp',
     blurb: 'Completes the look, traps heat, and hides your blind or head rail when it’s rolled up.',
     long: 'A pelmet box conceals the head rail and mechanism above your blind or shutter for a neat, tailored, hotel-style finish that completes the look of the room. It’s also genuinely energy efficient, trapping heat that would otherwise escape out the top, and it hides the blind itself when fully raised. Made to measure in timber or fabric, with a scalloped or straight-cut edge to suit your style.',
     features: [
@@ -86,6 +87,10 @@ export const products: Product[] = [
       { h: 'Set-and-forget shade', p: 'A fixed awning protects the window or entry every day without needing to be opened or closed like a retractable option.' },
       { h: 'Classic street-facing look', p: 'Suits heritage-style homes especially well, adding character to a facade rather than just function.' },
       { h: 'Weather protection year-round', p: 'Keeps rain off entries and reduces direct sun on windows behind it, in every season, not just summer.' },
+      { h: 'Canvas or mesh, straight-drop style', p: 'Available in canvas or mesh fabric, in a straight-drop style with your choice of fixed guides or wire guides to suit the window or space.' },
+      { h: 'Motorised or hand-wound', p: 'Choose a motorised awning for one-touch, effortless operation, or a simple hand-wound crank for a lower-cost manual option.' },
+      { h: 'Waterproof acrylic fabric', p: 'Made from durable, waterproof acrylic fabric built to handle everything Geelong weather throws at it.' },
+      { h: 'Plain colours or stripes', p: 'Available in plain colours or classic stripes, in a wide range of colourways to suit your home.' },
     ] },
   { slug: 'folding-arm-awnings', name: 'Folding Arm Awnings', gradient: 'g6', category: 'outdoor', youtubeId: 'jfVLsh113OY', heroImage: '/photos/folding-arm-awnings.webp',
     blurb: 'Retractable shade that extends your outdoor living space on demand.',
@@ -121,14 +126,6 @@ export const curtainStyles: CurtainStyle[] = [
       { h: 'Indoor blockouts', p: 'Full light and heat block for bedrooms, nurseries and media rooms, with the U-channel keeping light from creeping in around the sides.' },
       { h: 'Outdoor blockouts', p: 'Better insulation, increased security and real noise reduction on top of light control, and because they sit outside the glass line, they free up internal room space that bulky indoor curtains can eat into.' },
     ] },
-  { slug: 'pelmet-boxes', name: 'Pelmet Boxes', gradient: 'g4', heroImage: '/photos/pelmet-boxes.webp',
-    blurb: 'Completes the look, traps heat, and hides the track and any blinds when they’re rolled up.',
-    long: 'A pelmet box conceals the curtain track and heading above the window for a neat, tailored, hotel-style finish that completes the look of the room. It’s also genuinely energy efficient, trapping heat that would otherwise escape over the top of the curtain, and it hides any blind sitting behind it when rolled up. Made to measure in timber or fabric, with a scalloped or straight-cut edge to suit your style.',
-    sideFeatures: [
-      { h: 'Completes the look', p: 'Hides the curtain track and heading for a tailored, hotel-style finish instead of exposed hardware.' },
-      { h: 'Traps heat', p: 'Stops warm air escaping out the top of the curtain, a genuine energy-efficiency upgrade, not just cosmetic.' },
-      { h: 'Hides blinds when rolled up', p: 'Conceals a roller or Venetian blind sitting behind it when it’s fully raised, for a cleaner window top.' },
-    ] },
 ];
 
 // Security styles — sub-pages linked from the Security nav dropdown and
@@ -151,6 +148,22 @@ export const securityStyles: SecurityStyle[] = [
       { h: 'Noise and heat control', p: 'Closed shutters cut outside noise and add real insulation, on top of the security benefit.' },
       { h: 'Everyday light control too', p: 'Not just a lock-up measure, adjust them daily for light and privacy like a standard shutter.' },
     ] },
+];
+
+// Security door screen tiers — shown on /security/security-doors under the
+// quote form. heroImage is intentionally omitted until Carson supplies real
+// photos of each tier; the page falls back to an icon tile until then.
+export type SecurityScreenOption = { tier: string; name: string; mm: string; blurb: string; features: string[]; heroImage?: string };
+export const securityScreenOptions: SecurityScreenOption[] = [
+  { tier: 'Entry level', name: 'Restrict-A-View', mm: '2mm',
+    blurb: 'Our base security screen. A 2mm mesh that restricts the view in from outside for daytime privacy, while you can still see out and get airflow through the door.',
+    features: ['2mm security mesh', 'Restricts view from outside in', 'Genuine break-in deterrent at an entry-level price'] },
+  { tier: 'Mid range', name: 'Clear View', mm: '',
+    blurb: 'A step up in mesh strength with true two-way viewing, see clearly out and in, unlike the restricted view of our entry-level screen, without giving up security.',
+    features: ['Heavier mesh than Restrict-A-View', 'Two-way visibility, see clearly in both directions', 'A good middle ground of strength and outlook'] },
+  { tier: 'Premium', name: 'Screenguard', mm: '9mm',
+    blurb: 'Our heaviest-duty option, built to match what people typically look for in a Crimsafe-style door: a 3-point locking system, a reinforced, stronger frame, and a 9mm security screen.',
+    features: ['9mm security screen', '3-point locking system', 'Reinforced, stronger frame', 'Our strongest break-in resistance'] },
 ];
 
 // Motor brands — hub cards on /motorised plus a dedicated page per brand
@@ -241,6 +254,11 @@ export const faqs = [
   { q: 'How long does it take to get my blinds?', a: 'Because everything is made to measure, lead times vary by product, Jackson will give you a realistic timeframe with your quote. Most jobs are measured within a day or two of enquiring.' },
   { q: 'Are you insured and do the blinds come with a warranty?', a: 'Yes. Bay City Blinds is fully insured, and our made-to-measure products are covered by manufacturer warranties. You\u2019ll get the details in writing with your quote.' },
   { q: 'Do I have to visit a showroom?', a: 'Nope, that\u2019s our whole point of difference. We\u2019re a mobile showroom, so Jackson brings the samples and expertise to your home at a time that suits you, including evenings and weekends.' },
+  { q: 'Do you supply and install security doors in Geelong?', a: 'Yes. Bay City Blinds supplies and installs quality security doors throughout Geelong and surrounding areas. We can help you choose a security door suited to your home, style, security requirements and budget.' },
+  { q: 'Do you install Crimsafe security doors?', a: 'No, we don\u2019t install Crimsafe-branded products. We offer high-quality Australian-made security door alternatives manufactured locally and designed to meet applicable Australian security standards. Our top-tier screen, for example, matches what people typically look for in a Crimsafe-style door: a 3-point locking system, a reinforced, stronger frame, and a 9mm security screen for real break-in resistance. Talk to us about the different options available for your home.' },
+  { q: 'Are your blinds and awnings fire rated?', a: 'Some products within our indoor and outdoor blinds and awnings range have fire-rated or fire-resistant options available. Requirements and ratings vary between products, so contact us and we can recommend the appropriate option for your property and application.' },
+  { q: 'Can your motorised blinds and awnings connect to Google Home or smart home systems?', a: 'Yes. Selected motorised blinds, awnings and outdoor blind systems can integrate with Google Home and other compatible smart home platforms, allowing you to control them through your phone, voice commands or automated schedules. Ask us which motorisation options are compatible with your preferred smart home system.' },
+  { q: 'Do you do service and repairs?', a: 'Yes. Bay City Blinds services and repairs blinds, shutters, curtains and awnings across Geelong and surrounding areas, not just new installs. There’s no call-out fee for the initial inspection, and the quote that follows is obligation-free. See our <a href="/service-and-repairs">Service &amp; Repairs page</a> for the full range of what we cover.' },
 ];
 
 export const gallery = [

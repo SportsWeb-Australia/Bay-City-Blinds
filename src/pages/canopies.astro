@@ -1,0 +1,89 @@
+---
+// HIDDEN DRAFT PAGE — awaiting Jackson's approval before going live.
+// Deliberately NOT linked from nav/footer, NOT in sitemap.xml.ts, and NOT in
+// the products array that drives the homepage/Products.astro grid. robots is
+// set to noindex,nofollow below so it can't be found via search in the
+// meantime. Once approved: add a `canopies` entry to products[] in
+// content.ts (category: 'outdoor'), link it from Header.astro's Outdoor
+// dropdown + Footer.astro, add "/canopies" to sitemap.xml.ts staticPaths,
+// and remove the noindex override here.
+import Layout from '../layouts/Layout.astro';
+import WhyUs from '../components/WhyUs.astro';
+import Reviews from '../components/Reviews.astro';
+import ServiceAreas from '../components/ServiceAreas.astro';
+import FinalCta from '../components/FinalCta.astro';
+import LeadForm from '../components/LeadForm.tsx';
+
+const title = 'Outdoor Canopies Geelong | Free Measure & Quote | Bay City Blinds';
+const description = 'Made-to-measure outdoor canopies for patios, carports and entertaining areas across Geelong & the Bellarine. Free in-home measure & quote.';
+
+// Draft copy only — specs, roofing materials and colour range are
+// placeholders until Jackson confirms the real supplier/options.
+const features = [
+  { h: 'A permanent, roofed shade structure', p: 'Unlike a fabric awning that retracts or folds away, a canopy is a fixed roof, built to shade a patio, carport or entertaining area every day of the year.' },
+  { h: 'Freestanding or attached', p: 'Fixed to the house as a lean-to over an existing patio, or freestanding on its own posts to cover a carport, deck or standalone entertaining space.' },
+  { h: 'Built for Geelong weather', p: 'A solid roofed structure handles wind, rain and hail better than a retractable fabric option, genuine all-weather cover, not just sun shade.' },
+  { h: 'Made to measure', p: 'Sized and installed to fit your space properly, not an off-the-shelf kit, measured on a free in-home visit like everything else we fit.' },
+];
+---
+<Layout title={title} description={description} path="/canopies" robots="noindex,nofollow">
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-copy reveal">
+        <p class="eyebrow">Made to measure · Geelong &amp; the Bellarine</p>
+        <h1>Outdoor Canopies in <span class="hl">Geelong</span></h1>
+        <p class="sub">A made-to-measure canopy gives a patio, carport or entertaining area permanent, all-weather shade, a fixed roofed structure rather than a retractable fabric awning. Freestanding or attached to the house, built to handle everything Geelong's weather throws at it.</p>
+        <a class="btn btn-primary btn-lg" href="#quote" style="margin-top:.6rem">Get my free quote →</a>
+      </div>
+      <div class="reveal" id="quote"><LeadForm client:load /></div>
+    </div>
+  </section>
+
+  <section class="block tint">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <p class="eyebrow">Why a canopy</p>
+        <h2>Permanent, all-weather shade for outdoor spaces</h2>
+      </div>
+      <div class="why">
+        {features.map((f) => (
+          <div class="item reveal">
+            <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg></div>
+            <div><h3>{f.h}</h3><p>{f.p}</p></div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <p class="eyebrow">Two styles to choose from</p>
+        <h2>Traditional Dutch canopy or café style</h2>
+        <p>Reference images only, for Jackson to confirm the look and direction, not final Bay City Blinds photos.</p>
+      </div>
+      <div class="grid-3" style="grid-template-columns:repeat(2,minmax(0,360px));justify-content:center;gap:1.3rem">
+        <a class="pcard reveal" href="#quote">
+          <img class="ph-img" src="/photos/dutch-canopy-ref.webp" width="640" height="400" loading="lazy" alt="Traditional wedge-shaped striped Dutch canopy (reference image)" />
+          <div class="body">
+            <h3>Traditional Dutch canopy</h3>
+            <p>The classic wedge-shaped, striped canopy over a window or doorway. Reference image shown, swap for a real installation photo once approved.</p>
+          </div>
+        </a>
+        <a class="pcard reveal" href="#quote">
+          <img class="ph-img" src="/photos/cafe-canopy-ref.webp" width="640" height="400" loading="lazy" alt="Café-style striped canopy over an outdoor dining area (reference image)" />
+          <div class="body">
+            <h3>Café style canopy</h3>
+            <p>A wider, flatter fixed canopy over a patio or alfresco dining area, café-style. Reference image shown, swap for a real installation photo once approved.</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <WhyUs />
+  <Reviews />
+  <ServiceAreas />
+  <FinalCta />
+</Layout>
